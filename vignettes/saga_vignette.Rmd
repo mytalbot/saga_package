@@ -1,0 +1,339 @@
+---
+title: "SAGA"
+author: "Steven R. Talbot"
+date: "`r Sys.Date()`"
+output: 
+    rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{saga_vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+## About SAGA package
+In our paper **"Predicting genotoxicity of integrating viral vectors for stem cell gene therapy using gene expression-based machine learning"** we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy.
+SAGA builds on the well accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic apporach to correctly
+classify the mutagenic potential of retroviral vectors used in previous and current clinical trials. 
+
+This vignette covers the basic functions for SAGA analysis in R [1].
+
+# Package Requirements
+In order to use the SAGA package some Bioconductor dependencies need to be installed. First, the connection to the Bioconductor database must be established. Then the required packages can be loaded independently. Please note that these packages are only available over Bioconductor and cannot be loaded using CRAN.
+
+[BiocManager](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html)
+
+```
+install.packages("BiocManager")
+
+BiocManager::install("Biobase") 
+BiocManager::install("BiocGenerics") 
+BiocManager::install("affy") 
+BiocManager::install("affyPLM") 
+BiocManager::install("phenoTest")
+
+```
+
+The [reference section](#references) offers more information on the packages Biobase [2], BioGenerics [2], affy [3], affyPLM [4] and phenoTest [5].
+
+The following packages (with dependencies) need to be loaded as well. They can be installed via CRAN. The following links can be used directly in the R console.
+
+```
+install.packages("limma") 
+install.packages("sva")
+install.packages("caret")
+install.packages("phenoTest")
+install.packages("gridExtra")
+install.packages("bapred")
+install.packages("UsingR")
+install.packages("pROC")
+install.packages("Rtsne")
+
+```
+
+Again, the [reference section](#references) offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13] and Rtsne [14-16].
+
+
+# Introduction 
+`SAGA` analysis starts with raw data obtained from regular gene expression microarray analysis acquired by Agilent platforms. This is important since the functions in this package will only work within the Agilent format. In the current version other platforms
+were not specifically included into the capacities of this package. If you wish to use other platforms you'll have to adapt the functions to your specific needs. 
+
+As described in the paper, we optimized a training set of arrays to discriminate between potentially dangerous arrays and MOCK data in order to obtain a measurement for vector safety. Vector safety is therefore described as either *transforming* or *nontransforming* in the package.
+
+The basic SAGA classifier was obtained by varius Machine Learning algorithms as well as feature assessment techniques as described in our paper. In essence, a toplist of 9 probes were obtained that are able to predict untrained samples reliably well. The `SAGA` package uses its default data set and the probe toplist to predict user sample data.
+
+Although the arrays provide 39428 probes the annotations were (**de novo**) remapped to the latest available standard (Gencode.vM18, GRCm38.p6, released July 2018 and Whole Mouse Genome Oligo Microarray 4x44K v2 (ID 026655, released October 2017)), so that only 36226 annotated probes were considered in the final model building process.
+
+Further, the user may specify his/her own positive and negative controls for more confidence in the predicted results.
+
+# Basic requirements
+In order to use the `SAGA` package the user has to create a specific folder with sample data. The samples must follow the Agilent design and must be in *.txt format. Sample names should be numeric.
+
+Possible sample names would be: 9910.txt, 9911.txt, 9912.txt etc.
+
+Further, a **'SampleInformation.txt'** or targets file is needed. This file consists of a table with certain columns which are later used to merge the user data with the default data. In the shown plots user data will always be colored black for identification purposes.
+
+It is important to know, that the targets file <span style="color:red">**has**</span> to have the following name: **SampleInformation.txt** 
+and also <span style="color:red">**has**</span> to be located in the same folder as the samples.
+
+The user may change the contents of this file manually to adjust his batch, group, vector or class settings. 
+
+`SAGA` offers a function to generate a blank SampleInformation.txt file automatically. However, this only works if there is no such file in the sample directory. Otherwise the already provided file will be used. The generated targets file may then be adjusted manually. Make sure not to hamper with the column names. Column names are case sensitive.
+
+# Data structure
+Here is a short example of a minimal targets file in txt-format. The first column must contain the array names. You may specify the names by yourself or let your microarray platform choose the labelling. However, it is best that the names do not contain any special characters such as *"§%&-"* and that they are numeric (and in an ascending order).
+
+Make sure that the targets file has the following format.
+
+| SAMPLE_ID | Filename  | Batch  | Group | Vector           | TrueLabel      |
+|:----------|:----------|:-------|:------|:-----------------|:---------------|
+|X41        |41.txt     |1       |1      |A2_MOCK           |nontransforming |
+|X42        |42.txt     |1       |2      |A9_SIN.AV.EFS     |transforming    |
+|X43        |43.txt     |1       |3      |A1_LTR.RV.SF.eGFP |transforming    |
+|X44        |44.txt     |1       |4      |A9_SIN.AV.EFS     |transforming    |
+|X45        |45.txt     |1       |5      |A10_SIN.AV.SF     |transforming    |
+|X46        |46.txt     |1       |6      |A9_SIN.AV.EFS     |transforming    |
+|...        |...        |...     |...    |...               |...             |
+
+Table: Example of a SampleInformation.txt file. 
+
+
+In the table, the first array (41.txt) is labelled as *nontransforming* in the **TrueLabel** column. Using either **nontransforming** or **transforming** as class labels, the user may specify his own positive or negative controls. When left empty (NA) the arrays will be classified against the default model.
+
+We recommend that users include at least 2 to 3 MOCK (negative) and RV.SF (positive) controls in their own models. The batch correction algorithm may need this for proper integration of the provided data into the SAGA data set. 
+
+**IMPORTANT for GESEA:** For the Gene Set Enrichment Analysis (GESEA) the user must provide at least 3 samples in two different batches. One of the three samples must be a MOCK control (vector) and labelled as 1 in the Group column. Every MOCK control needs the Group label 1. All other arrays may have other numeric labels.
+
+
+# Using the functions of the SAGA package
+The following section explains the functions of this package and how to use them in SAGA analysis.
+
+
+## saga_gentargets
+After pooling the samples in a specific folder (`samplepath`), a targets file called `SampleInformation.txt` must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious we provide a function for automatic generation of an empty file. The user will then have to adjust this file manually to his experimental setup.
+
+The only two requirements for this function are:
+
+* there must be at least one sample file in the folder (however, there should really be more (controls!))
+* there should not be a `SampleInformation.txt` in the folder when samples are new
+
+
+```
+# This function will generate the empty user targets file for the samples.
+saga_gentargets(samplepath)
+
+```
+
+## saga_wrapper
+This function enables the user to perform SAGA analysis in one single step. Only the path to the samples and the SampleInformation.txt file must be provided in the folder. Further, the option `doGESEA` (defaul setting is 0) gives control over GESEA analysis. In order to perform GESEA analysis, the `SampleInformation.txt` file has certain requirements which are shown above. One disadvantage of this wrapper function is that the user will loose some flexibility.
+
+The results of GESEA will be generated as separate PDF and results textfiles in the sample folder.
+
+
+```
+# This function performs SAGA analysis in one step.
+mySAGAres <- saga_wrapper(samplepath, showModel=0, doGESEA=1)
+
+```
+
+## saga_import
+The `saga_import` function imports multiple single microarray data files (*.txt format). The user must specify a sample path in the `samplepath` object to guide the function to the query data. However, the folder should not contain any other files except the `SampleInformation.txt` file wich can be generated with the `saga_gentargets` function. 
+
+The argument `showjoint` can be used for quick data visualization. A boxplot will show the joint data set after appending the user samples to the SAGA data set (default value for `showjoint` is 0).
+
+
+```
+# This will load the default data.
+saga_import(samplepath, showjoint=0)
+
+```
+
+**Please note: ** `saga_import` relies on Agilent raw data in *.txt format. There is no need to process the readout files prior to SAGA analysis.
+
+
+## saga_norm
+We use quantile normalization as a preprocessing step piror to analysis. The sample arrays are always normalized together with the SAGA data set. This means that training and testing data are merged during the normalization process and will again be separated later for further analysis. This ensures that data are haromonized and no artificial normalization bias enters the analysis. The `normplot` option also gives control over a boxplot showing the normalized values of the joint data set (the default argument is 0).
+
+In case of multiple probes per array the intensities are averaged to a single value. Agilent readouts usually offer four technical probe replicates and a variety of controls. In the end, 39428 normalized and averaged probes will remain and internal controls are filtered.
+
+Use the plotnumber argument to show either the normalized data in a boxplot (=1) or a t-SNE (=2) plot of the first two dimensions of the combined data sets.
+
+
+```
+# This function applies quantile normalization on the whole data set.
+saga_norm(SAGA_RAW, TEST_RAW, pData.joint, plotnumber=2)
+
+```
+
+## saga_batch
+Usually microarrays are done in batches. A plethora of external influences may (occasionally) distort otherwise equal arrays beyond recognizability. This often leads to false conclusions when not handled correctly, e.g., wrong clustering results.
+
+In order to avoid such errors we apply batch correction on the joint data set. The user may define his own batches within the `SampleInformation.txt` file and is required to update the batch information **manually**. 
+
+The function requires the rawdata as well as the quantile normalized data from the `saga_norm` function. Use the plotnumber argument to show either PCA (=1) or t-SNE (=2) plots of the combined data sets.
+
+
+```
+# This function will do the batch correction.
+saga_batch(matrix.SAGA.qn, rawdata, plotnumber=2)
+
+```
+
+## saga_sampling
+This function will take care of the sample preparation of the joint SAGA data set. It will take the batch corrected data from `saga_batch` and will use the top 9 list of SAGA classifier probes to further filter the whole data set. Then, the joint data set will be separated into a training (SAGA data) and a test set (user samples).
+
+The `showSagaModel` object gives control over a Principal Components Analysis (PCA) plot showing the first principal components of the model data. Also, the axes show the percentage of explained variance (in %) for the plotted principal components.
+
+<span style="color:red">**Red**</span> dots are potentially dangerous (transforming) samples and the rest are coding for other SAGA assays that are nontransforming.
+
+
+```
+# This function will do the sampling as a preparation for later classification.
+saga_sampling(matrix.SAGA, matrix.test, index, showSagaModel=1)
+
+```
+
+The function needs the batch corrected model, test and index data (`matrix.SAGA` and `matrix.test`, `index`). The `showPCA` argument will give control over the PCA plot (default object value is 0). 
+
+The function output offers a training matrix, labels for the training matrix as well as a matrix with the unknown sample data. These matrices are required for the classification and prediction step of the `saga_predict` function.
+
+**Please note: ** The PCA plot is not directly qualified for classification decisions. Although it will give a qualitative overview on the global "positions" of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and nontransforming arrays.
+
+## saga_predict
+For vector safety prediction a Support Vector Machine (SVM) with "radial" kernel is used for building the model. We optimized the cost and gamma factors using the SAGA data and generalize these settings for new and untrained samples. 
+
+In a second step, the processed user sample data are predicted using the SVM model. The output shows each sample array along with its SVM probability and a label with **transforming/nontransforming** information - whereas transforming indicates potential danger and nontransforming potential safety of the sample. The probability value can be used as a quality indicator on how clearly the decicion of the SVM was for each sample (the cutoff value is 50%, or >0.5 = transforming).
+
+
+```
+# This function will take care of the model building and prediction steps.
+saga_predict(matrix.train, labels.train, matrix.unknown,
+                               pData.Test, path=samplepath, writeFile=1, showRoc=0)
+
+```
+
+## saga_gesea
+For GSEA, we use a gene set of 20 features to predict the genotoxic potential of a vector. The output of GSEA on the microarray data is a normalized enrichment score (NES). For cells transduced with mutagenic vectors like the positive control LTR.RV.SF (gammaretroviral vector with strong promoter/enhancer elements), we observed NES values above 2. We interpret such a result as a strong enrichment and the risk level of a new test vector as likely genotoxic. Vectors eliciting partial deregulation yielded NES values between 0.9 and 2. We interpret this as a weak enrichment and the risk level of a new test vector as potentially genotoxic. NES values below 0.9 were mainly observed for samples transduced with a safe vector configuration (self-inactivating design and weaker promoter). We describe this as no enrichment of our SAGA core set and the risk level of a new test vector as potentially safe.
+As cutoffs we determined the following thresholds which will be indicated in the GESEA results output.  
+
++ NES >= 2: strong enrichment (likely genotoxic)
++ NES from 0.9 to 2: weak enrichment (potentially genotoxic)
++ NES < 0.9 no enrichment (potentially safe).
+
+```
+# This function will perform Gene Set Enrichtment Analysis (GESEA).
+saga_gesea(samplepath, saveResults=1)
+
+```
+
+# Example Analysis & Array Prediction
+This example assumes that 6 arrays (5741, 5746, 5747, 9910, 9914, 9917) are placed in a sample folder. The table above shows the corresponding `SampleInformation.txt`. 
+
+```
+library(saga)
+
+samplepath     <- "path to somewhere useful"
+
+### saga_gentargets; automatically generates an empty (!) sample information file
+# Modify manually according to your requirements
+#targets        <- saga_gentargets(samplepath)
+
+################################################################################
+### Wrapper function - all in one
+### to use: uncomment function & execute
+################################################################################
+mySAGAres      <- saga_wrapper(samplepath, showModel=0, doGESEA=1)
+
+
+################################################################################
+### Or use these single functions
+################################################################################
+### saga_import
+rawdata        <- saga_import(samplepath, showjoint=1)
+SAGA_RAW       <- rawdata$SAGA_RAW
+TEST_RAW       <- rawdata$TEST_RAW
+pData.joint    <- rawdata$pData.joint
+pData.Test     <- rawdata$pData.Test
+
+### normalize saga data (plotnumber=1 for normalized boxplot, 2 for tSNE plot)
+normalized     <- saga_norm(SAGA_RAW, TEST_RAW, pData.joint, plotnumber=1)
+qunorm.SAGA    <- normalized$qunorm.SAGA
+matrix.SAGA.qn <- normalized$matrix.SAGA.qn
+matrix.test.qn <- normalized$matrix.test.qn
+
+### remove batch effects
+# plotnumber = 1 (tSNE of first 2 dimensions)
+# plotnumber = 2 (PCA of first 2 dimensions)
+batchnorm      <- saga_batch(matrix.SAGA.qn, matrix.test.qn, rawdata, pData.joint, plotnumber=1)
+index          <- batchnorm$index
+matrix.SAGA    <- batchnorm$matrix.SAGA
+matrix.test    <- batchnorm$matrix.test
+
+### Sampling and model data collection
+model          <- saga_sampling(matrix.SAGA, matrix.test)
+matrix.train   <- model$matrix.train
+labels.train   <- model$labels.train
+matrix.unknown <- model$matrix.unknown
+
+### Array predictions with optimized SVM parameters (default settings)
+output         <- saga_predict(samplepath, matrix.train, labels.train, matrix.unknown,
+                               pData.Test, writeFile=1, showRoc=0)
+classes        <- output$predictions
+classes
+
+### GESEA
+gesea_results  <- saga_gesea(samplepath, saveResults=1)
+
+```
+
+
+# References
+
+[1] R Core Team (2017). R: A language and environment for statistical computing. R Foundation for Statistical
+Computing, Vienna, Austria. URL https://www.R-project.org/.
+
+[2] Orchestrating high-throughput genomic analysis with Bioconductor. W. Huber, V.J. Carey, R. Gentleman, ..., M.
+Morgan Nature Methods, 2015:12, 115.
+
+[3] Gautier, L., Cope, L., Bolstad, B. M., and Irizarry, R. A. 2004. affy---analysis of Affymetrix GeneChip data 
+at the probe level. Bioinformatics 20, 3 (Feb. 2004), 307-315.
+
+[4] Bolstad, BM (2004) Low Level Analysis of High-density Oligonucleotide Array Data: Background, Normalization
+and Summarization. Dissertation. University of California, Berkeley.
+
+[5] Evarist Planet (2018). phenoTest: Tools to test association between gene expression and phenotype in a
+way that is efficient, structured, fast and scalable. We also provide tools to do GSEA (Gene set enrichment analysis) and copy number variation.. R package version 1.30.0.
+
+[6] Ritchie, M.E., Phipson, B., Wu, D., Hu, Y., Law, C.W., Shi, W., and Smyth, G.K. (2015). limma powers differential expression analyses for RNA-sequencing and microarray studies. Nucleic Acids Research 43(7), e47.
+
+[7] Jeffrey T. Leek, W. Evan Johnson, Hilary S. Parker, Elana J. Fertig, Andrew E. Jaffe, John D. Storey, Yuqing 
+Zhang and Leonardo Collado Torres (2017). sva: Surrogate Variable Analysis. R package version 3.24.4.
+
+[8] Max Kuhn. Contributions from Jed Wing, Steve Weston, Andre Williams, Chris Keefer, Allan Engelhardt, Tony
+Cooper, Zachary Mayer, Brenton Kenkel, the R Core Team, Michael Benesty, Reynald Lescarbeau, Andrew Ziem,
+Luca Scrucca, Yuan Tang, Can Candan and Tyler Hunt. (2018). caret: Classification and Regression Training.
+
+[9] Evarist Planet (2013). phenoTest: Tools to test association between gene expression and phenotype in a way 
+that is efficient, structured, fast and scalable. We also provide tools to do GSEA (Gene set enrichment 
+analysis) and copy number variation.. R package version 1.24.0.
+
+[10] Baptiste Auguie (2017). gridExtra: Miscellaneous Functions for "Grid" Graphics. R package version 2.3.  
+
+[11] Hornung, R., Boulesteix, A.-L., Causeur, D. (2016) Combining location-and-scale batch effect adjustment
+with data cleaning by latent factor adjustment. BMC Bioinformatics 17:27.
+
+[12] John Verzani (2018). UsingR: Data Sets, Etc. for the Text "Using R for Introductory Statistics", Second
+Edition. R package version 2.0-6.
+
+[13] Xavier Robin, Natacha Turck, Alexandre Hainard, Natalia Tiberti, Frédérique Lisacek, Jean-Charles Sanchez
+and Markus Müller (2011). pROC: an open-source package for R and S+ to analyze and compare ROC curves. BMC Bioinformatics, 12, p. 77.  DOI: 10.1186/1471-2105-12-77
+
+[14] L.J.P. van der Maaten and G.E. Hinton. Visualizing High-Dimensional Data Using t-SNE. Journal of Machine
+Learning Research 9(Nov):2579-2605, 2008.
+
+[15] L.J.P. van der Maaten. Accelerating t-SNE using Tree-Based Algorithms. Journal of Machine Learning
+Research 15(Oct):3221-3245, 2014.
+
+[16] Jesse H. Krijthe (2015). Rtsne: T-Distributed Stochastic Neighbor Embedding using a Barnes-Hut Implementation, URL: https://github.com/jkrijthe/Rtsne.
+
+ 
+

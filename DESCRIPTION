@@ -1,0 +1,43 @@
+Package: saga
+Type: Package
+Title: "Surrogate Assay for Genotoxicity Assessment" (SAGA) package for array transformation predictions
+Version: 0.0.1
+Year: 2019
+Authors@R: c(
+    person("Steven", "Talbot", email = "talbot.steven@mh-hannover.de", role = c("cre","aut") ),
+    person("Adrian", "Schwarzer", email = "schwarzer.adrian@mh-hannover.de", role = "aut" ),
+    person("Rothe", "Michael", email = "rothe.michael@mh-hannover.de", role = "aut" ) )
+Maintainer: Steven R. Talbot <talbot.steven@mh-hannover.de>
+Description: The SAGA package covers a line of functions for automated severity assessment and transformation
+    predictions of surrogate assays. The user may use the functions of this package to upload arrays in order
+    to classify them either as "transforming or nontransforming". The package relies on a well-balanced and optimized
+    model of surrogate assays and thus serves as a robust basis for the prediction of un-trained data.
+Depends: R (>= 3.4.1),
+    limma,
+    phenoTest,
+    gridExtra
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
+Imports: limma,
+    Biobase,
+    Rtsne,
+    UsingR,
+    bapred,
+    caret,
+    gridExtra,
+    pROC,
+    phenoTest,
+    sva,
+    graphics,
+    stats,
+    utils,
+    methods,
+    grDevices,
+    lattice,
+    ggplot2
+    
