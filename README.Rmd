@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 ### Surrogate Assay for Genotoxicity Assessment
 
 <!-- badges: start -->
-[![Travis build status](https://travis-ci.org/mytalbot/SAGA.svg?branch=master)](https://travis-ci.org/r-lib/usethis)
+[![Travis build status](https://travis-ci.org/mytalbot/saga_package.svg?branch=master)](https://travis-ci.org/r-lib/usethis)
 <!-- badges: end -->
 
 In our paper **"Predicting genotoxicity of integrating viral vectors for stem cell gene therapy using gene expression-based machine learning"** we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy.
