@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-saga <img src="man/figures/logo.png" align="right" width="120" />
-=================================================================
+SAGA <img ssrc="https://talbotsr.com/saga_package/logo.png" align="right" width="120" />
+========================================================================================
 
 <!-- badges: start -->
 <!-- badges: end -->
