@@ -4,3 +4,8 @@ language: r
 r: bioc-release
 
 cache: packages
+
+addons:
+  apt:
+    packages:
+      - libmpfr-dev
