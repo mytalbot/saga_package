@@ -1,6 +1,6 @@
 Package: saga
 Type: Package
-Title: "Surrogate Assay for Genotoxicity Assessment" (SAGA) package for array transformation predictions
+Title: Surrogate Assay for Genotoxicity Assessment Package for Array Transformation Predictions
 Version: 0.0.1
 Year: 2019
 Authors@R: c(
