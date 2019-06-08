@@ -8,7 +8,8 @@ output: github_document
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  fig.path = "README-"
+  fig.path = "man/figures/README-",
+  out.width = "100%"
 )
 ```
 
@@ -43,7 +44,7 @@ library(sagadata)
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+This is a basic example with just the data set. See the vignette for a full example...
 
 ```{r example}
 library(sagadata)
