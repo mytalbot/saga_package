@@ -15,6 +15,7 @@ You can download the development version from [GitHub](https://github.com/) with
 ``` r
 # install.packages("devtools")
 devtools::install_github("mytalbot/saga_package")
+library(saga)
 ```
 
 ### SAGA core data
@@ -24,7 +25,6 @@ You'' also need the SAGA core data. They are too large for the main package. Dow
 ``` r
 devtools::install_github("mytalbot/sagadata")
 library(sagadata)
-attach(sagadata)
 ```
 
 Example
