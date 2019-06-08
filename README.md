@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-SAGA <img ssrc="https://talbotsr.com/saga_package/logo.png" align="right" height="139" />
-=========================================================================================
+SAGA <img src="https://talbotsr.com/saga_package/logo.png" align="right" height="139" />
+========================================================================================
 
 ### Surrogate Assay for Genotoxicity Assessment
 
