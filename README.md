@@ -33,7 +33,7 @@ library(sagadata)
 Example
 -------
 
-This is a basic example with just the data set. See the vignette for a full example...
+This is a basic example with just the data set. See the Vignette for a full example...
 
 ``` r
 library(sagadata)

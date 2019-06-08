@@ -20,10 +20,8 @@ knitr::opts_chunk$set(
 [![Travis build status](https://travis-ci.org/mytalbot/SAGA.svg?branch=master)](https://travis-ci.org/r-lib/usethis)
 <!-- badges: end -->
 
-
 In our paper **"Predicting genotoxicity of integrating viral vectors for stem cell gene therapy using gene expression-based machine learning"** we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy.
 SAGA builds on the well accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic approach to correctly classify the mutagenic potential of retroviral vectors used in previous and current clinical trials. 
-
 
 ## Installation
 You can download the development version from [GitHub](https://github.com/) with:
@@ -44,7 +42,7 @@ library(sagadata)
 
 ## Example
 
-This is a basic example with just the data set. See the vignette for a full example...
+This is a basic example with just the data set. See the Vignette for a full example...
 
 ```{r example}
 library(sagadata)
