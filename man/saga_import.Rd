@@ -21,6 +21,8 @@ saga_import(smplpath, showjoint = 0)
 \code{filelist} list of user array names.
 
 \code{pData} phenotype target matrix of SAGA data
+
+\code{SAGA_Data} SAGA core data; needs to loaded from sagadata
 }
 \description{
 The \code{saga_import} function loads SAGA data from textfiles in a user specified path and prepares the necessary objects for later

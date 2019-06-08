@@ -18,8 +18,11 @@
 #' @return \code{pData.user} target matrix of user samples.
 #' @return \code{filelist} list of user array names.
 #' @return \code{pData} phenotype target matrix of SAGA data
+#' @return \code{SAGA_Data} SAGA core data; needs to loaded from sagadata
 #'
-#' @import limma
+#' @importFrom limma read.maimages avereps
+#' @importFrom utils read.delim
+#' @importFrom graphics boxplot
 #'
 #' @export
 #'
@@ -38,7 +41,7 @@ saga_import   <- function(smplpath, showjoint=0){
   pData               <- saga::pData
   #targets             <- saga::saga_targets
 
-  SAGA_Data           <- read.delim(system.file("extdata", "SAGA_INBUILD_Data_AVE_91.txt", package = "saga"),header=TRUE,sep="\t", stringsAsFactors =FALSE)
+  SAGA_Data           <- SAGA_Data #read.delim(system.file("extdata", "SAGA_INBUILD_Data_AVE_91.txt", package = "saga"),header=TRUE,sep="\t", stringsAsFactors =FALSE)
   SAGA_RAW            <- as.matrix(SAGA_Data[,-1] )
   row.names(SAGA_RAW) <- SAGA_Data$PROBE_ID
 

@@ -10,6 +10,11 @@
 #' @import limma
 #' @import phenoTest
 #' @import gridExtra
+#' @importFrom stats setNames
+#' @importFrom methods new
+#' @importFrom graphics plot abline legend text
+#' @import utils
+#' @importFrom grDevices pdf dev.off
 #'
 #' @export
 #'

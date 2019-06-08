@@ -1,0 +1,10 @@
+citHeader("To cite sagadata in publications use:")
+
+citEntry(
+  entry    = "Misc",
+  title    = "saga: A package for predicting genotoxicity",
+  author   = c("Steven R. Talbot", "Adrian Schwarzer", "Michael Rothe"),
+  year     = 2019,
+  url      = "https://talbotsr.com/saga/index.html",
+  textVersion = "Steven R Talbot, Adrian Schwarzer, Michael Rothe. saga: A package for predicting genotoxicity. 2019."
+)

@@ -10,6 +10,8 @@
 #'
 #' @return \code{targets} default target file for user samples.
 #'
+#' @importFrom utils write.table
+#'
 #' @export
 #'
 #'

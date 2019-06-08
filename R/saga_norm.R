@@ -14,6 +14,7 @@
 #' @import UsingR
 #' @import bapred
 #' @import Rtsne
+#' @importFrom graphics plot boxplot text
 #'
 #' @export
 #'

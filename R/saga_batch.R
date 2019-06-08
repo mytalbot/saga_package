@@ -13,6 +13,8 @@
 #' @return \code{eset.batch} batch corrected data set.
 #'
 #' @import sva
+#' @importFrom graphics plot abline legend text
+#' @importFrom stats prcomp
 #'
 #' @export
 #'
