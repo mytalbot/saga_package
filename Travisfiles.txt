@@ -1,3 +1,10 @@
+<!-- badges: start -->
+[![Travis build status](https://travis-ci.org/mytalbot/saga_package.svg?branch=master)](https://travis-ci.org/r-lib/usethis)
+<!-- badges: end -->
+
+
+
+
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 
 language: r
