@@ -33,7 +33,7 @@ library(saga)
 ```
 
 ### SAGA core data
-You'' also need the SAGA core data. They are too large for the main package. Download them here (also from GitHub):
+You'll also need the SAGA core data. They are too large for the main package. Download them here (also from GitHub):
 
 ``` r
 devtools::install_github("mytalbot/sagadata")
