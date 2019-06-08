@@ -125,6 +125,18 @@ install.packages("pROC")
 install.packages("Rtsne")
 </code></pre>
 <p>Again, the <a href="#references">reference section</a> offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13] and Rtsne [14-16].</p>
+<div id="saga-package-installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#saga-package-installation" class="anchor"></a>SAGA Package installation</h2>
+<p>SAGA can be downloaded from Github using the following commands:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
+devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"mytalbot/saga_package"</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(saga)</code></pre></div>
+<p>Further, the sagadata for SAGA core data need to loaded in a separate package because it is too large to fit in the saga package. sagadata can be obtained from GitHub as well:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"mytalbot/sagadata"</span>)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sagadata)</code></pre></div>
+<p>For more information on SAGA, visit the <a href="https://talbotsr.com/saga_package/index.html">website</a>.</p>
+</div>
 </div>
 <div id="introduction" class="section level1">
 <h1 class="hasAnchor">
@@ -403,7 +415,11 @@ gesea_results  &lt;- saga_gesea(samplepath, saveResults=1)
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#about-saga-package">About SAGA package</a></li>
-      <li><a href="#package-requirements">Package Requirements</a></li>
+      <li>
+<a href="#package-requirements">Package Requirements</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#saga-package-installation">SAGA Package installation</a></li>
+      </ul>
+</li>
       <li><a href="#introduction">Introduction</a></li>
       <li><a href="#basic-requirements">Basic requirements</a></li>
       <li><a href="#data-structure">Data structure</a></li>

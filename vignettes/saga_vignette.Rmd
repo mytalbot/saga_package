@@ -53,6 +53,24 @@ install.packages("Rtsne")
 Again, the [reference section](#references) offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13] and Rtsne [14-16].
 
 
+## SAGA Package installation
+SAGA can be downloaded from Github using the following commands:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("mytalbot/saga_package")
+library(saga)
+```
+
+Further, the sagadata for SAGA core data need to loaded in a separate package because it is too large to fit in the saga package. sagadata can be obtained from GitHub as well:
+
+``` r
+devtools::install_github("mytalbot/sagadata")
+library(sagadata)
+```
+
+For more information on SAGA, visit the [website](https://talbotsr.com/saga_package/index.html).
+
 # Introduction 
 `SAGA` analysis starts with raw data obtained from regular gene expression microarray analysis acquired by Agilent platforms. This is important since the functions in this package will only work within the Agilent format. In the current version other platforms
 were not specifically included into the capacities of this package. If you wish to use other platforms you'll have to adapt the functions to your specific needs. 
