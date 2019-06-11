@@ -37,6 +37,8 @@ Imports: limma,
     grDevices,
     lattice,
     ggplot2,
-    affyPLM
+    affyPLM,
+    BiocGenerics,
+    parallel
 URL: https://github.com/mytalbot/saga_package
 BugReports: https://github.com/mytalbot/saga_package/issues

@@ -8,13 +8,16 @@
 #' @return \code{result} GESEA result - will also be saved into the sample folder.
 #'
 #' @import limma
-#' @import phenoTest
+#' @import Biobase
 #' @import gridExtra
 #' @importFrom stats setNames
 #' @importFrom methods new
 #' @importFrom graphics plot abline legend text
 #' @import utils
 #' @importFrom grDevices pdf dev.off
+#' @import phenoTest
+#' @import BiocGenerics
+#' @import parallel
 #'
 #' @export
 #'
