@@ -4,9 +4,21 @@ Title: Surrogate Assay for Genotoxicity Assessment Package for Array Transformat
 Version: 0.0.1
 Year: 2019
 Authors@R: c(
-    person("Steven", "Talbot", email = "talbot.steven@mh-hannover.de", role = c("cre","aut") ),
     person("Adrian", "Schwarzer", email = "schwarzer.adrian@mh-hannover.de", role = "aut" ),
-    person("Rothe", "Michael", email = "rothe.michael@mh-hannover.de", role = "aut" ) )
+    person("Steven", "Talbot", email = "talbot.steven@mh-hannover.de", role = c("cre","aut") ) ,
+    person("Selich", "Anton", role = "ctb" ),
+    person("Juliane", "Schott", role = "ctb" ),
+    person("Oliver", "Dittrich-Breiholz", role = "ctb" ),
+    person("Antonella", "Bastone", role = "ctb" ),
+    person("Bettina", "Weigel", role = "ctb" ),
+    person("Teng", "Cheong Ha", role = "ctb" ),
+    person("Violetta", "Dziadek", role = "ctb" ),
+    person("Frank", "Staal", role = "ctb" ),
+    person("Hubert", "Gaspar", role = "ctb" ),
+    person("Ute", "Modlich", role = "ctb" ),
+    person("Frank", "Staal", role = "ctb" ),
+    person("Axel", "Schambach", role = c("aut","ctb")),
+    person("Rothe", "Michael", email = "rothe.michael@mh-hannover.de", role = "aut" ))
 Maintainer: Steven R. Talbot <talbot.steven@mh-hannover.de>
 Description: The SAGA package covers a line of functions for automated severity assessment and transformation
     predictions of surrogate assays. The user may use the functions of this package to upload arrays in order

@@ -2,9 +2,9 @@ citHeader("To cite saga in publications use:")
 
 citEntry(
   entry    = "Misc",
-  title    = "saga: A package for predicting genotoxicity",
+  title    = "Predicting genotoxicity of viral vectors for stem cell gene therapy using gene expression-based machine learning",
   author   = c("Adrian Schwarzer", "Steven R Talbot", "Anton Selich", "Juliane W Schott", "Oliver Dittrich-Breiholz", "Antonella L Bastone", "Bettina                Weigel", "Teng Cheong Ha", "Violetta Dziadek", "Adrian J Thrasher", "Frank JT Staal", "Hubert B Gaspar", "Ute Modlich", "Axel Schambach",               "Michael Rothe"),
   year     = 2019,
   url      = "https://talbotsr.com/saga_package/index.html",
-  textVersion = "Adrian Schwarzer, Steven R Talbot, Anton Selich, Juliane W Schott, Oliver Dittrich-Breiholz, Antonella L Bastone, Bettina Weigel, Teng               Cheong Ha, Violetta Dziadek, Adrian J Thrasher, Frank JT Staal, Hubert B Gaspar, Ute Modlich, Axel Schambach & Michael Rothe. saga: A                  package for predicting genotoxicity. 2019."
+  textVersion = "Adrian Schwarzer, Steven R Talbot, Anton Selich, Juliane W Schott, Oliver Dittrich-Breiholz, Antonella L Bastone, Bettina Weigel, Teng               Cheong Ha, Violetta Dziadek, Adrian J Thrasher, Frank JT Staal, Hubert B Gaspar, Ute Modlich, Axel Schambach & Michael Rothe. Predicting               genotoxicity of viral vectors for stem cell gene therapy using gene expression-based machine learning. 2019."
   )
