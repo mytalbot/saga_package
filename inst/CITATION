@@ -1,4 +1,4 @@
-citHeader("To cite sagadata in publications use:")
+citHeader("To cite saga in publications use:")
 
 citEntry(
   entry    = "Misc",
