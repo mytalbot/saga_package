@@ -8,11 +8,13 @@
 
 <title>Prediction of sample arrays with the SAGA model. — saga_predict • saga</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,14 +32,14 @@
 
 
 
-<meta property="og:title" content="Prediction of sample arrays with the SAGA model. — saga_predict" />
 
+<meta property="og:title" content="Prediction of sample arrays with the SAGA model. — saga_predict" />
 <meta property="og:description" content="saga_predict uses a Support Vector Machine (SVM) with a radial kernel to classify user samples either as transforming or nontransforming.
 The SVM model is built with the integrated SAGA training data set and a toplist of relevant probes which are able to differentiate assay data
 into the mentioned risk states. The SVM is further optimized on the SAGA training data. Use at your own risk!" />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -98,7 +100,6 @@ into the mentioned risk states. The SVM is further optimized on the SAGA trainin
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mytalbot/saga_package">
@@ -124,16 +125,14 @@ into the mentioned risk states. The SVM is further optimized on the SAGA trainin
     </div>
 
     <div class="ref-description">
-    
     <p><code>saga_predict</code> uses a Support Vector Machine (SVM) with a radial kernel to classify user samples either as transforming or nontransforming.
 The SVM model is built with the integrated SAGA training data set and a toplist of relevant probes which are able to differentiate assay data
 into the mentioned risk states. The SVM is further optimized on the SAGA training data. Use at your own risk!</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>saga_predict</span>(<span class='no'>samplepath</span>, <span class='no'>matrix.train</span>, <span class='no'>labels.train</span>, <span class='no'>matrix.unknown</span>,
   <span class='no'>pData.Test</span>, <span class='kw'>writeFile</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>showRoc</span> <span class='kw'>=</span> <span class='fl'>1</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -166,21 +165,19 @@ into the mentioned risk states. The SVM is further optimized on the SAGA trainin
       <td><p>default=1 for showing the ROC curve of the model performance; alternative: 0 for showing naught</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>predictions</code> Data frame with three columns. Column one shows the sample names, the second column shows the decision values of
 the svm function and column thress shows the predictions for the query assays either as transforming or nontransforming.</p>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-          </ul>
+    </ul>
 
   </div>
 </div>

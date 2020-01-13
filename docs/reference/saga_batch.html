@@ -8,11 +8,13 @@
 
 <title>Batch correction of joint SAGA data sets. — saga_batch • saga</title>
 
+
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -30,14 +32,14 @@
 
 
 
-<meta property="og:title" content="Batch correction of joint SAGA data sets. — saga_batch" />
 
+<meta property="og:title" content="Batch correction of joint SAGA data sets. — saga_batch" />
 <meta property="og:description" content="saga_batch removes batch effects from the joint data set. For each sample, the user must specify a batch number in the
 &quot;SAGA_USER_Samples.txt&quot; file. If no batch numbers are available - you'll still have to provide a number for the samples. You can use
 any integer number beginning with 1. The batch correction of the data set relies on the ComBat algorithm/package." />
-
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
+
 
 
 
@@ -98,7 +100,6 @@ any integer number beginning with 1. The batch correction of the data set relies
   <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/mytalbot/saga_package">
@@ -124,16 +125,14 @@ any integer number beginning with 1. The batch correction of the data set relies
     </div>
 
     <div class="ref-description">
-    
     <p><code>saga_batch</code> removes batch effects from the joint data set. For each sample, the user must specify a batch number in the
 "SAGA_USER_Samples.txt" file. If no batch numbers are available - you'll still have to provide a number for the samples. You can use
 any integer number beginning with 1. The batch correction of the data set relies on the ComBat algorithm/package.</p>
-    
     </div>
 
     <pre class="usage"><span class='fu'>saga_batch</span>(<span class='no'>matrix.SAGA.qn</span>, <span class='no'>matrix.test.qn</span>, <span class='no'>rawdata</span>, <span class='no'>pData.joint</span>,
   <span class='kw'>plotnumber</span> <span class='kw'>=</span> <span class='fl'>2</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -158,20 +157,18 @@ any integer number beginning with 1. The batch correction of the data set relies
       <td><p>default=2 for PCA plot with samples in black; alternative: 1 for t-SNE plot</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>eset.batch</code> batch corrected data set.</p>
-    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-          </ul>
+    </ul>
 
   </div>
 </div>
