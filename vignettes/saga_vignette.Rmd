@@ -247,6 +247,7 @@ saga_gesea(samplepath, saveResults=1)
 This example assumes that 6 arrays (5741, 5746, 5747, 9910, 9914, 9917) are placed in a sample folder. The table above shows the corresponding `SampleInformation.txt`. 
 
 ```
+library(phenoTest) # this is mandatory!
 library(saga)
 library(sagadata)
 

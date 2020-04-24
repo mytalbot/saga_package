@@ -32,7 +32,6 @@ Suggests: knitr,
     rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
-biocViews: phenoTest
 Imports: limma,
     Biobase,
     Rtsne,
@@ -41,7 +40,6 @@ Imports: limma,
     caret,
     gridExtra,
     pROC,
-    phenoTest,
     sva,
     graphics,
     stats,
