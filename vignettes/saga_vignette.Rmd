@@ -18,7 +18,7 @@ classify the mutagenic potential of retroviral vectors used in previous and curr
 This vignette covers the basic functions for SAGA analysis in R [1].
 
 # Package Requirements
-In order to use the SAGA package some Bioconductor dependencies need to be installed. First, the connection to the Bioconductor database must be established. Then the required packages can be loaded independently. Please note that these packages are only available over Bioconductor and cannot be loaded using CRAN.
+In order to use the SAGA package some Bioconductor dependencies require installation. First, the connection to the Bioconductor database must be established. Then the required packages can be loaded independently. Please note that these packages are only available over Bioconductor and cannot be loaded using CRAN.
 
 [BiocManager](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html)
 

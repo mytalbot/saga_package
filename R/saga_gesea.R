@@ -52,7 +52,7 @@ saga_gesea    <- function(smplpath, saveResults=0){
 
     #### 2.4. make ePheno object: contains the FCs associated with Group variable ##################
     vars2test   <- list(ordinal="Group")    # Variables (here: Groups) to test against MOCK, which are always Group = 1 in the SIF
-    epheno.gsea <- phenoTest::ExpressionPhenoTest(eset.gsea,vars2test,p.adjust.method='BH')
+    epheno.gsea <- phenoTest::ExpressionPhenoTest(eset.gsea,vars2test, p.adjust.method='BH')
 
     #### 2.5 GSEA #################################################################################
     SAGA.GSEA <- gsea(x=epheno.gsea, gsets=SAGA.CORE ,B=2000,                  # calculate GSEA-scores based on the FC in the epheno object

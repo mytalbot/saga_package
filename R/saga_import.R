@@ -50,7 +50,7 @@ saga_import   <- function(smplpath, showjoint=0){
   ################################################################################################
   SIF                     <- read.delim(paste(smplpath,"/SampleInformation.txt",sep=""),row.names=1,header=TRUE,sep="\t", stringsAsFactors = F) # Sample Information File for phenoTest
   pData.Test              <- read.delim(paste(smplpath,"/SampleInformation.txt",sep=""),row.names=1,header=TRUE,sep="\t", stringsAsFactors = F) # Sample Information File for SAGA-SVM
-  pData.Test$Batch        <- pData.Test$Batch + 11              # 11 Batches are already in the SAGA Inbuild DataSet
+  pData.Test$Batch        <- pData.Test$Batch + 19              # 19 Batches are already in the SAGA Inbuild DataSet
   pData.Test$IVIM_Color   <- rep("#000000", nrow(pData.Test))
   pData.Test$Design_Color <- rep("#000000", nrow(pData.Test))
   pData.Test$IVIM_ID      <- rep(NA, nrow(pData.Test))
