@@ -41,7 +41,6 @@ The following packages (with dependencies) need to be loaded as well. They can b
 install.packages("limma") 
 install.packages("sva")
 install.packages("caret")
-install.packages("phenoTest")
 install.packages("gridExtra")
 install.packages("bapred")
 install.packages("UsingR")
