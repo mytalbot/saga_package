@@ -6,23 +6,30 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Surrogate Assay for Genotoxicity Assessment Package for Array Transformation Predictions • saga</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
+<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
+<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
+<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
+<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
+<script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Surrogate Assay for Genotoxicity Assessment Package for Array Transformation Predictions">
 <meta property="og:description" content='The SAGA package covers a line of functions for automated severity assessment and transformation
     predictions of surrogate assays. The user may use the functions of this package to upload arrays in order
     to classify them either as "transforming or nontransforming". The package relies on a well-balanced and optimized
     model of surrogate assays and thus serves as a robust basis for the prediction of un-trained data.'>
 <meta property="og:image" content="/logo.png">
-<meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
-    <div class="container template-article">
+<body data-spy="scroll" data-target="#toc">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -42,7 +49,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -67,8 +74,8 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/mytalbot/saga_package">
-    <span class="fa fa-github fa-lg"></span>
+  <a href="https://github.com/mytalbot/saga_package/">
+    <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -81,13 +88,9 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
-  <div class="col-md-9 contents">
-    
 
-    
-    
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+      </header><div class="row">
+  <div class="contents col-md-9">
 <div id="saga" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#saga" class="anchor"></a>SAGA <img src="https://talbotsr.com/saga_package/logo.png" align="right" height="139">
@@ -100,89 +103,180 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>You can download the development version from <a href="https://github.com/">GitHub</a> with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"mytalbot/saga_package"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(saga)</code></pre></div>
+<p>You can download the development version from <a href="https://github.com/mytalbot/saga_package/">GitHub</a> or use:</p>
+<div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/saga_package"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">saga</span>)</pre></div>
 <div id="saga-core-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#saga-core-data" class="anchor"></a>SAGA core data</h3>
 <p>You’ll also need the SAGA core data. They are too large for the main package. Download them here (also from GitHub):</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"mytalbot/sagadata"</span>)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sagadata)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/sagadata"</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)</pre></div>
 </div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example with just the data set. See the Vignette for a full example…</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sagadata)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(SAGA_Data)
-<span class="co">#&gt;       PROBE_ID X4467 X4469 X4471 X4473 X4907 X4908 X4909 X4990 X4991 X4992</span>
-<span class="co">#&gt; 1 A_51_P100034  6484  6726  7105  6212  5632  6698  7014  3977  4214  5358</span>
-<span class="co">#&gt; 2 A_51_P100174  7418  3014  6927  7533  2293  6385 15345  2853  2664  2824</span>
-<span class="co">#&gt; 3 A_51_P100208    95    89    87    80    48    47    53    74    75    70</span>
-<span class="co">#&gt; 4 A_51_P100289  5735  6423  6875  6702  4411  7013  6687  2473  2753  3580</span>
-<span class="co">#&gt; 5 A_51_P100298  4999  2428  4851  3511  5192  6806  7089  2491  2276  2712</span>
-<span class="co">#&gt; 6 A_51_P100309    78    87    72    70    44    39    42    79    80    86</span>
-<span class="co">#&gt;   X4993 X4994 X4995 X4996 X4997 X5094 X5095 X5096 X5097 X5098 X5099 X5265</span>
-<span class="co">#&gt; 1  5902  5202  4669  5060  5031  4545  4300  4789  4543  3997  4585  3639</span>
-<span class="co">#&gt; 2  3577  3989  4057  4055  3623  6829  4505  9441  5114  3458  7110 10594</span>
-<span class="co">#&gt; 3    92    70    68    66    72    60    73    60    54    52    51    67</span>
-<span class="co">#&gt; 4  3861  3675  3358  3685  3434  3579  4366  4254  3544  4001  4362  4341</span>
-<span class="co">#&gt; 5  3201  3643  3457  3314  3054  3594  2408  3575  3819  1962  3898  3288</span>
-<span class="co">#&gt; 6    80    67    86    80    72    58    64    60    55    48    49    52</span>
-<span class="co">#&gt;   X5268 X5271 X5399 X5400 X5401 X5402 X5403 X5404 X5405 X5406 X5407 X5408</span>
-<span class="co">#&gt; 1  4628  5987  3205  3937  4310  4096  4312  3195  4923  4736  4153  3376</span>
-<span class="co">#&gt; 2 33955 16809  9909 11927 10067 16787 11617 12640 12625 12270 11950 12741</span>
-<span class="co">#&gt; 3    66    47    50    70    46    49    41    49    49    40    42    46</span>
-<span class="co">#&gt; 4  8039  8340  5254  6806  6359  7594  6236  5825  8342  9862  6407  6280</span>
-<span class="co">#&gt; 5  6668  3440  3800  2644  3090  3455  3280  2246  3785  2541  3550  2611</span>
-<span class="co">#&gt; 6    58    46    48    59    52    53    46    50    52    52    44    42</span>
-<span class="co">#&gt;   X5409 X5410 X5468 X5469 X5470 X5471 X5472 X5473 X5474 X5475 X5476 X5477</span>
-<span class="co">#&gt; 1  4998  4694  4592  4441  4608  4996  3865  4712  3950  4689  5311  4604</span>
-<span class="co">#&gt; 2 12917 14457 18165 12115 18627 13135 27971  8624 10236 24074  9166 30462</span>
-<span class="co">#&gt; 3    49    48    47    50    47    44    40    41    48    48    40    45</span>
-<span class="co">#&gt; 4  6997  7625 11971  8302  9580 12602 10240  9242  8001 10074 11064 10570</span>
-<span class="co">#&gt; 5  3614  3120  3316  4093  4011  3702  2918  3388  3150  3586  3666  2904</span>
-<span class="co">#&gt; 6    56    46    47    48    48    45    46    41    45    48    43    47</span>
-<span class="co">#&gt;   X5478 X5479 X5602 X5603 X5604 X5605 X5606 X5607 X5608 X5609 X5610 X5611</span>
-<span class="co">#&gt; 1  5563  4358  5121  4918  4439  4910  4564  5559  5760  6475  4706  4209</span>
-<span class="co">#&gt; 2 31014 35166  6107  6836  8412  9944 12858 25444 20890 27830 28625 25634</span>
-<span class="co">#&gt; 3    45    47    53    60    59    55    53    51    50    56    50    61</span>
-<span class="co">#&gt; 4 14272 12015  4624  4085  4346  5304  4266  4282  3615  5154  3268  4196</span>
-<span class="co">#&gt; 5  4121  3482  2745  2426  2820  3013  2014  3960  3276  3764  3196  2761</span>
-<span class="co">#&gt; 6    44    44    62    55    54    53    47    84    49    51    52    53</span>
-<span class="co">#&gt;   X5612 X5613 X5614 X5615 X5616 X5617 X5118 X5119 X5120 X5741 X5742 X5743</span>
-<span class="co">#&gt; 1  5780  4953  5645  4861  5169  5484  3577  2912  3854  2376  2518  1800</span>
-<span class="co">#&gt; 2 16214 15595 11898 15932 13151 35326  2467  2115  3572  2055  2394   972</span>
-<span class="co">#&gt; 3    58    59    59    53    47    60    36    40    39    42    47    43</span>
-<span class="co">#&gt; 4  3752  3749  4439  3180  3702  3708  2247  2101  2561  3875  3503  9958</span>
-<span class="co">#&gt; 5  3089  1810  2359  2645  1561  2724  2503  2018  2841  2973  2923  1134</span>
-<span class="co">#&gt; 6    52    54    62    55    48    53    39    41    41    60    56    53</span>
-<span class="co">#&gt;   X5744 X5745 X5746 X5747 X5748 X9910 X9911 X9912 X9913 X9914 X9915 X9916</span>
-<span class="co">#&gt; 1  2379  1843  1034  1790  2119  3198  4196  3369  4556  3599  4447  3665</span>
-<span class="co">#&gt; 2  8789  8222  7033 12171  6320   766 21199  3412 26030 15125 20348  9341</span>
-<span class="co">#&gt; 3    51    45    43    42    52    32    35    34    41    32    42    37</span>
-<span class="co">#&gt; 4  3582  2706  2788  3284  4250  3716  5181  4222  5172  3715  4526  5355</span>
-<span class="co">#&gt; 5  2312  2725  1794  3102  1650  1821  2422  1868  2171  2318  2105  2074</span>
-<span class="co">#&gt; 6    99    79    48    72    91    37    41    32    38    32    42    36</span>
-<span class="co">#&gt;   X9917 X6011 X6012 X6013 X6014 X6015 X6016 X6017 X6018</span>
-<span class="co">#&gt; 1  3927  3506  3918  4200  3708  3800  3601  4038  3721</span>
-<span class="co">#&gt; 2  4464 19612 15225 27329 12677 13359 14193 23387 21222</span>
-<span class="co">#&gt; 3    38    49    41    38    41    48    37    38    38</span>
-<span class="co">#&gt; 4  4286 11850 10543 13496  7624  6764  5556 10405  7397</span>
-<span class="co">#&gt; 5  2045  3420  3295  4028  3158  3094  2766  3547  2403</span>
-<span class="co">#&gt; 6    32    59    43    45    57    42    44    43    37</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">SAGA_Data</span>)
+<span class="co">#&gt;       PROBE_ID    X4467    X4469    X4471    X4473    X4907    X4908</span>
+<span class="co">#&gt; 1 A_51_P100034 6483.750 6726.375 7105.000 6212.375 5631.875 6698.000</span>
+<span class="co">#&gt; 2 A_51_P100174 7418.125 3013.875 6927.000 7533.000 2293.375 6385.375</span>
+<span class="co">#&gt; 3 A_51_P100208   95.375   89.375   87.000   79.500   47.875   46.875</span>
+<span class="co">#&gt; 4 A_51_P100289 5735.375 6422.875 6875.375 6701.750 4410.875 7013.375</span>
+<span class="co">#&gt; 5 A_51_P100298 4998.625 2427.625 4851.250 3510.750 5192.250 6806.500</span>
+<span class="co">#&gt; 6 A_51_P100309   78.125   86.625   72.500   70.500   44.500   38.750</span>
+<span class="co">#&gt;       X4909    X4990    X4991    X4992    X4993    X4994    X4995    X4996</span>
+<span class="co">#&gt; 1  7013.625 3976.625 4214.250 5357.500 5901.500 5202.500 4669.000 5060.375</span>
+<span class="co">#&gt; 2 15345.000 2852.875 2664.250 2823.625 3577.125 3989.000 4056.625 4054.750</span>
+<span class="co">#&gt; 3    52.625   74.500   75.375   70.125   92.250   70.250   67.875   66.000</span>
+<span class="co">#&gt; 4  6686.625 2472.625 2752.750 3579.625 3860.625 3675.000 3358.000 3685.250</span>
+<span class="co">#&gt; 5  7089.375 2491.250 2275.875 2711.500 3201.250 3642.625 3457.000 3314.375</span>
+<span class="co">#&gt; 6    42.000   79.375   80.375   86.500   80.500   66.750   85.875   79.625</span>
+<span class="co">#&gt;      X4997    X5094    X5095   X5096    X5097    X5098    X5099     X5265</span>
+<span class="co">#&gt; 1 5030.875 4545.250 4300.500 4788.75 4543.125 3996.750 4584.625  3638.625</span>
+<span class="co">#&gt; 2 3622.625 6829.250 4504.750 9440.75 5114.125 3457.875 7110.000 10594.250</span>
+<span class="co">#&gt; 3   72.500   59.625   73.000   60.25   53.625   51.750   50.750    66.875</span>
+<span class="co">#&gt; 4 3434.500 3578.625 4366.125 4254.25 3544.000 4000.625 4361.750  4340.625</span>
+<span class="co">#&gt; 5 3053.500 3594.000 2408.375 3574.75 3818.625 1961.875 3897.750  3288.375</span>
+<span class="co">#&gt; 6   71.500   57.500   63.625   59.50   54.750   47.750   49.000    52.500</span>
+<span class="co">#&gt;       X5268     X5271    X5399     X5400     X5401     X5402     X5403</span>
+<span class="co">#&gt; 1  4627.500  5987.000 3204.625  3937.375  4310.250  4096.250  4312.125</span>
+<span class="co">#&gt; 2 33954.625 16808.625 9909.000 11926.875 10067.000 16787.000 11617.250</span>
+<span class="co">#&gt; 3    65.750    46.750   50.250    69.500    46.000    48.750    41.250</span>
+<span class="co">#&gt; 4  8039.375  8340.500 5254.000  6805.500  6359.000  7593.875  6235.750</span>
+<span class="co">#&gt; 5  6668.375  3440.125 3800.125  2644.000  3089.750  3454.625  3280.500</span>
+<span class="co">#&gt; 6    58.250    46.500   47.625    59.250    52.125    52.875    45.625</span>
+<span class="co">#&gt;       X5404     X5405     X5406     X5407     X5408     X5409     X5410</span>
+<span class="co">#&gt; 1  3195.125  4923.125  4736.375  4153.000  3376.500  4998.500  4693.625</span>
+<span class="co">#&gt; 2 12640.250 12624.875 12270.375 11950.125 12740.875 12917.125 14457.375</span>
+<span class="co">#&gt; 3    49.125    49.125    40.250    41.875    45.500    48.875    47.750</span>
+<span class="co">#&gt; 4  5825.250  8341.500  9862.125  6407.125  6279.875  6997.375  7625.375</span>
+<span class="co">#&gt; 5  2246.125  3784.625  2541.250  3550.500  2610.875  3614.500  3119.750</span>
+<span class="co">#&gt; 6    49.500    51.625    52.250    44.250    42.500    56.125    46.000</span>
+<span class="co">#&gt;       X5468     X5469     X5470     X5471     X5472    X5473     X5474</span>
+<span class="co">#&gt; 1  4591.750  4441.375  4608.500  4996.375  3864.625 4712.500  3949.500</span>
+<span class="co">#&gt; 2 18164.750 12114.750 18627.125 13135.250 27971.000 8624.500 10236.125</span>
+<span class="co">#&gt; 3    47.000    50.250    47.125    44.000    40.250   40.875    48.250</span>
+<span class="co">#&gt; 4 11970.750  8302.375  9579.750 12601.500 10239.500 9242.000  8000.875</span>
+<span class="co">#&gt; 5  3316.000  4092.750  4011.375  3701.625  2918.125 3388.250  3150.250</span>
+<span class="co">#&gt; 6    47.375    48.500    47.625    45.000    45.750   40.625    44.875</span>
+<span class="co">#&gt;       X5475     X5476     X5477     X5478     X5479    X5602    X5603</span>
+<span class="co">#&gt; 1  4689.125  5311.125  4604.500  5562.875  4357.500 5120.625 4918.500</span>
+<span class="co">#&gt; 2 24073.500  9166.500 30461.875 31014.500 35165.500 6106.750 6836.375</span>
+<span class="co">#&gt; 3    48.375    39.625    45.375    45.000    47.125   53.250   60.375</span>
+<span class="co">#&gt; 4 10074.500 11063.875 10570.125 14271.750 12015.125 4624.500 4084.875</span>
+<span class="co">#&gt; 5  3586.125  3665.750  2904.125  4120.875  3481.750 2744.750 2425.750</span>
+<span class="co">#&gt; 6    47.875    43.250    47.000    44.000    43.875   61.500   54.875</span>
+<span class="co">#&gt;      X5604    X5605     X5606     X5607     X5608     X5609     X5610</span>
+<span class="co">#&gt; 1 4438.625 4909.500  4563.750  5558.750  5759.500  6475.375  4706.250</span>
+<span class="co">#&gt; 2 8412.125 9943.750 12858.375 25444.000 20889.750 27829.875 28625.375</span>
+<span class="co">#&gt; 3   59.250   55.375    52.875    50.750    49.625    56.000    49.750</span>
+<span class="co">#&gt; 4 4346.125 5303.750  4266.375  4281.625  3614.625  5154.375  3268.375</span>
+<span class="co">#&gt; 5 2820.500 3012.875  2014.000  3959.875  3276.125  3764.125  3196.125</span>
+<span class="co">#&gt; 6   54.000   53.250    46.875    84.125    49.125    50.875    52.000</span>
+<span class="co">#&gt;       X5611     X5612     X5613     X5614     X5615     X5616     X5617</span>
+<span class="co">#&gt; 1  4209.250  5779.875  4952.625  5644.625  4861.125  5168.625  5483.625</span>
+<span class="co">#&gt; 2 25633.625 16214.500 15595.375 11898.000 15932.250 13150.625 35325.750</span>
+<span class="co">#&gt; 3    60.625    57.625    58.750    59.125    53.125    47.000    59.750</span>
+<span class="co">#&gt; 4  4195.625  3751.875  3748.625  4439.375  3180.500  3701.875  3708.000</span>
+<span class="co">#&gt; 5  2760.625  3088.750  1809.500  2358.750  2645.000  1560.875  2723.875</span>
+<span class="co">#&gt; 6    52.625    51.875    54.000    61.625    55.250    48.500    53.000</span>
+<span class="co">#&gt;      X5118    X5119    X5120    X5741    X5742    X5743    X5744    X5745</span>
+<span class="co">#&gt; 1 3577.375 2912.375 3853.625 2376.250 2517.875 1800.375 2378.875 1843.375</span>
+<span class="co">#&gt; 2 2467.375 2114.750 3571.500 2054.875 2393.875  971.500 8788.625 8222.375</span>
+<span class="co">#&gt; 3   36.125   39.750   39.125   42.125   47.125   42.875   51.000   44.625</span>
+<span class="co">#&gt; 4 2246.875 2100.750 2561.375 3875.250 3503.125 9957.750 3581.500 2706.250</span>
+<span class="co">#&gt; 5 2502.750 2018.375 2840.625 2973.375 2923.125 1134.250 2312.000 2725.250</span>
+<span class="co">#&gt; 6   38.750   41.250   41.000   60.125   56.250   52.625   99.125   78.750</span>
+<span class="co">#&gt;      X5746     X5747    X5748    X5841    X5842     X5843    X5844</span>
+<span class="co">#&gt; 1 1034.375  1789.625 2119.250 3197.500 3368.875  3599.375 3926.875</span>
+<span class="co">#&gt; 2 7033.000 12171.000 6320.375  766.250 3412.250 15125.000 4464.250</span>
+<span class="co">#&gt; 3   43.000    42.000   52.000   31.875   34.375    32.125   37.500</span>
+<span class="co">#&gt; 4 2787.750  3283.500 4250.125 3716.500 4221.625  3715.000 4285.625</span>
+<span class="co">#&gt; 5 1794.500  3101.750 1650.500 1821.250 1867.875  2317.500 2044.625</span>
+<span class="co">#&gt; 6   47.875    72.125   91.000   36.625   32.250    32.500   32.125</span>
+<span class="co">#&gt;      X5845     X5846     X5847     X5848     X6011     X6012     X6013</span>
+<span class="co">#&gt; 1 3664.875  4447.125  4195.500  4556.000  3505.750  3918.000  4200.375</span>
+<span class="co">#&gt; 2 9340.750 20348.125 21198.750 26030.125 19611.875 15225.250 27329.000</span>
+<span class="co">#&gt; 3   36.875    42.375    35.125    41.125    49.250    41.250    38.250</span>
+<span class="co">#&gt; 4 5355.000  4525.500  5181.250  5171.625 11850.250 10543.125 13495.875</span>
+<span class="co">#&gt; 5 2074.000  2105.250  2422.125  2171.000  3420.500  3295.250  4028.250</span>
+<span class="co">#&gt; 6   35.875    41.500    41.125    37.750    58.875    42.625    45.125</span>
+<span class="co">#&gt;       X6014     X6015     X6016     X6017     X6018    X6198    X6199</span>
+<span class="co">#&gt; 1  3707.875  3799.625  3601.125  4037.875  3720.625 4128.375 5081.500</span>
+<span class="co">#&gt; 2 12677.250 13358.875 14192.750 23387.000 21222.000 6623.625 4380.125</span>
+<span class="co">#&gt; 3    41.000    47.500    37.250    37.500    37.750   46.500   50.625</span>
+<span class="co">#&gt; 4  7624.375  6763.625  5555.750 10405.000  7396.875 2725.000 3634.500</span>
+<span class="co">#&gt; 5  3158.000  3094.125  2766.000  3547.000  2403.125  387.875  696.000</span>
+<span class="co">#&gt; 6    57.250    42.125    44.375    43.250    37.000   56.000   51.875</span>
+<span class="co">#&gt;      X6200    X6202     X6203    X6204    X6206    X6207    X6208   X6212</span>
+<span class="co">#&gt; 1 5815.000 5143.125  6721.250 4609.750 5376.625 4525.625 5203.375 2370.75</span>
+<span class="co">#&gt; 2 3664.375 3356.500 13554.625 7464.500 3681.875 5272.500 7603.625 3711.00</span>
+<span class="co">#&gt; 3   50.125   53.750    44.125   81.250   79.125  108.875   61.500   54.75</span>
+<span class="co">#&gt; 4 4048.750 3822.875  3769.750 4465.375 4954.375 4453.875 5048.875 2178.25</span>
+<span class="co">#&gt; 5 1164.000  799.375   522.125  887.000  642.500  709.125  719.625  378.50</span>
+<span class="co">#&gt; 6   52.625   49.000    47.500   48.625   60.875   56.000   55.625   48.75</span>
+<span class="co">#&gt;      X6244    X6245     X6246    X6247    X6248     X6249    X6250</span>
+<span class="co">#&gt; 1 4646.125 4440.125  4426.125 5045.000 4779.750  4877.125  5387.75</span>
+<span class="co">#&gt; 2 3591.250 4898.750 10139.625 8933.500 7187.875 12735.625 10982.75</span>
+<span class="co">#&gt; 3   40.625   41.000    37.375   42.625   33.625    35.125    38.75</span>
+<span class="co">#&gt; 4 7638.000 7748.250  5928.000 7742.000 6833.500  8296.750  9945.50</span>
+<span class="co">#&gt; 5  995.750  781.625   797.625  865.875  761.500   882.500  1096.00</span>
+<span class="co">#&gt; 6   38.625   36.375    37.250   34.875   33.875    31.625    36.00</span>
+<span class="co">#&gt;      X6251    X6252    X6253    X6254    X6255     X6256     X6257</span>
+<span class="co">#&gt; 1 3706.250 4453.750 4578.500 5188.875 5402.750  4621.000  4747.000</span>
+<span class="co">#&gt; 2 3788.875 3210.125 7502.625 4805.750 4871.000 11648.125 10062.500</span>
+<span class="co">#&gt; 3   57.000   30.875   37.375   31.875   36.000    86.625    39.875</span>
+<span class="co">#&gt; 4 5836.750 3892.125 3946.500 4654.250 4695.875  4541.250  4207.875</span>
+<span class="co">#&gt; 5 1130.125 2164.625 2902.500 1729.250 2411.750  2794.250  2330.500</span>
+<span class="co">#&gt; 6   34.875   30.000   36.875   31.625   32.500    44.750    32.000</span>
+<span class="co">#&gt;      X6358    X6359    X6360    X6362    X6363    X6365     X6366    X6368</span>
+<span class="co">#&gt; 1 2556.375 2254.625 2402.000 1996.125 2015.250 1827.250  1656.500 1525.125</span>
+<span class="co">#&gt; 2  506.250  895.125 4852.125 1288.875 6127.000 2699.500 11442.875 1742.250</span>
+<span class="co">#&gt; 3   89.000   28.625   30.875   36.125   28.375   30.875    96.500   32.250</span>
+<span class="co">#&gt; 4 3475.375 3821.625 4929.625 3921.750 4186.375 2896.250  3501.250 2468.750</span>
+<span class="co">#&gt; 5 2878.875 1824.625 1779.875 3128.375 2166.125 2104.500  2143.625 1944.500</span>
+<span class="co">#&gt; 6   43.000   31.750   36.750   33.125   29.625   43.000    52.500   29.750</span>
+<span class="co">#&gt;      X6369    X6374    X6375     X6376    X6378    X6379    X6381    X6382</span>
+<span class="co">#&gt; 1 2247.750 2893.625 3650.500  3480.625 3924.875 3170.000 2874.875 2952.375</span>
+<span class="co">#&gt; 2 1418.750 2298.625 7225.125 11079.625 6852.750 3775.750 9360.750 8094.125</span>
+<span class="co">#&gt; 3   26.875   30.375   32.125    32.875   28.750   25.250   27.750   28.625</span>
+<span class="co">#&gt; 4 3224.375 2025.375 2450.750  3417.375 4154.375 2199.250 2708.000 2532.250</span>
+<span class="co">#&gt; 5 2459.875 2218.625 2591.875  2169.750 2025.625 1477.500 2334.750 3341.000</span>
+<span class="co">#&gt; 6   27.500   36.875   31.375    30.375   31.625   26.875   26.750   36.625</span>
+<span class="co">#&gt;      X6384    X6385    X6394    X6395    X6398    X6399    X6400   X6402</span>
+<span class="co">#&gt; 1 4126.000 3490.875 3433.500 4870.375 3820.375 3489.500 3198.250 3481.25</span>
+<span class="co">#&gt; 2 8147.000 4607.750 2416.750 9304.750 7425.250 3707.375 4246.625 2639.00</span>
+<span class="co">#&gt; 3   32.500   33.000   26.375   29.500   30.500   33.750   33.500   32.50</span>
+<span class="co">#&gt; 4 3133.625 2463.625 2023.125 3916.625 3457.375 2843.750 2479.625 2613.00</span>
+<span class="co">#&gt; 5 1777.500 1978.375 1943.500 2766.125 2597.125 2928.375 2170.125 2167.75</span>
+<span class="co">#&gt; 6   29.125   30.250   30.875   32.125   32.000   29.250   29.125   34.00</span>
+<span class="co">#&gt;      X6403   X6406    X6407    X6409    X6452    X6453    X6454    X6455</span>
+<span class="co">#&gt; 1 4133.875 3664.25 3820.375 3669.125 2512.625 2406.250 1653.250 3678.875</span>
+<span class="co">#&gt; 2 3415.875 8435.75 4582.125 3764.375 7677.625 5678.000 5181.500 9978.375</span>
+<span class="co">#&gt; 3   32.250   27.50   34.625   36.250   30.375   26.250   34.625   30.375</span>
+<span class="co">#&gt; 4 2670.875 3518.25 2832.750 2371.250 4534.250 3402.750 2944.000 3739.250</span>
+<span class="co">#&gt; 5 1888.625 2220.75 2647.000 3594.500 3535.250 3333.625 2589.625 2170.500</span>
+<span class="co">#&gt; 6   35.500   24.00   35.625   25.250   38.250   34.500   33.875   30.750</span>
+<span class="co">#&gt;      X6456    X6457   X6459    X6460    X6463</span>
+<span class="co">#&gt; 1 1811.125 2674.875 2169.00 3029.125 2392.500</span>
+<span class="co">#&gt; 2 5364.000 7525.500 4204.75 5685.750 6927.875</span>
+<span class="co">#&gt; 3   37.750   31.750   30.50   34.625   30.000</span>
+<span class="co">#&gt; 4 2431.875 5251.000 2913.75 3653.375 3676.000</span>
+<span class="co">#&gt; 5 3152.875 4033.250 2754.00 2104.125 3295.375</span>
+<span class="co">#&gt; 6   33.375   36.375   35.25   33.750   31.500</span></pre></div>
 </div>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/mytalbot/saga_package">https://​github.com/​mytalbot/​saga_package</a>
+<li>Browse source code at <br><a href="https://github.com/mytalbot/saga_package/">https://​github.com/​mytalbot/​saga_package/​</a>
 </li>
 <li>Report a bug at <br><a href="https://github.com/mytalbot/saga_package/issues">https://​github.com/​mytalbot/​saga_package/​issues</a>
 </li>
@@ -211,9 +305,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 </ul>
 </div>
 
-
-      </div>
-
+  </div>
 </div>
 
 
@@ -222,12 +314,14 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

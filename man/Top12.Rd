@@ -4,7 +4,9 @@
 \name{Top12}
 \alias{Top12}
 \title{Top12}
-\format{A 11 x 2 data frame .}
+\format{
+A 11 x 2 data frame .
+}
 \usage{
 data(Top12)
 }

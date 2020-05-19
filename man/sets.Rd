@@ -4,7 +4,9 @@
 \name{sets}
 \alias{sets}
 \title{sets}
-\format{A 1 x 20 data frame .}
+\format{
+A 1 x 20 data frame .
+}
 \usage{
 data(sets)
 }

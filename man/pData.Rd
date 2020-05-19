@@ -4,7 +4,9 @@
 \name{pData}
 \alias{pData}
 \title{pData}
-\format{A 91 x 9 data frame .}
+\format{
+A 91 x 9 data frame .
+}
 \usage{
 data(pData)
 }

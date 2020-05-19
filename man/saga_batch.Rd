@@ -4,8 +4,13 @@
 \alias{saga_batch}
 \title{Batch correction of joint SAGA data sets.}
 \usage{
-saga_batch(matrix.SAGA.qn, matrix.test.qn, rawdata, pData.joint,
-  plotnumber = 2)
+saga_batch(
+  matrix.SAGA.qn,
+  matrix.test.qn,
+  rawdata,
+  pData.joint,
+  plotnumber = 2
+)
 }
 \arguments{
 \item{matrix.SAGA.qn}{quantile normalized saga matrix}

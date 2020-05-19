@@ -4,8 +4,15 @@
 \alias{saga_predict}
 \title{Prediction of sample arrays with the SAGA model.}
 \usage{
-saga_predict(samplepath, matrix.train, labels.train, matrix.unknown,
-  pData.Test, writeFile = 0, showRoc = 1)
+saga_predict(
+  samplepath,
+  matrix.train,
+  labels.train,
+  matrix.unknown,
+  pData.Test,
+  writeFile = 0,
+  showRoc = 1
+)
 }
 \arguments{
 \item{samplepath}{path to sample data}

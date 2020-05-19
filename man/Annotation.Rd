@@ -4,7 +4,9 @@
 \name{Annotation}
 \alias{Annotation}
 \title{Annotation data}
-\format{A 36226 x 12 data frame .}
+\format{
+A 36226 x 12 data frame .
+}
 \usage{
 data(Annotation)
 }
