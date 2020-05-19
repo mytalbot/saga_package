@@ -18,10 +18,8 @@
 #' @import sva
 #' @import UsingR
 #' @import caret
-#' @import Biobase
 #' @import phenoTest
-#' @import gridExtra
-#'
+#' @importFrom gridExtra combine
 #' @export
 #'
 

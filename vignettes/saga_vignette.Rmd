@@ -29,6 +29,7 @@ install.packages("BiocManager")
 
 BiocManager::install("Biobase") 
 BiocManager::install("BiocGenerics") 
+BiocManager::install("GSEABase")
 BiocManager::install("affy") 
 BiocManager::install("affyPLM") 
 BiocManager::install("phenoTest")

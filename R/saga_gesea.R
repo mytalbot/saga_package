@@ -8,17 +8,15 @@
 #' @return \code{result} GESEA result - will also be saved into the sample folder.
 #'
 #' @import limma
-#' @import Biobase
-#' @import gridExtra
+#' @importFrom gridExtra combine
 #' @importFrom stats setNames
 #' @importFrom methods new
 #' @importFrom graphics plot abline legend text
 #' @import utils
 #' @importFrom grDevices pdf dev.off
-#' @import phenoTest
-#' @import BiocGenerics
-#' @import parallel
-#'
+#' @importFrom phenoTest gesea ExpressionPhenoTest
+#' @importFrom Biobase ExpressionSet
+#' @import GSEABase
 #' @export
 #'
 
@@ -48,7 +46,9 @@ saga_gesea    <- function(smplpath, saveResults=0){
     #### 2.3. make ExpressionSet (Biobase) object ##################################################
     metadata    <- data.frame(labelDescription= rep(NA,dim(SIF.i)[2]),row.names=colnames(SIF.i))   # varMetadata: empty, but required
     phenoData   <- new("AnnotatedDataFrame",data=SIF.i, varMetadata=metadata)     # annotatedDataFrame for the annotation of the samples
-    eset.gsea   <- Biobase::ExpressionSet(assayData = matrix.gsea, phenoData = phenoData)  # this is the ExpressionSet required for phenoTest
+    #eset.gsea   <- Biobase::ExpressionSet(assayData = matrix.gsea, phenoData = phenoData)  # this is the ExpressionSet required for phenoTest
+    eset.gsea   <- ExpressionSet(assayData = matrix.gsea, phenoData = phenoData)  # this is the ExpressionSet required for phenoTest
+
 
     #### 2.4. make ePheno object: contains the FCs associated with Group variable ##################
     vars2test   <- list(ordinal="Group")    # Variables (here: Groups) to test against MOCK, which are always Group = 1 in the SIF

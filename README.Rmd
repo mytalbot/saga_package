@@ -20,6 +20,8 @@ In our paper **"Predicting genotoxicity of integrating viral vectors for stem ce
 SAGA builds on the well accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic approach to correctly classify the mutagenic potential of retroviral vectors used in previous and current clinical trials. 
 
 ## Installation
+The package requires **R>=3.6**.
+
 You can download the development version from [GitHub](https://github.com/mytalbot/saga_package/) or use:
 
 ``` r

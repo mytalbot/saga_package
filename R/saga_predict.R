@@ -18,7 +18,6 @@
 #' @import caret
 #' @import pROC
 #' @import lattice
-#' @import ggplot2
 #' @import utils
 #' @importFrom stats predict
 #'

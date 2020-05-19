@@ -30,7 +30,7 @@ saga_norm <- function(SAGA_RAW, TEST_RAW, pData.joint, plotnumber=2) {
 
   ### test samples are in black ##
   if(plotnumber == 1){
-   boxplot(cbind(matrix.SAGA.qn, matrix.test.qn),
+    graphics::boxplot(cbind(matrix.SAGA.qn, matrix.test.qn),
           boxwex   = 0.6,
           col      = pData.joint$IVIM_Farbe,
           names    = pData.joint$Filename,

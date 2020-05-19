@@ -33,7 +33,6 @@ Suggests: knitr,
 VignetteBuilder: knitr
 RoxygenNote: 7.1.0
 Imports: limma,
-    Biobase,
     Rtsne,
     UsingR,
     bapred,
@@ -49,7 +48,8 @@ Imports: limma,
     lattice,
     ggplot2,
     affyPLM,
-    BiocGenerics,
-    parallel
+    parallel,
+    Biobase,
+    GSEABase
 URL: https://github.com/mytalbot/saga_package
 BugReports: https://github.com/mytalbot/saga_package/issues
