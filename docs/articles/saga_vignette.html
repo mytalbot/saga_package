@@ -104,19 +104,28 @@
 <div id="about-saga-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#about-saga-package" class="anchor"></a>About SAGA package</h2>
-<p>In our paper <strong>“Predicting genotoxicity of integrating viral vectors for stem cell gene therapy using gene expression-based machine learning”</strong> we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy. SAGA builds on the well accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic apporach to correctly classify the mutagenic potential of retroviral vectors used in previous and current clinical trials.</p>
+<p>In our paper <strong>“Predicting genotoxicity of viral vectors for stem cell gene therapy using gene expression-based machine learning”</strong> we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy. SAGA builds on the well accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic apporach to correctly classify the mutagenic potential of retroviral vectors used in previous and current clinical trials.</p>
 <p>This vignette covers the basic functions for SAGA analysis in R [1].</p>
 </div>
 <div id="package-requirements" class="section level1">
 <h1 class="hasAnchor">
 <a href="#package-requirements" class="anchor"></a>Package Requirements</h1>
 <p>In order to use the SAGA package some Bioconductor dependencies require installation. First, the connection to the Bioconductor database must be established. Then the required packages can be loaded independently. Please note that these packages are only available over Bioconductor and cannot be loaded using CRAN.</p>
+<div id="important-note" class="section level3">
+<h3 class="hasAnchor">
+<a href="#important-note" class="anchor"></a>Important Note</h3>
 <p><strong>The SAGA package requires R &gt;=3.6</strong>.</p>
+<p>Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause <strong>warnings</strong> (not errors). These can be ignored since they do not hamper the function of the SAGA package.</p>
+</div>
+<div id="dependency-installations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#dependency-installations" class="anchor"></a>Dependency installations</h3>
 <p><a href="https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html">BiocManager</a></p>
 <pre><code>install.packages("BiocManager")
 
 BiocManager::install("Biobase") 
 BiocManager::install("BiocGenerics") 
+BiocManager::install("GSEABase")
 BiocManager::install("affy") 
 BiocManager::install("affyPLM") 
 BiocManager::install("phenoTest")
@@ -132,7 +141,8 @@ install.packages("UsingR")
 install.packages("pROC")
 install.packages("Rtsne")
 </code></pre>
-<p>Again, the <a href="#references">reference section</a> offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13] and Rtsne [14-16].</p>
+<p>Again, the <a href="#references">reference section</a> offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13], Rtsne [14-16] and GSEABase [17].</p>
+</div>
 <div id="saga-package-installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saga-package-installation" class="anchor"></a>SAGA Package installation</h2>
@@ -416,6 +426,7 @@ gesea_results  &lt;- saga_gesea(samplepath, saveResults=1)
 <p>[14] L.J.P. van der Maaten and G.E. Hinton. Visualizing High-Dimensional Data Using t-SNE. Journal of Machine Learning Research 9(Nov):2579-2605, 2008.</p>
 <p>[15] L.J.P. van der Maaten. Accelerating t-SNE using Tree-Based Algorithms. Journal of Machine Learning Research 15(Oct):3221-3245, 2014.</p>
 <p>[16] Jesse H. Krijthe (2015). Rtsne: T-Distributed Stochastic Neighbor Embedding using a Barnes-Hut Implementation, URL: <a href="https://github.com/jkrijthe/Rtsne" class="uri">https://github.com/jkrijthe/Rtsne</a>.</p>
+<p>[17] Martin Morgan, Seth Falcon and Robert Gentleman (2019). GSEABase: Gene set enrichment data structures and methods. R package version 1.46.0.</p>
 </div>
   </div>
 

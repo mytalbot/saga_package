@@ -11,7 +11,7 @@ vignette: >
 ---
 
 ## About SAGA package
-In our paper **"Predicting genotoxicity of integrating viral vectors for stem cell gene therapy using gene expression-based machine learning"** we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy.
+In our paper **"Predicting genotoxicity of viral vectors for stem cell gene therapy using gene expression-based machine learning"** we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy.
 SAGA builds on the well accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic apporach to correctly
 classify the mutagenic potential of retroviral vectors used in previous and current clinical trials. 
 
@@ -20,7 +20,13 @@ This vignette covers the basic functions for SAGA analysis in R [1].
 # Package Requirements
 In order to use the SAGA package some Bioconductor dependencies require installation. First, the connection to the Bioconductor database must be established. Then the required packages can be loaded independently. Please note that these packages are only available over Bioconductor and cannot be loaded using CRAN.
 
+### Important Note
 **The SAGA package requires R >=3.6**.
+
+Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package.
+
+
+### Dependency installations
 
 [BiocManager](https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html)
 
@@ -52,7 +58,7 @@ install.packages("Rtsne")
 
 ```
 
-Again, the [reference section](#references) offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13] and Rtsne [14-16].
+Again, the [reference section](#references) offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13], Rtsne [14-16] and GSEABase [17].
 
 
 ## SAGA Package installation
@@ -357,5 +363,6 @@ Research 15(Oct):3221-3245, 2014.
 
 [16] Jesse H. Krijthe (2015). Rtsne: T-Distributed Stochastic Neighbor Embedding using a Barnes-Hut Implementation, URL: https://github.com/jkrijthe/Rtsne.
 
- 
+[17] Martin Morgan, Seth Falcon and Robert Gentleman (2019). GSEABase: Gene set enrichment data structures and methods.
+R package version 1.46.0.
 
