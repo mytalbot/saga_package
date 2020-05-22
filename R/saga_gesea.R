@@ -14,7 +14,7 @@
 #' @importFrom graphics plot abline legend text
 #' @import utils
 #' @importFrom grDevices pdf dev.off
-#' @importFrom phenoTest gesea ExpressionPhenoTest
+#' @import phenoTest
 #' @importFrom Biobase ExpressionSet
 #' @import GSEABase
 #' @export

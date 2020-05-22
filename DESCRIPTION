@@ -51,6 +51,7 @@ Imports: limma,
     affyPLM,
     parallel,
     Biobase,
-    GSEABase
+    GSEABase,
+    phenoTest
 URL: https://github.com/mytalbot/saga_package
 BugReports: https://github.com/mytalbot/saga_package/issues
