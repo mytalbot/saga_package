@@ -92,7 +92,7 @@
       <h1 data-toc-skip>SAGA</h1>
                         <h4 class="author">Steven R. Talbot</h4>
             
-            <h4 class="date">2020-05-19</h4>
+            <h4 class="date">2020-05-23</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mytalbot/saga_package/blob/master/vignettes/saga_vignette.Rmd"><code>vignettes/saga_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>saga_vignette.Rmd</code></div>
@@ -123,25 +123,27 @@
 <p><a href="https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html">BiocManager</a></p>
 <pre><code>install.packages("BiocManager")
 
-BiocManager::install("Biobase") 
+BiocManager::install("Biobase")      
+BiocManager::install("affy")         
+BiocManager::install("affyPLM")      
+BiocManager::install("GSEABase")     
+BiocManager::install("phenoTest")    
 BiocManager::install("BiocGenerics") 
-BiocManager::install("GSEABase")
-BiocManager::install("affy") 
-BiocManager::install("affyPLM") 
-BiocManager::install("phenoTest")
 </code></pre>
 <p>The <a href="#references">reference section</a> offers more information on the packages Biobase [2], BioGenerics [2], affy [3], affyPLM [4] and phenoTest [5].</p>
 <p>The following packages (with dependencies) need to be loaded as well. They can be installed via CRAN. The following links can be used directly in the R console.</p>
-<pre><code>install.packages("limma") 
-install.packages("sva")
-install.packages("caret")
-install.packages("gridExtra")
-install.packages("bapred")
-install.packages("UsingR")
-install.packages("pROC")
-install.packages("Rtsne")
+<pre><code>install.packages("kernlab")   
+install.packages("caret")      
+install.packages("bapred")     
+install.packages("UsingR")     
+install.packages("pROC")       
+install.packages("Rtsne")      
+install.packages("e1071")       
+install.packages("limma")      
+install.packages("sva")       
+install.packages("gridExtra")  
 </code></pre>
-<p>Again, the <a href="#references">reference section</a> offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13], Rtsne [14-16] and GSEABase [17].</p>
+<p>Again, the <a href="#references">reference section</a> offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13], Rtsne [14-16], GSEABase [17], e1071 [18] and kernlab [19].</p>
 </div>
 <div id="saga-package-installation" class="section level2">
 <h2 class="hasAnchor">
@@ -427,6 +429,8 @@ gesea_results  &lt;- saga_gesea(samplepath, saveResults=1)
 <p>[15] L.J.P. van der Maaten. Accelerating t-SNE using Tree-Based Algorithms. Journal of Machine Learning Research 15(Oct):3221-3245, 2014.</p>
 <p>[16] Jesse H. Krijthe (2015). Rtsne: T-Distributed Stochastic Neighbor Embedding using a Barnes-Hut Implementation, URL: <a href="https://github.com/jkrijthe/Rtsne" class="uri">https://github.com/jkrijthe/Rtsne</a>.</p>
 <p>[17] Martin Morgan, Seth Falcon and Robert Gentleman (2019). GSEABase: Gene set enrichment data structures and methods. R package version 1.46.0.</p>
+<p>[18] David Meyer, Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel and Friedrich Leisch (2019). e1071: Misc Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), TU Wien. R package version 1.7-3.</p>
+<p>[19] Alexandros Karatzoglou, Alex Smola, Kurt Hornik, Achim Zeileis (2004). kernlab - An S4 Package for Kernel Methods in R. Journal of Statistical Software 11(9), 1-20.</p>
 </div>
   </div>
 

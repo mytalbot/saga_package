@@ -13,6 +13,8 @@
 #' @return \code{eset.batch} batch corrected data set.
 #'
 #' @import sva
+#' @import bapred
+#' @import Rtsne
 #' @importFrom graphics plot abline legend text
 #' @importFrom stats prcomp
 #'
@@ -34,7 +36,7 @@ saga_batch     <- function(matrix.SAGA.qn, matrix.test.qn, rawdata, pData.joint,
   combat.SAGA  <- combatba(t(matrix.SAGA.qn), batch = batch.SAGA)
   matrix.SAGA  <- t(combat.SAGA$xadj)
   colnames(matrix.SAGA) <- row.names(pData)
-  matrix.test  <- t(combatbaaddon(combat.SAGA, t(matrix.test.qn), batch = as.factor(SIF$Batch)))
+  matrix.test  <- t(bapred::combatbaaddon(combat.SAGA, t(matrix.test.qn), batch = as.factor(SIF$Batch)))
 
   #### 3.2 t-SNE of batch corrected dataset ######################################################
   ###################################################################################ä############
@@ -58,12 +60,13 @@ saga_batch     <- function(matrix.SAGA.qn, matrix.test.qn, rawdata, pData.joint,
   #### 3.3  clean up data set before assessing SAGA classifier  #################################
   ###############################################################################################
 
-  pData.Test  <- subset(pData.Test, !is.na(pData.Test$TrueLabel))  #remove samples with unknown ground truth (too few or inconclusive IVIM assays)
-  pData.joint <- rbind(pData,pData.Test)
-  matrix.test <- matrix.test[,row.names(pData.Test)]
+  #pData.Test  <- subset(pData.Test, !is.na(pData.Test$TrueLabel))  #remove samples with unknown ground truth (too few or inconclusive IVIM assays)
+  #pData.joint <- rbind(pData,pData.Test)
+  #matrix.test <- matrix.test[,row.names(pData.Test)]
 
   matrix.Top   <- cbind(matrix.SAGA, matrix.test)[row.names(Top),]
   index        <- nrow(pData)+nrow(pData.Test)
+
 
   if(plotnumber == 1){
     pca     <- prcomp(t(matrix.Top))

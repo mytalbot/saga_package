@@ -39,12 +39,19 @@ saga_import   <- function(smplpath, showjoint=0){
   # load internal data
   Annotation          <- saga::Annotation
   pData               <- saga::pData
+  SAGA_Data           <- sagadata::SAGA_Data
   #targets             <- saga::saga_targets
 
-  SAGA_Data           <- SAGA_Data #read.delim(system.file("extdata", "SAGA_INBUILD_Data_AVE_91.txt", package = "saga"),header=TRUE,sep="\t", stringsAsFactors =FALSE)
-  SAGA_RAW            <- as.matrix(SAGA_Data[,-1] )
-  row.names(SAGA_RAW) <- SAGA_Data$PROBE_ID
+  # redundant
+  #SAGA_Data           <- SAGA_Data #read.delim(system.file("extdata", "SAGA_INBUILD_Data_AVE_91.txt", package = "saga"),header=TRUE,sep="\t", stringsAsFactors =FALSE)
+  #SAGA_RAW            <- as.matrix(SAGA_Data[,-1] )
+  #row.names(SAGA_RAW) <- SAGA_Data$PROBE_ID
 
+  # averaged RAW expression matrix of 152 training samples
+  SAGA_RAW            <- as.data.frame(SAGA_Data  ) [sagadata::SAGA_Data$PROBE_ID %in% row.names(Annotation),]
+  probeids            <- SAGA_RAW[,1]
+  SAGA_RAW            <- SAGA_RAW[,-1]
+  row.names(SAGA_RAW) <- probeids
 
   ### Read in .txt files from validation set: ####################################################
   ################################################################################################
@@ -58,12 +65,11 @@ saga_import   <- function(smplpath, showjoint=0){
 
   TEST_Data               <- read.maimages(files=pData.Test$Filename, path=smplpath, source="agilent.median", green.only=T,
                                            columns=list(G="gMedianSignal"), annotation=c("ProbeName", "GeneName"))
-
   colnames(TEST_Data)     <- row.names(pData.Test)
   TEST_RAW                <- TEST_Data$E                                       # export Expression matrix
   row.names(TEST_RAW)     <- TEST_Data$genes$ProbeName                         # assign PROBE IDs as row.names
   TEST_RAW                <- avereps(TEST_RAW, ID= row.names(TEST_RAW))        # collapse quadruplicate probes
-  TEST_RAW                <- TEST_RAW[row.names(SAGA_RAW),]                    # Expressionmatrix of Test Set with 36226 annotated probes
+  TEST_RAW                <- TEST_RAW[row.names(Annotation),]                    # Expressionmatrix of Test Set with 36226 annotated probes
 
 
   ### Make joint sample information file #########################################################

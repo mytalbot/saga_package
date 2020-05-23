@@ -33,12 +33,12 @@ Please note, that the SAGA package requires dependencies. Some functions can mas
 ```
 install.packages("BiocManager")
 
-BiocManager::install("Biobase") 
+BiocManager::install("Biobase")      
+BiocManager::install("affy")         
+BiocManager::install("affyPLM")      
+BiocManager::install("GSEABase")     
+BiocManager::install("phenoTest")    
 BiocManager::install("BiocGenerics") 
-BiocManager::install("GSEABase")
-BiocManager::install("affy") 
-BiocManager::install("affyPLM") 
-BiocManager::install("phenoTest")
 
 ```
 
@@ -47,18 +47,20 @@ The [reference section](#references) offers more information on the packages Bio
 The following packages (with dependencies) need to be loaded as well. They can be installed via CRAN. The following links can be used directly in the R console.
 
 ```
-install.packages("limma") 
-install.packages("sva")
-install.packages("caret")
-install.packages("gridExtra")
-install.packages("bapred")
-install.packages("UsingR")
-install.packages("pROC")
-install.packages("Rtsne")
+install.packages("kernlab")   
+install.packages("caret")      
+install.packages("bapred")     
+install.packages("UsingR")     
+install.packages("pROC")       
+install.packages("Rtsne")      
+install.packages("e1071")       
+install.packages("limma")      
+install.packages("sva")       
+install.packages("gridExtra")  
 
 ```
 
-Again, the [reference section](#references) offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13], Rtsne [14-16] and GSEABase [17].
+Again, the [reference section](#references) offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13], Rtsne [14-16], GSEABase [17], e1071 [18] and kernlab [19].
 
 
 ## SAGA Package installation
@@ -366,3 +368,8 @@ Research 15(Oct):3221-3245, 2014.
 [17] Martin Morgan, Seth Falcon and Robert Gentleman (2019). GSEABase: Gene set enrichment data structures and methods.
 R package version 1.46.0.
 
+[18] David Meyer, Evgenia Dimitriadou, Kurt Hornik, Andreas Weingessel and Friedrich Leisch (2019). e1071: Misc
+Functions of the Department of Statistics, Probability Theory Group (Formerly: E1071), TU Wien. R package version 1.7-3.
+
+[19] Alexandros Karatzoglou, Alex Smola, Kurt Hornik, Achim Zeileis (2004). kernlab - An S4 Package for Kernel Methods
+in R. Journal of Statistical Software 11(9), 1-20.

@@ -35,18 +35,29 @@ saga_predict <- function(samplepath, matrix.train, labels.train, matrix.unknown,
 
   #### 6.1 Caret SVM on ClassProbs ###############################################################
   ################################################################################################
+  fiveStats <- function(...) c(twoClassSummary(...), defaultSummary(...))
+
   set.seed(45)
-  svm_fit.ROC <- train(matrix.train,
-                       labels.train,
-                       method     = "svmRadial",
+  svm_fit.ROC <- train(matrix.train,labels.train,
+                       method = "svmRadial",
                        tuneLength = 20,
-                       trControl  = trainControl(method     = "repeatedcv",number  = 10, repeats = 5,
-                                                 classProbs = TRUE,summaryFunction = twoClassSummary))
+                       trControl = trainControl(method          = "repeatedcv", number = 10, repeats = 5,
+                                                classProbs      = TRUE,
+                                                summaryFunction = fiveStats,
+                                                allowParallel   = TRUE))
+
+  #set.seed(45)
+  #svm_fit.ROC <- train(matrix.train,
+  #                     labels.train,
+  #                     method     = "svmRadial",
+  #                     tuneLength = 20,
+  #                     trControl  = trainControl(method     = "repeatedcv",number  = 10, repeats = 5,
+  #                                               classProbs = TRUE,summaryFunction = twoClassSummary))
   print(svm_fit.ROC)
 
   Prediction_SVM.Caret <- predict(svm_fit.ROC, matrix.unknown, type = "prob")
   Prediction_SVM.Caret$Prediction.SVM.Caret <- ifelse(Prediction_SVM.Caret$transforming>0.50,"transforming","untransforming")
-  Prediction_SVM.Caret <- cbind(pData.Test[,c(1:5)],Prediction_SVM.Caret)
+  Prediction_SVM.Caret <- cbind( pData.Test[,c(1:5)], Prediction_SVM.Caret)
 
 
   if(writeFile==TRUE){
