@@ -17,7 +17,9 @@ previous and current clinical trials.
 
 ## Installation
 
-The package requires **R\>=3.6**.
+The package requires **R\>=3.6 (R\!=4.0)**.
+
+Currently, the package does not run on R4.0\!
 
 You can download the development version from
 [GitHub](https://github.com/mytalbot/saga_package/) or use:

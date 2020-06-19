@@ -21,9 +21,11 @@ This vignette covers the basic functions for SAGA analysis in R [1].
 In order to use the SAGA package some Bioconductor dependencies require installation. First, the connection to the Bioconductor database must be established. Then the required packages can be loaded independently. Please note that these packages are only available over Bioconductor and cannot be loaded using CRAN.
 
 ### Important Note
-**The SAGA package requires R >=3.6**.
+**The SAGA package requires R >=3.6 (R!=4.0)**.
 
-Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package.
+Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package. 
+
+**However, some of the dependecies of the package have not yet been updated to R4.0. Currently, the saga package does not work with R4.0.**
 
 
 ### Dependency installations
