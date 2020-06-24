@@ -77,7 +77,7 @@ devtools::install_github("mytalbot/saga_package", build_vignettes = TRUE)
 library(saga)
 ```
 
-If you don't have or want to use devtools, SAGA can be installed using the source file (i.e. in RStudio). It can be downloaded here.
+If you don't have or want to use devtools, SAGA can be installed using the source file (i.e. in RStudio). [It can be downloaded here.](https://github.com/mytalbot/saga_package/tree/master/sourcefiles)
 
 Further, the sagadata for SAGA core data need to loaded in a separate package because it is too large to fit in the saga package. sagadata can be obtained from GitHub as well:
 

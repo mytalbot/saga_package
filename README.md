@@ -32,6 +32,10 @@ If you want the Vignette installed in R as well, set the
 build\_vignettes = TRUE (access browseVignettes(“saga”)). Otherwise, the
 Vignette will only be accessible via the website.
 
+If you don’t have or want to use devtools, SAGA can be installed using
+the source file (i.e. in RStudio). [It can be downloaded
+here.](https://github.com/mytalbot/saga_package/tree/master/sourcefiles)
+
 ### Important Note
 
 Please note, that the SAGA package requires dependencies. Some functions
