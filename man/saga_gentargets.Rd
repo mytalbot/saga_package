@@ -17,6 +17,7 @@ saga_gentargets(smplpath)
 with sample *.txt files is needed. Each textfile must contain the full Agilent microarray information.
 }
 \details{
-\cr PLEASE NOTE: When the targets file is generated it cannot know about your sample batches. Batch defaults to No. for each sample is 11. You
-can use any other number to indicate your batches BUT you'll have to change the numbers manually (i.e, in Excel or in a text editor).
+\cr PLEASE NOTE: When the targets file is generated it cannot know about your sample batches. Batch defaults to No. for each sample is 1. You
+can use any other number to indicate your batches BUT you'll have to change the numbers manually (i.e, in Excel or in a text editor). Since saga cannot
+know about these information, <ou will also have to adjust the Group, Vector and TrueLabel fields manually.
 }

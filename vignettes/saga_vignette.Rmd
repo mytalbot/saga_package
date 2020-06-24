@@ -21,11 +21,11 @@ This vignette covers the basic functions for SAGA analysis in R [1].
 In order to use the SAGA package some Bioconductor dependencies require installation. First, the connection to the Bioconductor database must be established. Then the required packages can be loaded independently. Please note that these packages are only available over Bioconductor and cannot be loaded using CRAN.
 
 ### Important Note
-**The SAGA package requires R >=3.6 (R!=4.0)**.
+**The SAGA package requires R >=3.6**.
 
-Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package. Warnings may be caused mainly by the HTSanalyzeR dependency which has not yet been updated to work with R4.0.
+Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package. Warnings may be caused mainly by the HTSanalyzeR and mnormt dependencies which have not yet been updated to work with R4.0. 
 
-**More importantly, the mnormt package has not yet been updated to R4.0 as well.** You can install a previous version of mnormt to run the saga package on R4.0 which can be installed with this code:
+**Since the mnormt package has not yet been updated to R4.0**, the only solution to work with saga on R4.0 is the installation of a previous version of mnormt. Make sure not to update mnormt when installing saga with devtools!
 
 ``` r
 PackageUrl <- "https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz"
@@ -63,7 +63,6 @@ install.packages("e1071")
 install.packages("limma")      
 install.packages("sva")       
 install.packages("gridExtra")  
-
 ```
 
 Again, the [reference section](#references) offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13], Rtsne [14-16], GSEABase [17], e1071 [18] and kernlab [19].
@@ -77,6 +76,8 @@ SAGA can be downloaded from Github using the following commands. If you want the
 devtools::install_github("mytalbot/saga_package", build_vignettes = TRUE)
 library(saga)
 ```
+
+If you don't have or want to use devtools, SAGA can be installed using the source file (i.e. in RStudio). It can be downloaded here.
 
 Further, the sagadata for SAGA core data need to loaded in a separate package because it is too large to fit in the saga package. sagadata can be obtained from GitHub as well:
 
@@ -143,13 +144,12 @@ The following section explains the functions of this package and how to use them
 
 
 ## saga_gentargets
-After pooling the samples in a specific folder (`samplepath`), a targets file called `SampleInformation.txt` must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious we provide a function for automatic generation of an empty file. The user will then have to adjust this file manually to his experimental setup.
+After pooling the samples in a specific folder (`samplepath`), a targets file called `SampleInformation.txt` must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for automatic generation of an empty file. However, the user will then have to adjust this file manually to his experimental setup since the function cannot know about the individual experimental designs. This includes the fields: Filename, Batch,	Group, Vector and TrueLabel.
 
-The only two requirements for this function are:
+The two requirements for this function are:
 
 * there must be at least one sample file in the folder (however, there should really be more (controls!))
 * there should not be a `SampleInformation.txt` in the folder when samples are new
-
 
 ```
 # This function will generate the empty user targets file for the samples.

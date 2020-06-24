@@ -92,7 +92,7 @@
       <h1 data-toc-skip>SAGA</h1>
                         <h4 class="author">Steven R. Talbot</h4>
             
-            <h4 class="date">2020-06-19</h4>
+            <h4 class="date">2020-06-24</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mytalbot/saga_package/blob/master/vignettes/saga_vignette.Rmd"><code>vignettes/saga_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>saga_vignette.Rmd</code></div>
@@ -114,9 +114,11 @@
 <div id="important-note" class="section level3">
 <h3 class="hasAnchor">
 <a href="#important-note" class="anchor"></a>Important Note</h3>
-<p><strong>The SAGA package requires R &gt;=3.6 (R!=4.0)</strong>.</p>
-<p>Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause <strong>warnings</strong> (not errors). These can be ignored since they do not hamper the function of the SAGA package.</p>
-<p><strong>However, some of the dependecies of the package have not yet been updated to R4.0. Currently, the saga package does not work with R4.0.</strong></p>
+<p><strong>The SAGA package requires R &gt;=3.6</strong>.</p>
+<p>Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause <strong>warnings</strong> (not errors). These can be ignored since they do not hamper the function of the SAGA package. Warnings may be caused mainly by the HTSanalyzeR and mnormt dependencies which have not yet been updated to work with R4.0.</p>
+<p><strong>Since the mnormt package has not yet been updated to R4.0</strong>, the only solution to work with saga on R4.0 is the installation of a previous version of mnormt. Make sure not to update mnormt when installing saga with devtools!</p>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="no">PackageUrl</span> <span class="kw">&lt;-</span> <span class="st">"https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz"</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="no">PackageUrl</span>, <span class="kw">repos</span> <span class="kw">=</span> <span class="kw">NULL</span>,<span class="kw">type</span><span class="kw">=</span><span class="st">"source"</span>)</pre></body></html></div>
 </div>
 <div id="dependency-installations" class="section level3">
 <h3 class="hasAnchor">
@@ -142,19 +144,18 @@ install.packages("Rtsne")
 install.packages("e1071")       
 install.packages("limma")      
 install.packages("sva")       
-install.packages("gridExtra")  
-</code></pre>
+install.packages("gridExtra")  </code></pre>
 <p>Again, the <a href="#references">reference section</a> offers more information on the packages limma [6], sva [7], caret [8], phenoTest [9], gridExtra [10], bapred [11], UsingR [12], pROC [13], Rtsne [14-16], GSEABase [17], e1071 [18] and kernlab [19].</p>
 </div>
 <div id="saga-package-installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saga-package-installation" class="anchor"></a>SAGA Package installation</h2>
-<p>SAGA can be downloaded from Github using the following commands:</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/saga_package"</span>)
+<p>SAGA can be downloaded from Github using the following commands. If you want the Vignette installed in R as well, set the build_vignettes = TRUE. Otherwise, the Vignette will only be accessible via the website.</p>
+<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="co"># install.packages("devtools")</span>
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/saga_package"</span>, <span class="kw">build_vignettes</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">saga</span>)</pre></body></html></div>
 <p>Further, the sagadata for SAGA core data need to loaded in a separate package because it is too large to fit in the saga package. sagadata can be obtained from GitHub as well:</p>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/sagadata"</span>)
+<div class="sourceCode" id="cb5"><html><body><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/sagadata"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)</pre></body></html></div>
 <p>For more information on SAGA, visit the <a href="https://talbotsr.com/saga_package/index.html">website</a>.</p>
 </div>
@@ -163,7 +164,7 @@ install.packages("gridExtra")
 <h1 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h1>
 <p><code>SAGA</code> analysis starts with raw data obtained from regular gene expression microarray analysis acquired by Agilent platforms. This is important since the functions in this package will only work within the Agilent format. In the current version other platforms were not specifically included into the capacities of this package. If you wish to use other platforms you’ll have to adapt the functions to your specific needs.</p>
-<p>As described in the paper, we optimized a training set of arrays to discriminate between potentially dangerous arrays and MOCK data in order to obtain a measurement for vector safety. Vector safety is therefore described as either <em>transforming</em> or <em>nontransforming</em> in the package.</p>
+<p>As described in the paper, we optimized a training set of arrays to discriminate between potentially dangerous arrays and MOCK data in order to obtain a measurement for vector safety. Vector safety is therefore described as either <em>transforming</em> or <em>untransforming</em> in the package.</p>
 <p>The basic SAGA classifier was obtained by varius Machine Learning algorithms as well as feature assessment techniques as described in our paper. In essence, a toplist of 9 probes were obtained that are able to predict untrained samples reliably well. The <code>SAGA</code> package uses its default data set and the probe toplist to predict user sample data.</p>
 <p>Although the arrays provide 39428 probes the annotations were (<strong>de novo</strong>) remapped to the latest available standard (Gencode.vM18, GRCm38.p6, released July 2018 and Whole Mouse Genome Oligo Microarray 4x44K v2 (ID 026655, released October 2017)), so that only 36226 annotated probes were considered in the final model building process.</p>
 <p>Further, the user may specify his/her own positive and negative controls for more confidence in the predicted results.</p>
@@ -200,7 +201,7 @@ install.packages("gridExtra")
 <td align="left">1</td>
 <td align="left">1</td>
 <td align="left">A2_MOCK</td>
-<td align="left">nontransforming</td>
+<td align="left">untransforming</td>
 </tr>
 <tr class="even">
 <td align="left">X42</td>
@@ -252,7 +253,7 @@ install.packages("gridExtra")
 </tr>
 </tbody>
 </table>
-<p>In the table, the first array (41.txt) is labelled as <em>nontransforming</em> in the <strong>TrueLabel</strong> column. Using either <strong>nontransforming</strong> or <strong>transforming</strong> as class labels, the user may specify his own positive or negative controls. When left empty (NA) the arrays will be classified against the default model.</p>
+<p>In the table, the first array (41.txt) is labelled as <em>untransforming</em> in the <strong>TrueLabel</strong> column. Using either <strong>untransforming</strong> or <strong>transforming</strong> as class labels, the user may specify his own positive or negative controls. When left empty (NA) the arrays will be classified against the default model.</p>
 <p>We recommend that users include at least 2 to 3 MOCK (negative) and RV.SF (positive) controls in their own models. The batch correction algorithm may need this for proper integration of the provided data into the SAGA data set.</p>
 <p><strong>IMPORTANT for GESEA:</strong> For the Gene Set Enrichment Analysis (GESEA) the user must provide at least 3 samples in two different batches. One of the three samples must be a MOCK control (vector) and labelled as 1 in the Group column. Every MOCK control needs the Group label 1. All other arrays may have other numeric labels.</p>
 </div>
@@ -263,8 +264,8 @@ install.packages("gridExtra")
 <div id="saga_gentargets" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saga_gentargets" class="anchor"></a>saga_gentargets</h2>
-<p>After pooling the samples in a specific folder (<code>samplepath</code>), a targets file called <code>SampleInformation.txt</code> must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious we provide a function for automatic generation of an empty file. The user will then have to adjust this file manually to his experimental setup.</p>
-<p>The only two requirements for this function are:</p>
+<p>After pooling the samples in a specific folder (<code>samplepath</code>), a targets file called <code>SampleInformation.txt</code> must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for automatic generation of an empty file. However, the user will then have to adjust this file manually to his experimental setup since the function cannot know about the individual experimental designs. This includes the fields: Filename, Batch, Group, Vector and TrueLabel.</p>
+<p>The two requirements for this function are:</p>
 <ul>
 <li>there must be at least one sample file in the folder (however, there should really be more (controls!))</li>
 <li>there should not be a <code>SampleInformation.txt</code> in the folder when samples are new</li>
@@ -317,19 +318,19 @@ saga_batch(matrix.SAGA.qn, rawdata, plotnumber=2)
 <a href="#saga_sampling" class="anchor"></a>saga_sampling</h2>
 <p>This function will take care of the sample preparation of the joint SAGA data set. It will take the batch corrected data from <code>saga_batch</code> and will use the top 9 list of SAGA classifier probes to further filter the whole data set. Then, the joint data set will be separated into a training (SAGA data) and a test set (user samples).</p>
 <p>The <code>showSagaModel</code> object gives control over a Principal Components Analysis (PCA) plot showing the first principal components of the model data. Also, the axes show the percentage of explained variance (in %) for the plotted principal components.</p>
-<p><span style="color:red"><strong>Red</strong></span> dots are potentially dangerous (transforming) samples and the rest are coding for other SAGA assays that are nontransforming.</p>
+<p><span style="color:red"><strong>Red</strong></span> dots are potentially dangerous (transforming) samples and the rest are coding for other SAGA assays that are untransforming.</p>
 <pre><code># This function will do the sampling as a preparation for later classification.
 saga_sampling(matrix.SAGA, matrix.test, index, showSagaModel=1)
 </code></pre>
 <p>The function needs the batch corrected model, test and index data (<code>matrix.SAGA</code> and <code>matrix.test</code>, <code>index</code>). The <code>showPCA</code> argument will give control over the PCA plot (default object value is 0).</p>
 <p>The function output offers a training matrix, labels for the training matrix as well as a matrix with the unknown sample data. These matrices are required for the classification and prediction step of the <code>saga_predict</code> function.</p>
-<p><strong>Please note: </strong> The PCA plot is not directly qualified for classification decisions. Although it will give a qualitative overview on the global “positions” of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and nontransforming arrays.</p>
+<p><strong>Please note: </strong> The PCA plot is not directly qualified for classification decisions. Although it will give a qualitative overview on the global “positions” of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and untransforming arrays.</p>
 </div>
 <div id="saga_predict" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saga_predict" class="anchor"></a>saga_predict</h2>
 <p>For vector safety prediction a Support Vector Machine (SVM) with “radial” kernel is used for building the model. We optimized the cost and gamma factors using the SAGA data and generalize these settings for new and untrained samples.</p>
-<p>In a second step, the processed user sample data are predicted using the SVM model. The output shows each sample array along with its SVM probability and a label with <strong>transforming/nontransforming</strong> information - whereas transforming indicates potential danger and nontransforming potential safety of the sample. The probability value can be used as a quality indicator on how clearly the decicion of the SVM was for each sample (the cutoff value is 50%, or &gt;0.5 = transforming).</p>
+<p>In a second step, the processed user sample data are predicted using the SVM model. The output shows each sample array along with its SVM probability and a label with <strong>transforming/untransforming</strong> information - whereas transforming indicates potential danger and untransforming potential safety of the sample. The probability value can be used as a quality indicator on how clearly the decicion of the SVM was for each sample (the cutoff value is 50%, or &gt;0.5 = transforming).</p>
 <pre><code># This function will take care of the model building and prediction steps.
 saga_predict(matrix.train, labels.train, matrix.unknown,
                                pData.Test, path=samplepath, writeFile=1, showRoc=0)
@@ -446,7 +447,7 @@ gesea_results  &lt;- saga_gesea(samplepath, saveResults=1)
 
 
       <footer><div class="copyright">
-  <p>Developed by Adrian Schwarzer, Steven Talbot, Axel Schambach, Rothe Michael.</p>
+  <p>Developed by Adrian Schwarzer, Steven Talbot, Axel Schambach, Michael Rothe.</p>
 </div>
 
 <div class="pkgdown">

@@ -8,7 +8,6 @@
 #' @return \code{result} GESEA result - will also be saved into the sample folder.
 #'
 #' @import limma
-#' @importFrom Matrix atomicVector
 #' @importFrom gridExtra combine grid.table
 #' @importFrom stats setNames
 #' @importFrom methods new
@@ -41,8 +40,8 @@ saga_gesea    <- function(smplpath, saveResults=0){
                            columns=list(G="gMedianSignal"), annotation=c("ProbeName", "GeneName"))
     colnames(RAW.i) <- row.names(SIF.i)
     #### 2.1. Normalize, average ###################################################################
-    RMA.i <- normalizeBetweenArrays(RAW.i, method="quantile")                 # quantil normalize
-    RMA.i <- avereps(RMA.i,ID= RMA.i$genes$ProbeName)                                # average replicates to one value for each probe
+    RMA.i <- normalizeBetweenArrays(RAW.i, method="quantile")            # quantil normalize
+    RMA.i <- avereps(RMA.i,ID= RMA.i$genes$ProbeName)                    # average replicates to one value for each probe
     matrix.gsea <- RMA.i$E                                               # extract log2 expression values
 
     #### 2.3. make ExpressionSet (Biobase) object ##################################################

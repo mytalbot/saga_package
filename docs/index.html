@@ -103,17 +103,25 @@
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>The package requires <strong>R&gt;=3.6 (R!=4.0)</strong>.</p>
-<p>Currently, the package does not run on R4.0!</p>
+<p>The package requires <strong>R&gt;=3.6</strong>.</p>
 <p>You can download the development version from <a href="https://github.com/mytalbot/saga_package/">GitHub</a> or use:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/saga_package"</span>)
+<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/saga_package"</span>, <span class="kw">build_vignettes</span> <span class="kw">=</span> <span class="fl">TRUE</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">saga</span>)</pre></div>
+<p>If you want the Vignette installed in R as well, set the build_vignettes = TRUE (access browseVignettes(“saga”)). Otherwise, the Vignette will only be accessible via the website.</p>
+<div id="important-note" class="section level3">
+<h3 class="hasAnchor">
+<a href="#important-note" class="anchor"></a>Important Note</h3>
+<p>Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause <strong>warnings</strong> (not errors). These can be ignored since they do not hamper the function of the SAGA package. Warnings may be caused mainly by the HTSanalyzeR and mnormt dependencies which have not yet been updated to work with R4.0.</p>
+<p><strong>Since the mnormt package has not yet been updated to R4.0</strong>, the only solution to work with saga on R4.0 is the installation of a previous version of mnormt. Make sure not to update mnormt when installing saga with devtools!</p>
+<div class="sourceCode" id="cb2"><pre class="r"><span class="no">PackageUrl</span> <span class="kw">&lt;-</span> <span class="st">"https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz"</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="no">PackageUrl</span>, <span class="kw">repos</span> <span class="kw">=</span> <span class="kw">NULL</span>,<span class="kw">type</span><span class="kw">=</span><span class="st">"source"</span>)</pre></div>
+</div>
 <div id="saga-core-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#saga-core-data" class="anchor"></a>SAGA core data</h3>
 <p>You’ll also need the SAGA core data. They are too large for the main package. Download them here (also from GitHub):</p>
-<div class="sourceCode" id="cb2"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/sagadata"</span>)
+<div class="sourceCode" id="cb3"><pre class="r"><span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"mytalbot/sagadata"</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)</pre></div>
 </div>
 </div>
@@ -121,7 +129,7 @@
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <p>This is a basic example with just the data set. See the Vignette for a full example…</p>
-<div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)
+<div class="sourceCode" id="cb4"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="no">SAGA_Data</span>)
 <span class="co">#&gt;       PROBE_ID    X4467    X4469    X4471    X4473    X4907    X4908     X4909</span>
 <span class="co">#&gt; 1 A_51_P100034 6483.750 6726.375 7105.000 6212.375 5631.875 6698.000  7013.625</span>
@@ -295,7 +303,7 @@
 <li>Adrian Schwarzer <br><small class="roles"> Author </small>  </li>
 <li>Steven Talbot <br><small class="roles"> Maintainer, author </small>  </li>
 <li>Axel Schambach <br><small class="roles"> Author, contributor </small>  </li>
-<li>Rothe Michael <br><small class="roles"> Author </small>  </li>
+<li>Michael Rothe <br><small class="roles"> Author </small>  </li>
 <li><a href="authors.html">All authors...</a></li>
 </ul>
 </div>
@@ -305,7 +313,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Adrian Schwarzer, Steven Talbot, Axel Schambach, Rothe Michael.</p>
+  <p>Developed by Adrian Schwarzer, Steven Talbot, Axel Schambach, Michael Rothe.</p>
 </div>
 
 <div class="pkgdown">

@@ -18,7 +18,7 @@ Authors@R: c(
     person("Ute", "Modlich", role = "ctb" ),
     person("Frank", "Staal", role = "ctb" ),
     person("Axel", "Schambach", role = c("aut","ctb")),
-    person("Rothe", "Michael", email = "rothe.michael@mh-hannover.de", role = "aut" ))
+    person("Michael", "Rothe", email = "rothe.michael@mh-hannover.de", role = "aut" ))
 Maintainer: Steven R. Talbot <talbot.steven@mh-hannover.de>
 Description: The SAGA package covers a line of functions for automated severity assessment and transformation
     predictions of surrogate assays. The user may use the functions of this package to upload arrays in order
@@ -53,7 +53,6 @@ Imports: limma,
     parallel,
     Biobase,
     GSEABase,
-    phenoTest,
-    Matrix
+    phenoTest
 URL: https://github.com/mytalbot/saga_package
 BugReports: https://github.com/mytalbot/saga_package/issues

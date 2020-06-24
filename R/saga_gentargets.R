@@ -3,8 +3,9 @@
 #' \code{saga_gentargets} will automatically create a "SampleInformation.txt" file (SIF) if none is provided. If you chose to use this function, a folder
 #' with sample *.txt files is needed. Each textfile must contain the full Agilent microarray information.
 #'
-#' \cr PLEASE NOTE: When the targets file is generated it cannot know about your sample batches. Batch defaults to No. for each sample is 11. You
-#' can use any other number to indicate your batches BUT you'll have to change the numbers manually (i.e, in Excel or in a text editor).
+#' \cr PLEASE NOTE: When the targets file is generated it cannot know about your sample batches. Batch defaults to No. for each sample is 1. You
+#' can use any other number to indicate your batches BUT you'll have to change the numbers manually (i.e, in Excel or in a text editor). Since saga cannot
+#' know about these information, <ou will also have to adjust the Group, Vector and TrueLabel fields manually.
 #'
 #' @param smplpath path to the saga data folder with the user samples.
 #'
@@ -35,7 +36,7 @@ saga_gentargets    <- function(smplpath){
 
       f2                <- filelist[i]
 
-      targets           <- rbind(targets, data.frame(f1, f2, 11, NA, NA,NA) )
+      targets           <- rbind(targets, data.frame(f1, f2, NA, NA, NA,NA) )
     }
     colnames(targets)   <- cnames
 

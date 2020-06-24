@@ -17,17 +17,39 @@ previous and current clinical trials.
 
 ## Installation
 
-The package requires **R\>=3.6 (R\!=4.0)**.
-
-Currently, the package does not run on R4.0\!
+The package requires **R\>=3.6**.
 
 You can download the development version from
 [GitHub](https://github.com/mytalbot/saga_package/) or use:
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("mytalbot/saga_package")
+devtools::install_github("mytalbot/saga_package", build_vignettes = TRUE)
 library(saga)
+```
+
+If you want the Vignette installed in R as well, set the
+build\_vignettes = TRUE (access browseVignettes(“saga”)). Otherwise, the
+Vignette will only be accessible via the website.
+
+### Important Note
+
+Please note, that the SAGA package requires dependencies. Some functions
+can mask each other (depending on the local R setup). This may cause
+**warnings** (not errors). These can be ignored since they do not hamper
+the function of the SAGA package. Warnings may be caused mainly by the
+HTSanalyzeR and mnormt dependencies which have not yet been updated to
+work with R4.0.
+
+**Since the mnormt package has not yet been updated to R4.0**, the only
+solution to work with saga on R4.0 is the installation of a previous
+version of mnormt. Make sure not to update mnormt when installing saga
+with
+devtools\!
+
+``` r
+PackageUrl <- "https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz"
+install.packages(PackageUrl, repos = NULL,type="source")
 ```
 
 ### SAGA core data
