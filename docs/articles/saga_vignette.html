@@ -311,7 +311,7 @@ saga_norm(SAGA_RAW, TEST_RAW, pData.joint, plotnumber=2)
 <p>In order to avoid such errors we apply batch correction on the joint data set. The user may define his own batches within the <code>SampleInformation.txt</code> file and is required to update the batch information <strong>manually</strong>.</p>
 <p>The function requires the rawdata as well as the quantile normalized data from the <code>saga_norm</code> function. Use the plotnumber argument to show either PCA (=1) or t-SNE (=2) plots of the combined data sets.</p>
 <pre><code># This function will do the batch correction.
-saga_batch(matrix.SAGA.qn, rawdata, plotnumber=2)
+saga_batch(matrix.SAGA.qn, matrix.test.qn, rawdata,  pData.joint, plotnumber=2)
 </code></pre>
 </div>
 <div id="saga_sampling" class="section level2">
@@ -321,7 +321,7 @@ saga_batch(matrix.SAGA.qn, rawdata, plotnumber=2)
 <p>The <code>showSagaModel</code> object gives control over a Principal Components Analysis (PCA) plot showing the first principal components of the model data. Also, the axes show the percentage of explained variance (in %) for the plotted principal components.</p>
 <p><span style="color:red"><strong>Red</strong></span> dots are potentially dangerous (transforming) samples and the rest are coding for other SAGA assays that are untransforming.</p>
 <pre><code># This function will do the sampling as a preparation for later classification.
-saga_sampling(matrix.SAGA, matrix.test, index, showSagaModel=1)
+saga_sampling(matrix.SAGA, matrix.test)
 </code></pre>
 <p>The function needs the batch corrected model, test and index data (<code>matrix.SAGA</code> and <code>matrix.test</code>, <code>index</code>). The <code>showPCA</code> argument will give control over the PCA plot (default object value is 0).</p>
 <p>The function output offers a training matrix, labels for the training matrix as well as a matrix with the unknown sample data. These matrices are required for the classification and prediction step of the <code>saga_predict</code> function.</p>
@@ -333,8 +333,7 @@ saga_sampling(matrix.SAGA, matrix.test, index, showSagaModel=1)
 <p>For vector safety prediction a Support Vector Machine (SVM) with “radial” kernel is used for building the model. We optimized the cost and gamma factors using the SAGA data and generalize these settings for new and untrained samples.</p>
 <p>In a second step, the processed user sample data are predicted using the SVM model. The output shows each sample array along with its SVM probability and a label with <strong>transforming/untransforming</strong> information - whereas transforming indicates potential danger and untransforming potential safety of the sample. The probability value can be used as a quality indicator on how clearly the decicion of the SVM was for each sample (the cutoff value is 50%, or &gt;0.5 = transforming).</p>
 <pre><code># This function will take care of the model building and prediction steps.
-saga_predict(matrix.train, labels.train, matrix.unknown,
-                               pData.Test, path=samplepath, writeFile=1, showRoc=0)
+saga_predict(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=1, showRoc=0)
 </code></pre>
 </div>
 <div id="saga_gesea" class="section level2">
@@ -359,11 +358,11 @@ saga_gesea(samplepath, saveResults=1)
 library(saga)
 library(sagadata)
 
-samplepath     &lt;- "path to somewhere useful"
+path           &lt;- "path to somewhere useful"
 
 ### saga_gentargets; automatically generates an empty (!) sample information file
-# Modify manually according to your requirements
-#targets        &lt;- saga_gentargets(samplepath)
+# Modify the columns: Filename, Batch, Group, Vector, TrueLabel
+# targets      &lt;- saga_gentargets(smplpath=path)
 
 ################################################################################
 ### Wrapper function - all in one
@@ -371,12 +370,11 @@ samplepath     &lt;- "path to somewhere useful"
 ################################################################################
 mySAGAres      &lt;- saga_wrapper(samplepath, showModel=0, doGESEA=1)
 
-
 ################################################################################
 ### Or use these single functions
 ################################################################################
 ### saga_import
-rawdata        &lt;- saga_import(samplepath, showjoint=1)
+rawdata        &lt;- saga_import(smplpath=path, showjoint=1)
 SAGA_RAW       &lt;- rawdata$SAGA_RAW
 TEST_RAW       &lt;- rawdata$TEST_RAW
 pData.joint    &lt;- rawdata$pData.joint
@@ -409,8 +407,7 @@ classes        &lt;- output$predictions
 classes
 
 ### GESEA
-gesea_results  &lt;- saga_gesea(samplepath, saveResults=1)
-</code></pre>
+gesea_results  &lt;- saga_gesea(smplpath=path, saveResults=0)</code></pre>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">

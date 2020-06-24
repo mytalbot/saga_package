@@ -47,7 +47,7 @@
 
 
 <meta property="og:title" content="Prediction of sample arrays with the SAGA model. — saga_predict" />
-<meta property="og:description" content="saga_predict uses a Support Vector Machine (SVM) with a radial kernel to classify user samples either as transforming or nontransforming.
+<meta property="og:description" content="saga_predict uses a Support Vector Machine (SVM) with a radial kernel to classify user samples either as transforming or untransforming.
 The SVM model is built with the integrated SAGA training data set and a toplist of relevant probes which are able to differentiate assay data
 into the mentioned risk states. The SVM is further optimized on the SAGA training data. Use at your own risk!" />
 <meta property="og:image" content="/logo.png" />
@@ -139,7 +139,7 @@ into the mentioned risk states. The SVM is further optimized on the SAGA trainin
     </div>
 
     <div class="ref-description">
-    <p><code>saga_predict</code> uses a Support Vector Machine (SVM) with a radial kernel to classify user samples either as transforming or nontransforming.
+    <p><code>saga_predict</code> uses a Support Vector Machine (SVM) with a radial kernel to classify user samples either as transforming or untransforming.
 The SVM model is built with the integrated SAGA training data set and a toplist of relevant probes which are able to differentiate assay data
 into the mentioned risk states. The SVM is further optimized on the SAGA training data. Use at your own risk!</p>
     </div>
@@ -167,7 +167,7 @@ into the mentioned risk states. The SVM is further optimized on the SAGA trainin
     </tr>
     <tr>
       <th>labels.train</th>
-      <td><p>class labels (factors) for SAGA training data. Can either be "transforming" or "nontransforming".</p></td>
+      <td><p>class labels (factors) for SAGA training data. Can either be "transforming" or "untransforming".</p></td>
     </tr>
     <tr>
       <th>matrix.unknown</th>
@@ -190,7 +190,7 @@ into the mentioned risk states. The SVM is further optimized on the SAGA trainin
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p><code>predictions</code> Data frame with three columns. Column one shows the sample names, the second column shows the decision values of
-the svm function and column thress shows the predictions for the query assays either as transforming or nontransforming.</p>
+the svm function and column thress shows the predictions for the query assays either as transforming or untransforming.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

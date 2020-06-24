@@ -208,7 +208,7 @@ The function requires the rawdata as well as the quantile normalized data from t
 
 ```
 # This function will do the batch correction.
-saga_batch(matrix.SAGA.qn, rawdata, plotnumber=2)
+saga_batch(matrix.SAGA.qn, matrix.test.qn, rawdata,  pData.joint, plotnumber=2)
 
 ```
 
@@ -222,7 +222,7 @@ The `showSagaModel` object gives control over a Principal Components Analysis (P
 
 ```
 # This function will do the sampling as a preparation for later classification.
-saga_sampling(matrix.SAGA, matrix.test, index, showSagaModel=1)
+saga_sampling(matrix.SAGA, matrix.test)
 
 ```
 
@@ -240,8 +240,7 @@ In a second step, the processed user sample data are predicted using the SVM mod
 
 ```
 # This function will take care of the model building and prediction steps.
-saga_predict(matrix.train, labels.train, matrix.unknown,
-                               pData.Test, path=samplepath, writeFile=1, showRoc=0)
+saga_predict(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=1, showRoc=0)
 
 ```
 
@@ -267,11 +266,11 @@ library(phenoTest) # this is mandatory!
 library(saga)
 library(sagadata)
 
-samplepath     <- "path to somewhere useful"
+path           <- "path to somewhere useful"
 
 ### saga_gentargets; automatically generates an empty (!) sample information file
-# Modify manually according to your requirements
-#targets        <- saga_gentargets(samplepath)
+# Modify the columns: Filename, Batch, Group, Vector, TrueLabel
+# targets      <- saga_gentargets(smplpath=path)
 
 ################################################################################
 ### Wrapper function - all in one
@@ -279,12 +278,11 @@ samplepath     <- "path to somewhere useful"
 ################################################################################
 mySAGAres      <- saga_wrapper(samplepath, showModel=0, doGESEA=1)
 
-
 ################################################################################
 ### Or use these single functions
 ################################################################################
 ### saga_import
-rawdata        <- saga_import(samplepath, showjoint=1)
+rawdata        <- saga_import(smplpath=path, showjoint=1)
 SAGA_RAW       <- rawdata$SAGA_RAW
 TEST_RAW       <- rawdata$TEST_RAW
 pData.joint    <- rawdata$pData.joint
@@ -317,8 +315,7 @@ classes        <- output$predictions
 classes
 
 ### GESEA
-gesea_results  <- saga_gesea(samplepath, saveResults=1)
-
+gesea_results  <- saga_gesea(smplpath=path, saveResults=0)
 ```
 
 
