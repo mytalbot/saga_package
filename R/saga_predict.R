@@ -73,11 +73,11 @@ saga_predict <- function(samplepath, matrix.train, labels.train, matrix.unknown,
   }else{}
 
   if(showRoc==1){
-    Prediction_SVM.Caret$Class <- as.factor(ifelse(Prediction_SVM.Caret$TrueLabel == "transforming","transforming","nontransforming"))
+    Prediction_SVM.Caret$Class <- as.factor(ifelse(Prediction_SVM.Caret$TrueLabel == "transforming","transforming","untransforming"))
 
     roc1 <- roc(Prediction_SVM.Caret$Class,                    # response vector (factor or character)
                 Prediction_SVM.Caret$transforming,             # predictor vector (numeric)
-                percent=TRUE, levels=c("nontransforming","transforming"),
+                percent=TRUE, levels=c("untransforming","transforming"),
                 plot=T, auc.polygon=F, max.auc.polygon=F, col = "#000000", grid=F,
                 print.auc=T,print.thres=F, main="ROC SAGA Samples")
   }else{}
