@@ -112,7 +112,7 @@ and also <span style="color:red">**has**</span> to be located in the same folder
 
 The user may change the contents of this file manually to adjust his batch, group, vector or class settings. 
 
-`SAGA` offers a function to generate a blank SampleInformation.txt file automatically. However, this only works if there is no such file in the sample directory. Otherwise the already provided file will be used. The generated targets file may then be adjusted manually. Make sure not to hamper with the column names. Column names are case sensitive.
+`SAGA` offers a function to generate a blank SampleInformation.txt file automatically. However, this only works if there is no such file in the sample directory. Otherwise, the already provided file will be used. The generated targets file may then be adjusted manually. Make sure not to hamper with the column names. Column names are case sensitive.
 
 # Data structure
 Here is a short example of a minimal targets file in txt-format. The first column must contain the array names. You may specify the names by yourself or let your microarray platform choose the labelling. However, it is best that the names do not contain any special characters such as *"§%&-"* and that they are numeric (and in an ascending order).
@@ -144,7 +144,7 @@ The following section explains the functions of this package and how to use them
 
 
 ## saga_gentargets
-After pooling the samples in a specific folder (`samplepath`), a targets file called `SampleInformation.txt` must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for automatic generation of an empty file. However, the user will then have to adjust this file manually to his experimental setup since the function cannot know about the individual experimental designs. This includes the fields: Filename, Batch,	Group, Vector and TrueLabel.
+After pooling the samples in a specific folder (`samplepath`), a targets file called `SampleInformation.txt` must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for the automatic generation of an empty file. However, the user will then have to adjust this file manually to his experimental setup (the function cannot know about the individual experimental designs). This includes the fields: Filename, Batch,	Group, Vector and TrueLabel.
 
 The two requirements for this function are:
 
@@ -158,14 +158,14 @@ saga_gentargets(samplepath)
 ```
 
 ## saga_wrapper
-This function enables the user to perform SAGA analysis in one single step. Only the path to the samples and the SampleInformation.txt file must be provided in the folder. Further, the option `doGESEA` (defaul setting is 0) gives control over GESEA analysis. In order to perform GESEA analysis, the `SampleInformation.txt` file has certain requirements which are shown above. One disadvantage of this wrapper function is that the user will loose some flexibility.
+This function enables the user to perform SAGA analysis in one single step. Only the path to the samples and the SampleInformation.txt file must be provided in the folder. Further, the option `doGESEA` (defaul setting is 0) gives control over GESEA analysis. In order to perform GESEA analysis, the `SampleInformation.txt` file has certain requirements which are shown above. One disadvantage of this wrapper function is that the user will loose some flexibility, e.g. in displaying intermediate results like normalization, etc.
 
 The results of GESEA will be generated as separate PDF and results textfiles in the sample folder.
 
 
 ```
 # This function performs SAGA analysis in one step.
-mySAGAres <- saga_wrapper(samplepath, showModel=0, doGESEA=1)
+mySAGAres <- saga_wrapper(samplepath, showModel=0, doGESEA=0)
 
 ```
 
@@ -199,7 +199,7 @@ saga_norm(SAGA_RAW, TEST_RAW, pData.joint, plotnumber=2)
 ```
 
 ## saga_batch
-Usually microarrays are done in batches. A plethora of external influences may (occasionally) distort otherwise equal arrays beyond recognizability. This often leads to false conclusions when not handled correctly, e.g., wrong clustering results.
+Usually microarrays are done in batches. A plethora of external influences may (occasionally) distort otherwise equal arrays beyond recognizability. This often leads to false conclusions when not handled correctly, e.g. wrong clustering results.
 
 In order to avoid such errors we apply batch correction on the joint data set. The user may define his own batches within the `SampleInformation.txt` file and is required to update the batch information **manually**. 
 
@@ -226,11 +226,11 @@ saga_sampling(matrix.SAGA, matrix.test)
 
 ```
 
-The function needs the batch corrected model, test and index data (`matrix.SAGA` and `matrix.test`, `index`). The `showPCA` argument will give control over the PCA plot (default object value is 0). 
+The function needs the batch corrected model and test data (`matrix.SAGA` and `matrix.test`). 
 
 The function output offers a training matrix, labels for the training matrix as well as a matrix with the unknown sample data. These matrices are required for the classification and prediction step of the `saga_predict` function.
 
-**Please note: ** The PCA plot is not directly qualified for classification decisions. Although it will give a qualitative overview on the global "positions" of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and untransforming arrays.
+**Please note: ** The PCA plot is not directly qualified for classification decisions. Although, it will give a qualitative overview on the global "positions" of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and untransforming arrays.
 
 ## saga_predict
 For vector safety prediction a Support Vector Machine (SVM) with "radial" kernel is used for building the model. We optimized the cost and gamma factors using the SAGA data and generalize these settings for new and untrained samples. 
@@ -240,7 +240,7 @@ In a second step, the processed user sample data are predicted using the SVM mod
 
 ```
 # This function will take care of the model building and prediction steps.
-saga_predict(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=1, showRoc=0)
+saga_predict(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=0, showRoc=0)
 
 ```
 
@@ -254,12 +254,12 @@ As cutoffs we determined the following thresholds which will be indicated in the
 
 ```
 # This function will perform Gene Set Enrichtment Analysis (GESEA).
-saga_gesea(samplepath, saveResults=1)
+saga_gesea(samplepath, saveResults=0)
 
 ```
 
 # Example Analysis & Array Prediction
-This example assumes that 6 arrays (5741, 5746, 5747, 9910, 9914, 9917) are placed in a sample folder. The table above shows the corresponding `SampleInformation.txt`. 
+This is working example of SAGA analysis with any number of arrays and the corresponding SampleInformation.txt file.
 
 ```
 library(phenoTest) # this is mandatory!

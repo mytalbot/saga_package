@@ -178,7 +178,7 @@ install.packages("gridExtra")  </code></pre>
 <p>Further, a <strong>‘SampleInformation.txt’</strong> or targets file is needed. This file consists of a table with certain columns which are later used to merge the user data with the default data. In the shown plots user data will always be colored black for identification purposes.</p>
 <p>It is important to know, that the targets file <span style="color:red"><strong>has</strong></span> to have the following name: <strong>SampleInformation.txt</strong> and also <span style="color:red"><strong>has</strong></span> to be located in the same folder as the samples.</p>
 <p>The user may change the contents of this file manually to adjust his batch, group, vector or class settings.</p>
-<p><code>SAGA</code> offers a function to generate a blank SampleInformation.txt file automatically. However, this only works if there is no such file in the sample directory. Otherwise the already provided file will be used. The generated targets file may then be adjusted manually. Make sure not to hamper with the column names. Column names are case sensitive.</p>
+<p><code>SAGA</code> offers a function to generate a blank SampleInformation.txt file automatically. However, this only works if there is no such file in the sample directory. Otherwise, the already provided file will be used. The generated targets file may then be adjusted manually. Make sure not to hamper with the column names. Column names are case sensitive.</p>
 </div>
 <div id="data-structure" class="section level1">
 <h1 class="hasAnchor">
@@ -265,7 +265,7 @@ install.packages("gridExtra")  </code></pre>
 <div id="saga_gentargets" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saga_gentargets" class="anchor"></a>saga_gentargets</h2>
-<p>After pooling the samples in a specific folder (<code>samplepath</code>), a targets file called <code>SampleInformation.txt</code> must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for automatic generation of an empty file. However, the user will then have to adjust this file manually to his experimental setup since the function cannot know about the individual experimental designs. This includes the fields: Filename, Batch, Group, Vector and TrueLabel.</p>
+<p>After pooling the samples in a specific folder (<code>samplepath</code>), a targets file called <code>SampleInformation.txt</code> must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for the automatic generation of an empty file. However, the user will then have to adjust this file manually to his experimental setup (the function cannot know about the individual experimental designs). This includes the fields: Filename, Batch, Group, Vector and TrueLabel.</p>
 <p>The two requirements for this function are:</p>
 <ul>
 <li>there must be at least one sample file in the folder (however, there should really be more (controls!))</li>
@@ -278,10 +278,10 @@ saga_gentargets(samplepath)
 <div id="saga_wrapper" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saga_wrapper" class="anchor"></a>saga_wrapper</h2>
-<p>This function enables the user to perform SAGA analysis in one single step. Only the path to the samples and the SampleInformation.txt file must be provided in the folder. Further, the option <code>doGESEA</code> (defaul setting is 0) gives control over GESEA analysis. In order to perform GESEA analysis, the <code>SampleInformation.txt</code> file has certain requirements which are shown above. One disadvantage of this wrapper function is that the user will loose some flexibility.</p>
+<p>This function enables the user to perform SAGA analysis in one single step. Only the path to the samples and the SampleInformation.txt file must be provided in the folder. Further, the option <code>doGESEA</code> (defaul setting is 0) gives control over GESEA analysis. In order to perform GESEA analysis, the <code>SampleInformation.txt</code> file has certain requirements which are shown above. One disadvantage of this wrapper function is that the user will loose some flexibility, e.g. in displaying intermediate results like normalization, etc.</p>
 <p>The results of GESEA will be generated as separate PDF and results textfiles in the sample folder.</p>
 <pre><code># This function performs SAGA analysis in one step.
-mySAGAres &lt;- saga_wrapper(samplepath, showModel=0, doGESEA=1)
+mySAGAres &lt;- saga_wrapper(samplepath, showModel=0, doGESEA=0)
 </code></pre>
 </div>
 <div id="saga_import" class="section level2">
@@ -307,7 +307,7 @@ saga_norm(SAGA_RAW, TEST_RAW, pData.joint, plotnumber=2)
 <div id="saga_batch" class="section level2">
 <h2 class="hasAnchor">
 <a href="#saga_batch" class="anchor"></a>saga_batch</h2>
-<p>Usually microarrays are done in batches. A plethora of external influences may (occasionally) distort otherwise equal arrays beyond recognizability. This often leads to false conclusions when not handled correctly, e.g., wrong clustering results.</p>
+<p>Usually microarrays are done in batches. A plethora of external influences may (occasionally) distort otherwise equal arrays beyond recognizability. This often leads to false conclusions when not handled correctly, e.g. wrong clustering results.</p>
 <p>In order to avoid such errors we apply batch correction on the joint data set. The user may define his own batches within the <code>SampleInformation.txt</code> file and is required to update the batch information <strong>manually</strong>.</p>
 <p>The function requires the rawdata as well as the quantile normalized data from the <code>saga_norm</code> function. Use the plotnumber argument to show either PCA (=1) or t-SNE (=2) plots of the combined data sets.</p>
 <pre><code># This function will do the batch correction.
@@ -323,9 +323,9 @@ saga_batch(matrix.SAGA.qn, matrix.test.qn, rawdata,  pData.joint, plotnumber=2)
 <pre><code># This function will do the sampling as a preparation for later classification.
 saga_sampling(matrix.SAGA, matrix.test)
 </code></pre>
-<p>The function needs the batch corrected model, test and index data (<code>matrix.SAGA</code> and <code>matrix.test</code>, <code>index</code>). The <code>showPCA</code> argument will give control over the PCA plot (default object value is 0).</p>
+<p>The function needs the batch corrected model and test data (<code>matrix.SAGA</code> and <code>matrix.test</code>).</p>
 <p>The function output offers a training matrix, labels for the training matrix as well as a matrix with the unknown sample data. These matrices are required for the classification and prediction step of the <code>saga_predict</code> function.</p>
-<p><strong>Please note: </strong> The PCA plot is not directly qualified for classification decisions. Although it will give a qualitative overview on the global “positions” of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and untransforming arrays.</p>
+<p><strong>Please note: </strong> The PCA plot is not directly qualified for classification decisions. Although, it will give a qualitative overview on the global “positions” of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and untransforming arrays.</p>
 </div>
 <div id="saga_predict" class="section level2">
 <h2 class="hasAnchor">
@@ -333,7 +333,7 @@ saga_sampling(matrix.SAGA, matrix.test)
 <p>For vector safety prediction a Support Vector Machine (SVM) with “radial” kernel is used for building the model. We optimized the cost and gamma factors using the SAGA data and generalize these settings for new and untrained samples.</p>
 <p>In a second step, the processed user sample data are predicted using the SVM model. The output shows each sample array along with its SVM probability and a label with <strong>transforming/untransforming</strong> information - whereas transforming indicates potential danger and untransforming potential safety of the sample. The probability value can be used as a quality indicator on how clearly the decicion of the SVM was for each sample (the cutoff value is 50%, or &gt;0.5 = transforming).</p>
 <pre><code># This function will take care of the model building and prediction steps.
-saga_predict(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=1, showRoc=0)
+saga_predict(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=0, showRoc=0)
 </code></pre>
 </div>
 <div id="saga_gesea" class="section level2">
@@ -346,14 +346,14 @@ saga_predict(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test,
 <li>NES &lt; 0.9 no enrichment (potentially safe).</li>
 </ul>
 <pre><code># This function will perform Gene Set Enrichtment Analysis (GESEA).
-saga_gesea(samplepath, saveResults=1)
+saga_gesea(samplepath, saveResults=0)
 </code></pre>
 </div>
 </div>
 <div id="example-analysis-array-prediction" class="section level1">
 <h1 class="hasAnchor">
 <a href="#example-analysis-array-prediction" class="anchor"></a>Example Analysis &amp; Array Prediction</h1>
-<p>This example assumes that 6 arrays (5741, 5746, 5747, 9910, 9914, 9917) are placed in a sample folder. The table above shows the corresponding <code>SampleInformation.txt</code>.</p>
+<p>This is working example of SAGA analysis with any number of arrays and the corresponding SampleInformation.txt file.</p>
 <pre><code>library(phenoTest) # this is mandatory!
 library(saga)
 library(sagadata)
