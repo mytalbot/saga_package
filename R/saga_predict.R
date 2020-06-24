@@ -1,19 +1,19 @@
 #' Prediction of sample arrays with the SAGA model.
 #'
-#' \code{saga_predict} uses a Support Vector Machine (SVM) with a radial kernel to classify user samples either as transforming or nontransforming.
+#' \code{saga_predict} uses a Support Vector Machine (SVM) with a radial kernel to classify user samples either as transforming or untransforming.
 #' The SVM model is built with the integrated SAGA training data set and a toplist of relevant probes which are able to differentiate assay data
 #' into the mentioned risk states. The SVM is further optimized on the SAGA training data. Use at your own risk!
 #'
 #' @param samplepath path to sample data
 #' @param matrix.train normalized, probe-averaged and batch-corrected SAGA training data.
-#' @param labels.train class labels (factors) for SAGA training data. Can either be "transforming" or "nontransforming".
+#' @param labels.train class labels (factors) for SAGA training data. Can either be "transforming" or "untransforming".
 #' @param matrix.unknown matrix of sample data with array names as row names and probes as column names.
 #' @param pData.Test SAGA sample or test data matrix
 #' @param writeFile default=1 for writing results to the sample folder
 #' @param showRoc default=1 for showing the ROC curve of the model performance; alternative: 0 for showing naught
 #'
 #' @return \code{predictions} Data frame with three columns. Column one shows the sample names, the second column shows the decision values of
-#' the svm function and column thress shows the predictions for the query assays either as transforming or nontransforming.
+#' the svm function and column thress shows the predictions for the query assays either as transforming or untransforming.
 #'
 #' @import caret
 #' @import pROC
