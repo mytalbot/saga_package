@@ -42,8 +42,7 @@ Please note, that the SAGA package requires dependencies. Some functions
 can mask each other (depending on the local R setup). This may cause
 **warnings** (not errors). These can be ignored since they do not hamper
 the function of the SAGA package. Warnings may be caused mainly by the
-HTSanalyzeR and mnormt dependencies which have not yet been updated to
-work with R4.0.
+HTSanalyzeR and mnormt dependencies.
 
 **Since the mnormt package has not yet been updated to R4.0**, the only
 solution to work with saga on R4.0 is the installation of a previous
