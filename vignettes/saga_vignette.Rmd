@@ -23,10 +23,14 @@ In order to use the SAGA package some Bioconductor dependencies require installa
 ### Important Note
 **The SAGA package requires R >=3.6 (R!=4.0)**.
 
-Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package. 
+Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package. Warnings may be caused mainly by the HTSanalyzeR dependency which has not yet been updated to work with R4.0.
 
-**However, some of the dependecies of the package have not yet been updated to R4.0. Currently, the saga package does not work with R4.0.**
+**More importantly, the mnormt package has not yet been updated to R4.0 as well.** You can install a previous version of mnormt to run the saga package on R4.0 which can be installed with this code:
 
+``` r
+PackageUrl <- "https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz"
+install.packages(PackageUrl, repos = NULL,type="source")
+```
 
 ### Dependency installations
 
@@ -66,11 +70,11 @@ Again, the [reference section](#references) offers more information on the packa
 
 
 ## SAGA Package installation
-SAGA can be downloaded from Github using the following commands:
+SAGA can be downloaded from Github using the following commands. If you want the Vignette installed in R as well, set the build_vignettes = TRUE. Otherwise, the Vignette will only be accessible via the website.
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("mytalbot/saga_package")
+devtools::install_github("mytalbot/saga_package", build_vignettes = TRUE)
 library(saga)
 ```
 
@@ -87,7 +91,7 @@ For more information on SAGA, visit the [website](https://talbotsr.com/saga_pack
 `SAGA` analysis starts with raw data obtained from regular gene expression microarray analysis acquired by Agilent platforms. This is important since the functions in this package will only work within the Agilent format. In the current version other platforms
 were not specifically included into the capacities of this package. If you wish to use other platforms you'll have to adapt the functions to your specific needs. 
 
-As described in the paper, we optimized a training set of arrays to discriminate between potentially dangerous arrays and MOCK data in order to obtain a measurement for vector safety. Vector safety is therefore described as either *transforming* or *nontransforming* in the package.
+As described in the paper, we optimized a training set of arrays to discriminate between potentially dangerous arrays and MOCK data in order to obtain a measurement for vector safety. Vector safety is therefore described as either *transforming* or *untransforming* in the package.
 
 The basic SAGA classifier was obtained by varius Machine Learning algorithms as well as feature assessment techniques as described in our paper. In essence, a toplist of 9 probes were obtained that are able to predict untrained samples reliably well. The `SAGA` package uses its default data set and the probe toplist to predict user sample data.
 
@@ -116,7 +120,7 @@ Make sure that the targets file has the following format.
 
 | SAMPLE_ID | Filename  | Batch  | Group | Vector           | TrueLabel      |
 |:----------|:----------|:-------|:------|:-----------------|:---------------|
-|X41        |41.txt     |1       |1      |A2_MOCK           |nontransforming |
+|X41        |41.txt     |1       |1      |A2_MOCK           |untransforming  |
 |X42        |42.txt     |1       |2      |A9_SIN.AV.EFS     |transforming    |
 |X43        |43.txt     |1       |3      |A1_LTR.RV.SF.eGFP |transforming    |
 |X44        |44.txt     |1       |4      |A9_SIN.AV.EFS     |transforming    |
@@ -127,7 +131,7 @@ Make sure that the targets file has the following format.
 Table: Example of a SampleInformation.txt file. 
 
 
-In the table, the first array (41.txt) is labelled as *nontransforming* in the **TrueLabel** column. Using either **nontransforming** or **transforming** as class labels, the user may specify his own positive or negative controls. When left empty (NA) the arrays will be classified against the default model.
+In the table, the first array (41.txt) is labelled as *untransforming* in the **TrueLabel** column. Using either **untransforming** or **transforming** as class labels, the user may specify his own positive or negative controls. When left empty (NA) the arrays will be classified against the default model.
 
 We recommend that users include at least 2 to 3 MOCK (negative) and RV.SF (positive) controls in their own models. The batch correction algorithm may need this for proper integration of the provided data into the SAGA data set. 
 
@@ -213,7 +217,7 @@ This function will take care of the sample preparation of the joint SAGA data se
 
 The `showSagaModel` object gives control over a Principal Components Analysis (PCA) plot showing the first principal components of the model data. Also, the axes show the percentage of explained variance (in %) for the plotted principal components.
 
-<span style="color:red">**Red**</span> dots are potentially dangerous (transforming) samples and the rest are coding for other SAGA assays that are nontransforming.
+<span style="color:red">**Red**</span> dots are potentially dangerous (transforming) samples and the rest are coding for other SAGA assays that are untransforming.
 
 
 ```
@@ -226,12 +230,12 @@ The function needs the batch corrected model, test and index data (`matrix.SAGA`
 
 The function output offers a training matrix, labels for the training matrix as well as a matrix with the unknown sample data. These matrices are required for the classification and prediction step of the `saga_predict` function.
 
-**Please note: ** The PCA plot is not directly qualified for classification decisions. Although it will give a qualitative overview on the global "positions" of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and nontransforming arrays.
+**Please note: ** The PCA plot is not directly qualified for classification decisions. Although it will give a qualitative overview on the global "positions" of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and untransforming arrays.
 
 ## saga_predict
 For vector safety prediction a Support Vector Machine (SVM) with "radial" kernel is used for building the model. We optimized the cost and gamma factors using the SAGA data and generalize these settings for new and untrained samples. 
 
-In a second step, the processed user sample data are predicted using the SVM model. The output shows each sample array along with its SVM probability and a label with **transforming/nontransforming** information - whereas transforming indicates potential danger and nontransforming potential safety of the sample. The probability value can be used as a quality indicator on how clearly the decicion of the SVM was for each sample (the cutoff value is 50%, or >0.5 = transforming).
+In a second step, the processed user sample data are predicted using the SVM model. The output shows each sample array along with its SVM probability and a label with **transforming/untransforming** information - whereas transforming indicates potential danger and untransforming potential safety of the sample. The probability value can be used as a quality indicator on how clearly the decicion of the SVM was for each sample (the cutoff value is 50%, or >0.5 = transforming).
 
 
 ```

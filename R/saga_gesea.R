@@ -8,6 +8,7 @@
 #' @return \code{result} GESEA result - will also be saved into the sample folder.
 #'
 #' @import limma
+#' @importFrom Matrix atomicVector
 #' @importFrom gridExtra combine grid.table
 #' @importFrom stats setNames
 #' @importFrom methods new

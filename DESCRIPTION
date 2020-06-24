@@ -30,7 +30,8 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 Suggests: knitr,
-    rmarkdown
+    rmarkdown,
+    sagadata
 VignetteBuilder: knitr
 RoxygenNote: 7.1.0
 Imports: limma,
@@ -52,6 +53,7 @@ Imports: limma,
     parallel,
     Biobase,
     GSEABase,
-    phenoTest
+    phenoTest,
+    Matrix
 URL: https://github.com/mytalbot/saga_package
 BugReports: https://github.com/mytalbot/saga_package/issues
