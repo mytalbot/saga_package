@@ -123,7 +123,7 @@ path           <- "path to sample files"
 ################################################################################
 ### Wrapper function - all in one
 ################################################################################
-mySAGAres      <- saga_wrapper(samplepath, showModel=0, doGESEA=1)
+mySAGAres      <- saga_wrapper(smplpath=path, showModel=0, doGESEA=1)
 ```
 
 ### More detailed SAGA analysis
