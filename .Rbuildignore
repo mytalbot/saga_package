@@ -8,3 +8,4 @@
 ^Travisfiles\.txt$
 ^pkgdown$
 ^sourcefiles$
+^samples$

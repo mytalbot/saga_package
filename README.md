@@ -67,25 +67,27 @@ library(sagadata)
 
 ## Examples
 
-There are two working examples of SAGA analysis with any number of
-arrays to demonstrate the general workflow.
+The following working examples demonstrate the general workflow of SAGA
+analysis.
 
-You can download an example data set plus a ready-to-run
+You can download an example data set of four arrays plus a ready-to-run
 SampleInformation.txt file from the GitHub repository. Just download the
-files to a folder on your machine and specify the path (see below) to
-this folder.
+files to a folder on your machine, unzip them and specify the path (see
+below) to the selected folder in the script below. The sample arrays had
+to be zipped because of the GitHub size limitations for files.
 
 Note: Make sure that the phenoTest package is sourced as
-library(phenoTest) before running the script.
+library(phenoTest) before running the script. This is required for GESEA
+analysis.
 
 ### Using the wrapper function
 
 ``` r
-library(phenoTest) # this is mandatory!
+library(phenoTest) # this is mandatory (for GESEA)!
 library(saga)
 library(sagadata)
 
-path           <- "path to somewhere useful"
+path           <- "path to your samples"
 
 ### saga_gentargets; automatically generates an empty (!) sample information file
 # Modify the columns: Filename, Batch, Group, Vector, TrueLabel

@@ -259,9 +259,12 @@ saga_gesea(samplepath, saveResults=0)
 ```
 
 # Example Analysis & Array Prediction
-There are two working examples of SAGA analysis with any number of arrays to demonstrate the general workflow.
 
-Note: Make sure that the phenoTest package is sourced as library(phenoTest) before running the script. 
+The following working examples demonstrate the general workflow of SAGA analysis.
+
+You can download an example data set of four arrays plus a ready-to-run SampleInformation.txt file from the GitHub repository. Just download the files to a folder on your machine, unzip them and specify the path (see below) to the selected folder in the script below. The sample arrays had to be zipped because of the GitHub size limitations for files.
+
+Note: Make sure that the phenoTest package is sourced as library(phenoTest) before running the script. This is required for GESEA analysis.
 
 ```
 library(phenoTest) # this is mandatory (for GESEA)!
