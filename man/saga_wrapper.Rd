@@ -4,10 +4,10 @@
 \alias{saga_wrapper}
 \title{SAGA Wrapper}
 \usage{
-saga_wrapper(samplepath, showModel = 1, doGESEA = 0)
+saga_wrapper(smplpath, showModel = 1, doGESEA = 0)
 }
 \arguments{
-\item{samplepath}{sample path}
+\item{smplpath}{sample path}
 
 \item{showModel}{Can be 0 or 1. If set to 1 (default) PCA plot (+samples) will be shown.}
 

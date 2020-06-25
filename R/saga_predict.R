@@ -4,7 +4,7 @@
 #' The SVM model is built with the integrated SAGA training data set and a toplist of relevant probes which are able to differentiate assay data
 #' into the mentioned risk states. The SVM is further optimized on the SAGA training data. Use at your own risk!
 #'
-#' @param samplepath path to sample data
+#' @param smplpath path to sample data
 #' @param matrix.train normalized, probe-averaged and batch-corrected SAGA training data.
 #' @param labels.train class labels (factors) for SAGA training data. Can either be "transforming" or "untransforming".
 #' @param matrix.unknown matrix of sample data with array names as row names and probes as column names.
@@ -25,7 +25,7 @@
 #'
 
 
-saga_predict <- function(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=0, showRoc=1) {
+saga_predict <- function(smplpath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=0, showRoc=1) {
 
   ################################################################################################
   #### 6. Caret SVM ##############################################################################
@@ -61,12 +61,12 @@ saga_predict <- function(samplepath, matrix.train, labels.train, matrix.unknown,
 
 
   if(writeFile==TRUE){
-    write.table(Prediction_SVM.Caret, file = paste(samplepath,"/result_SAGA_Predictions.txt",sep = ""),
+    write.table(Prediction_SVM.Caret, file = paste(smplpath,"/result_SAGA_Predictions.txt",sep = ""),
                 sep="\t", row.names = TRUE, col.names=NA, quote=FALSE)
 
   #### 6.2 Performance of Classifier for n samples ##############################################
   ################################################################################################
-  sink( paste(samplepath,"/result_ConfusionMatrix_samples.txt", sep = ""), append = TRUE)
+  sink( paste(smplpath,"/result_ConfusionMatrix_samples.txt", sep = ""), append = TRUE)
     print( confusionMatrix(as.factor(Prediction_SVM.Caret$Prediction.SVM.Caret), as.factor(Prediction_SVM.Caret$TrueLabel)) )
   sink()
 

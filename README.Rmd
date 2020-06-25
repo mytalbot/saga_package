@@ -140,7 +140,7 @@ labels.train   <- model$labels.train
 matrix.unknown <- model$matrix.unknown
 
 ### Array predictions with optimized SVM parameters (default settings)
-output         <- saga_predict(samplepath, matrix.train, labels.train, matrix.unknown,
+output         <- saga_predict(path, matrix.train, labels.train, matrix.unknown,
                                pData.Test, writeFile=1, showRoc=0)
 classes        <- output$predictions
 classes

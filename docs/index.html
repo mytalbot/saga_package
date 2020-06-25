@@ -204,7 +204,7 @@
 <span class="no">matrix.unknown</span> <span class="kw">&lt;-</span> <span class="no">model</span>$<span class="no">matrix.unknown</span>
 
 <span class="co">### Array predictions with optimized SVM parameters (default settings)</span>
-<span class="no">output</span>         <span class="kw">&lt;-</span> <span class="fu"><a href="reference/saga_predict.html">saga_predict</a></span>(<span class="no">samplepath</span>, <span class="no">matrix.train</span>, <span class="no">labels.train</span>, <span class="no">matrix.unknown</span>,
+<span class="no">output</span>         <span class="kw">&lt;-</span> <span class="fu"><a href="reference/saga_predict.html">saga_predict</a></span>(<span class="no">path</span>, <span class="no">matrix.train</span>, <span class="no">labels.train</span>, <span class="no">matrix.unknown</span>,
                                <span class="no">pData.Test</span>, <span class="kw">writeFile</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">showRoc</span><span class="kw">=</span><span class="fl">0</span>)
 <span class="no">classes</span>        <span class="kw">&lt;-</span> <span class="no">output</span>$<span class="no">predictions</span>
 <span class="no">classes</span>

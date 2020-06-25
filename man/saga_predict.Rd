@@ -5,7 +5,7 @@
 \title{Prediction of sample arrays with the SAGA model.}
 \usage{
 saga_predict(
-  samplepath,
+  smplpath,
   matrix.train,
   labels.train,
   matrix.unknown,
@@ -15,7 +15,7 @@ saga_predict(
 )
 }
 \arguments{
-\item{samplepath}{path to sample data}
+\item{smplpath}{path to sample data}
 
 \item{matrix.train}{normalized, probe-averaged and batch-corrected SAGA training data.}
 

@@ -7,7 +7,7 @@
 #'
 #' \code{saga_wrapper}
 #'
-#' @param samplepath sample path
+#' @param smplpath sample path
 #' @param doGESEA Can be 0 or 1. If set to 1, GESEA analysis will be added to the analysis.
 #' @param showModel Can be 0 or 1. If set to 1 (default) PCA plot (+samples) will be shown.
 #'
@@ -23,10 +23,10 @@
 #' @export
 #'
 
-saga_wrapper   <- function(samplepath, showModel=1, doGESEA=0){
+saga_wrapper   <- function(smplpath, showModel=1, doGESEA=0){
 
   # saga_import
-  rawdata        <- saga_import(samplepath, showjoint=0)
+  rawdata        <- saga_import(smplpath, showjoint=0)
 
   SAGA_RAW       <- rawdata$SAGA_RAW
   TEST_RAW       <- rawdata$TEST_RAW
@@ -62,7 +62,7 @@ saga_wrapper   <- function(samplepath, showModel=1, doGESEA=0){
   matrix.unknown <- model$matrix.unknown
 
   # Array predictions with optimized SVM parameters (default settings)
-  output         <- saga_predict(samplepath, matrix.train, labels.train, matrix.unknown,
+  output         <- saga_predict(smplpath, matrix.train, labels.train, matrix.unknown,
                                  pData.Test, writeFile=1, showRoc=0)
   print("+++ SVM prediction complete +++")
   print("+++ Prediction files (results) written +++")
@@ -75,7 +75,7 @@ saga_wrapper   <- function(samplepath, showModel=1, doGESEA=0){
   print("+++ SAGA ANALYSIS COMPLETE! +++")
 
   if(doGESEA == 1){
-    gesea_results  <- saga_gesea(samplepath, saveResults=1)
+    gesea_results  <- saga_gesea(smplpath, saveResults=1)
     print("+++ GESEA COMPLETE! +++")
     return(list(predictions=output, gesea=gesea_results ) )
   }else{

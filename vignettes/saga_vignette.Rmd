@@ -144,7 +144,7 @@ The following section explains the functions of this package and how to use them
 
 
 ## saga_gentargets
-After pooling the samples in a specific folder (`samplepath`), a targets file called `SampleInformation.txt` must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for the automatic generation of an empty file. However, the user will then have to adjust this file manually to his experimental setup (the function cannot know about the individual experimental designs). This includes the fields: Filename, Batch,	Group, Vector and TrueLabel.
+After pooling the samples in a specific folder, a targets file called `SampleInformation.txt` must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for the automatic generation of an empty file. However, the user will then have to adjust this file manually to his experimental setup (the function cannot know about the individual experimental designs). This includes the fields: Filename, Batch,	Group, Vector and TrueLabel.
 
 The two requirements for this function are:
 
@@ -153,7 +153,7 @@ The two requirements for this function are:
 
 ```
 # This function will generate the empty user targets file for the samples.
-saga_gentargets(samplepath)
+saga_gentargets(smplpath)
 
 ```
 
@@ -165,19 +165,19 @@ The results of GESEA will be generated as separate PDF and results textfiles in 
 
 ```
 # This function performs SAGA analysis in one step.
-mySAGAres <- saga_wrapper(samplepath, showModel=0, doGESEA=0)
+mySAGAres <- saga_wrapper(smplpath, showModel=0, doGESEA=0)
 
 ```
 
 ## saga_import
-The `saga_import` function imports multiple single microarray data files (*.txt format). The user must specify a sample path in the `samplepath` object to guide the function to the query data. However, the folder should not contain any other files except the `SampleInformation.txt` file wich can be generated with the `saga_gentargets` function. 
+The `saga_import` function imports multiple single microarray data files (*.txt format). The user must specify a sample path in the `smplpath` object to guide the function to the query data. However, the folder should not contain any other files except the `SampleInformation.txt` file wich can be generated with the `saga_gentargets` function. 
 
 The argument `showjoint` can be used for quick data visualization. A boxplot will show the joint data set after appending the user samples to the SAGA data set (default value for `showjoint` is 0).
 
 
 ```
 # This will load the default data.
-saga_import(samplepath, showjoint=0)
+saga_import(smplpath, showjoint=0)
 
 ```
 
@@ -240,7 +240,7 @@ In a second step, the processed user sample data are predicted using the SVM mod
 
 ```
 # This function will take care of the model building and prediction steps.
-saga_predict(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=0, showRoc=0)
+saga_predict(smplpath, matrix.train, labels.train, matrix.unknown, pData.Test, writeFile=0, showRoc=0)
 
 ```
 
@@ -254,7 +254,7 @@ As cutoffs we determined the following thresholds which will be indicated in the
 
 ```
 # This function will perform Gene Set Enrichtment Analysis (GESEA).
-saga_gesea(samplepath, saveResults=0)
+saga_gesea(smplpath, saveResults=0)
 
 ```
 
@@ -331,7 +331,7 @@ labels.train   <- model$labels.train
 matrix.unknown <- model$matrix.unknown
 
 ### Array predictions with optimized SVM parameters (default settings)
-output         <- saga_predict(samplepath, matrix.train, labels.train, matrix.unknown,
+output         <- saga_predict(path, matrix.train, labels.train, matrix.unknown,
                                pData.Test, writeFile=1, showRoc=0)
 classes        <- output$predictions
 classes

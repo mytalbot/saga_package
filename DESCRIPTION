@@ -53,6 +53,8 @@ Imports: limma,
     parallel,
     Biobase,
     GSEABase,
-    phenoTest
+    phenoTest,
+    kernlab,
+    e1071
 URL: https://github.com/mytalbot/saga_package
 BugReports: https://github.com/mytalbot/saga_package/issues
