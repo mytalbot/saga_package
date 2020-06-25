@@ -65,10 +65,20 @@ devtools::install_github("mytalbot/sagadata")
 library(sagadata)
 ```
 
-## Example
+## Examples
 
-This is a basic example with just the data set. See the Vignette for a
-full example…
+There are two working examples of SAGA analysis with any number of
+arrays to demonstrate the general workflow.
+
+You can download an example data set plus a ready-to-run
+SampleInformation.txt file from the GitHub repository. Just download the
+files to a folder on your machine and specify the path (see below) to
+this folder.
+
+Note: Make sure that the phenoTest package is sourced as
+library(phenoTest) before running the script.
+
+### Using the wrapper function
 
 ``` r
 library(phenoTest) # this is mandatory!
@@ -86,7 +96,15 @@ path           <- "path to somewhere useful"
 ### to use: uncomment function & execute
 ################################################################################
 mySAGAres      <- saga_wrapper(samplepath, showModel=0, doGESEA=1)
+```
 
+### More detailed SAGA analysis
+
+``` r
+library(phenoTest) # this is mandatory!
+library(saga)
+library(sagadata)
+### Using the wrapper function
 ################################################################################
 ### Or use these single functions
 ################################################################################

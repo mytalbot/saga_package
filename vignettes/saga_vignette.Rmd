@@ -259,16 +259,16 @@ saga_gesea(samplepath, saveResults=0)
 ```
 
 # Example Analysis & Array Prediction
-This is a working example of SAGA analysis with any number of arrays and the corresponding SampleInformation.txt file.
+There are two working examples of SAGA analysis with any number of arrays to demonstrate the general workflow.
 
 Note: Make sure that the phenoTest package is sourced as library(phenoTest) before running the script. 
 
 ```
-library(phenoTest) # this is mandatory!
+library(phenoTest) # this is mandatory (for GESEA)!
 library(saga)
 library(sagadata)
 
-path           <- "path to somewhere useful"
+path           <- "path to your samples"
 
 ### saga_gentargets; automatically generates an empty (!) sample information file
 # Modify the columns: Filename, Batch, Group, Vector, TrueLabel
