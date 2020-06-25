@@ -112,7 +112,7 @@ library(saga)
 library(sagadata)
 
 ### Path definition (Where are the sample files and the SIF?)
-path           <- "path to your samples"
+path           <- "path to sample files"
 
 ### saga_gentargets; automatically generates an empty (!) sample information file
 # Modify the columns: Filename, Batch, Group, Vector, TrueLabel
@@ -122,7 +122,6 @@ path           <- "path to your samples"
 
 ################################################################################
 ### Wrapper function - all in one
-### to use: uncomment function & execute
 ################################################################################
 mySAGAres      <- saga_wrapper(samplepath, showModel=0, doGESEA=1)
 ```
@@ -133,12 +132,12 @@ mySAGAres      <- saga_wrapper(samplepath, showModel=0, doGESEA=1)
 library(phenoTest) # this is mandatory!
 library(saga)
 library(sagadata)
-### Using the wrapper function
+### Use the wrapper function...
 ################################################################################
-### Or use these single functions
+### ...or these single functions
 ################################################################################
 ### Path definition (Where are the sample files and the SIF?)
-path           <- "path to your samples"
+path           <- "path to sample files"
 
 ### saga_import
 rawdata        <- saga_import(smplpath=path, showjoint=1)

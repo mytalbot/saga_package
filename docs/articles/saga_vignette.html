@@ -363,15 +363,17 @@ saga_gesea(samplepath, saveResults=0)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">saga</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)
 
-<span class="no">path</span>           <span class="kw">&lt;-</span> <span class="st">"path to your samples"</span>
+<span class="co">### Path definition (Where are the sample files and the SIF?)</span>
+<span class="no">path</span>           <span class="kw">&lt;-</span> <span class="st">"path to sample files"</span>
 
 <span class="co">### saga_gentargets; automatically generates an empty (!) sample information file</span>
 <span class="co"># Modify the columns: Filename, Batch, Group, Vector, TrueLabel</span>
+<span class="co"># Note: this function does not fully automate the SIF generation. You'll have to</span>
+<span class="co"># adjust the files manually or create a new file for your files.</span>
 <span class="co"># targets      &lt;- saga_gentargets(smplpath=path)</span>
 
 <span class="co">################################################################################</span>
 <span class="co">### Wrapper function - all in one</span>
-<span class="co">### to use: uncomment function &amp; execute</span>
 <span class="co">################################################################################</span>
 <span class="no">mySAGAres</span>      <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/saga_wrapper.html">saga_wrapper</a></span>(<span class="no">samplepath</span>, <span class="kw">showModel</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">doGESEA</span><span class="kw">=</span><span class="fl">1</span>)</pre></body></html></div>
 </div>
@@ -381,10 +383,13 @@ saga_gesea(samplepath, saveResults=0)
 <div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">phenoTest</span>) <span class="co"># this is mandatory!</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">saga</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)
-<span class="co">### Using the wrapper function</span>
+<span class="co">### Use the wrapper function...</span>
 <span class="co">################################################################################</span>
-<span class="co">### Or use these single functions</span>
+<span class="co">### ...or these single functions</span>
 <span class="co">################################################################################</span>
+<span class="co">### Path definition (Where are the sample files and the SIF?)</span>
+<span class="no">path</span>           <span class="kw">&lt;-</span> <span class="st">"path to sample files"</span>
+
 <span class="co">### saga_import</span>
 <span class="no">rawdata</span>        <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/saga_import.html">saga_import</a></span>(<span class="kw">smplpath</span><span class="kw">=</span><span class="no">path</span>, <span class="kw">showjoint</span><span class="kw">=</span><span class="fl">1</span>)
 <span class="no">SAGA_RAW</span>       <span class="kw">&lt;-</span> <span class="no">rawdata</span>$<span class="no">SAGA_RAW</span>
