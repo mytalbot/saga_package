@@ -111,10 +111,13 @@ library(phenoTest) # this is mandatory (for GESEA)!
 library(saga)
 library(sagadata)
 
+### Path definition (Where are the sample files and the SIF?)
 path           <- "path to your samples"
 
 ### saga_gentargets; automatically generates an empty (!) sample information file
 # Modify the columns: Filename, Batch, Group, Vector, TrueLabel
+# Note: this function does not fully automate the SIF generation. You'll have to
+# adjust the files manually or create a new file for your files.
 # targets      <- saga_gentargets(smplpath=path)
 
 ################################################################################
@@ -134,6 +137,9 @@ library(sagadata)
 ################################################################################
 ### Or use these single functions
 ################################################################################
+### Path definition (Where are the sample files and the SIF?)
+path           <- "path to your samples"
+
 ### saga_import
 rawdata        <- saga_import(smplpath=path, showjoint=1)
 SAGA_RAW       <- rawdata$SAGA_RAW

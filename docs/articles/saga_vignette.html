@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SAGA • saga</title>
+<title>SAGA Vignette • saga</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -17,7 +17,7 @@
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="SAGA">
+<script src="../pkgdown.js"></script><meta property="og:title" content="SAGA Vignette">
 <meta property="og:description" content="saga">
 <meta property="og:image" content="/logo.png">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -61,7 +61,7 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/saga_vignette.html">SAGA</a>
+      <a href="../articles/saga_vignette.html">SAGA Vignette</a>
     </li>
   </ul>
 </li>
@@ -89,10 +89,10 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>SAGA</h1>
+      <h1 data-toc-skip>SAGA Vignette</h1>
                         <h4 class="author">Steven R. Talbot</h4>
             
-            <h4 class="date">2020-06-24</h4>
+            <h4 class="date">2020-06-25</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/mytalbot/saga_package/blob/master/vignettes/saga_vignette.Rmd"><code>vignettes/saga_vignette.Rmd</code></a></small>
       <div class="hidden name"><code>saga_vignette.Rmd</code></div>
@@ -349,65 +349,79 @@ saga_predict(samplepath, matrix.train, labels.train, matrix.unknown, pData.Test,
 saga_gesea(samplepath, saveResults=0)
 </code></pre>
 </div>
+<div id="example-analysis-array-prediction" class="section level2">
+<h2 class="hasAnchor">
+<a href="#example-analysis-array-prediction" class="anchor"></a>Example Analysis &amp; Array Prediction</h2>
+<p>The following working examples demonstrate the general workflow of SAGA analysis.</p>
+<p>You can download an example data set of four arrays plus a ready-to-run SampleInformation.txt file from the GitHub repository.</p>
+<p><a href="https://github.com/mytalbot/saga_package/tree/master/samples">Download</a> the sample files to a folder on your machine, <strong>unzip them and specify the path</strong> (see below) to the selected folder in the script below. The sample arrays had to be zipped because of the GitHub size limitations for files.</p>
+<p>Note: Make sure that the phenoTest package is sourced as library(phenoTest) before running the script. This is required for GESEA analysis.</p>
+<div id="using-the-wrapper-function" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-the-wrapper-function" class="anchor"></a>Using the wrapper function</h3>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">phenoTest</span>) <span class="co"># this is mandatory (for GESEA)!</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">saga</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)
+
+<span class="no">path</span>           <span class="kw">&lt;-</span> <span class="st">"path to your samples"</span>
+
+<span class="co">### saga_gentargets; automatically generates an empty (!) sample information file</span>
+<span class="co"># Modify the columns: Filename, Batch, Group, Vector, TrueLabel</span>
+<span class="co"># targets      &lt;- saga_gentargets(smplpath=path)</span>
+
+<span class="co">################################################################################</span>
+<span class="co">### Wrapper function - all in one</span>
+<span class="co">### to use: uncomment function &amp; execute</span>
+<span class="co">################################################################################</span>
+<span class="no">mySAGAres</span>      <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/saga_wrapper.html">saga_wrapper</a></span>(<span class="no">samplepath</span>, <span class="kw">showModel</span><span class="kw">=</span><span class="fl">0</span>, <span class="kw">doGESEA</span><span class="kw">=</span><span class="fl">1</span>)</pre></body></html></div>
 </div>
-<div id="example-analysis-array-prediction" class="section level1">
-<h1 class="hasAnchor">
-<a href="#example-analysis-array-prediction" class="anchor"></a>Example Analysis &amp; Array Prediction</h1>
-<p>This is working example of SAGA analysis with any number of arrays and the corresponding SampleInformation.txt file.</p>
-<pre><code>library(phenoTest) # this is mandatory!
-library(saga)
-library(sagadata)
+<div id="more-detailed-saga-analysis" class="section level3">
+<h3 class="hasAnchor">
+<a href="#more-detailed-saga-analysis" class="anchor"></a>More detailed SAGA analysis</h3>
+<div class="sourceCode" id="cb15"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">phenoTest</span>) <span class="co"># this is mandatory!</span>
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">saga</span>)
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)
+<span class="co">### Using the wrapper function</span>
+<span class="co">################################################################################</span>
+<span class="co">### Or use these single functions</span>
+<span class="co">################################################################################</span>
+<span class="co">### saga_import</span>
+<span class="no">rawdata</span>        <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/saga_import.html">saga_import</a></span>(<span class="kw">smplpath</span><span class="kw">=</span><span class="no">path</span>, <span class="kw">showjoint</span><span class="kw">=</span><span class="fl">1</span>)
+<span class="no">SAGA_RAW</span>       <span class="kw">&lt;-</span> <span class="no">rawdata</span>$<span class="no">SAGA_RAW</span>
+<span class="no">TEST_RAW</span>       <span class="kw">&lt;-</span> <span class="no">rawdata</span>$<span class="no">TEST_RAW</span>
+<span class="no">pData.joint</span>    <span class="kw">&lt;-</span> <span class="no">rawdata</span>$<span class="no">pData.joint</span>
+<span class="no">pData.Test</span>     <span class="kw">&lt;-</span> <span class="no">rawdata</span>$<span class="no">pData.Test</span>
 
-path           &lt;- "path to somewhere useful"
+<span class="co">### normalize saga data (plotnumber=1 for normalized boxplot, 2 for tSNE plot)</span>
+<span class="no">normalized</span>     <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/saga_norm.html">saga_norm</a></span>(<span class="no">SAGA_RAW</span>, <span class="no">TEST_RAW</span>, <span class="no">pData.joint</span>, <span class="kw">plotnumber</span><span class="kw">=</span><span class="fl">1</span>)
+<span class="no">qunorm.SAGA</span>    <span class="kw">&lt;-</span> <span class="no">normalized</span>$<span class="no">qunorm.SAGA</span>
+<span class="no">matrix.SAGA.qn</span> <span class="kw">&lt;-</span> <span class="no">normalized</span>$<span class="no">matrix.SAGA.qn</span>
+<span class="no">matrix.test.qn</span> <span class="kw">&lt;-</span> <span class="no">normalized</span>$<span class="no">matrix.test.qn</span>
 
-### saga_gentargets; automatically generates an empty (!) sample information file
-# Modify the columns: Filename, Batch, Group, Vector, TrueLabel
-# targets      &lt;- saga_gentargets(smplpath=path)
+<span class="co">### remove batch effects</span>
+<span class="co"># plotnumber = 1 (tSNE of first 2 dimensions)</span>
+<span class="co"># plotnumber = 2 (PCA of first 2 dimensions)</span>
+<span class="no">batchnorm</span>      <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/saga_batch.html">saga_batch</a></span>(<span class="no">matrix.SAGA.qn</span>, <span class="no">matrix.test.qn</span>, <span class="no">rawdata</span>, <span class="no">pData.joint</span>, <span class="kw">plotnumber</span><span class="kw">=</span><span class="fl">1</span>)
+<span class="no">index</span>          <span class="kw">&lt;-</span> <span class="no">batchnorm</span>$<span class="no">index</span>
+<span class="no">matrix.SAGA</span>    <span class="kw">&lt;-</span> <span class="no">batchnorm</span>$<span class="no">matrix.SAGA</span>
+<span class="no">matrix.test</span>    <span class="kw">&lt;-</span> <span class="no">batchnorm</span>$<span class="no">matrix.test</span>
 
-################################################################################
-### Wrapper function - all in one
-### to use: uncomment function &amp; execute
-################################################################################
-mySAGAres      &lt;- saga_wrapper(samplepath, showModel=0, doGESEA=1)
+<span class="co">### Sampling and model data collection</span>
+<span class="no">model</span>          <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/saga_sampling.html">saga_sampling</a></span>(<span class="no">matrix.SAGA</span>, <span class="no">matrix.test</span>)
+<span class="no">matrix.train</span>   <span class="kw">&lt;-</span> <span class="no">model</span>$<span class="no">matrix.train</span>
+<span class="no">labels.train</span>   <span class="kw">&lt;-</span> <span class="no">model</span>$<span class="no">labels.train</span>
+<span class="no">matrix.unknown</span> <span class="kw">&lt;-</span> <span class="no">model</span>$<span class="no">matrix.unknown</span>
 
-################################################################################
-### Or use these single functions
-################################################################################
-### saga_import
-rawdata        &lt;- saga_import(smplpath=path, showjoint=1)
-SAGA_RAW       &lt;- rawdata$SAGA_RAW
-TEST_RAW       &lt;- rawdata$TEST_RAW
-pData.joint    &lt;- rawdata$pData.joint
-pData.Test     &lt;- rawdata$pData.Test
+<span class="co">### Array predictions with optimized SVM parameters (default settings)</span>
+<span class="no">output</span>         <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/saga_predict.html">saga_predict</a></span>(<span class="no">samplepath</span>, <span class="no">matrix.train</span>, <span class="no">labels.train</span>, <span class="no">matrix.unknown</span>,
+                               <span class="no">pData.Test</span>, <span class="kw">writeFile</span><span class="kw">=</span><span class="fl">1</span>, <span class="kw">showRoc</span><span class="kw">=</span><span class="fl">0</span>)
+<span class="no">classes</span>        <span class="kw">&lt;-</span> <span class="no">output</span>$<span class="no">predictions</span>
+<span class="no">classes</span>
 
-### normalize saga data (plotnumber=1 for normalized boxplot, 2 for tSNE plot)
-normalized     &lt;- saga_norm(SAGA_RAW, TEST_RAW, pData.joint, plotnumber=1)
-qunorm.SAGA    &lt;- normalized$qunorm.SAGA
-matrix.SAGA.qn &lt;- normalized$matrix.SAGA.qn
-matrix.test.qn &lt;- normalized$matrix.test.qn
-
-### remove batch effects
-# plotnumber = 1 (tSNE of first 2 dimensions)
-# plotnumber = 2 (PCA of first 2 dimensions)
-batchnorm      &lt;- saga_batch(matrix.SAGA.qn, matrix.test.qn, rawdata, pData.joint, plotnumber=1)
-index          &lt;- batchnorm$index
-matrix.SAGA    &lt;- batchnorm$matrix.SAGA
-matrix.test    &lt;- batchnorm$matrix.test
-
-### Sampling and model data collection
-model          &lt;- saga_sampling(matrix.SAGA, matrix.test)
-matrix.train   &lt;- model$matrix.train
-labels.train   &lt;- model$labels.train
-matrix.unknown &lt;- model$matrix.unknown
-
-### Array predictions with optimized SVM parameters (default settings)
-output         &lt;- saga_predict(samplepath, matrix.train, labels.train, matrix.unknown,
-                               pData.Test, writeFile=1, showRoc=0)
-classes        &lt;- output$predictions
-classes
-
-### GESEA
-gesea_results  &lt;- saga_gesea(smplpath=path, saveResults=0)</code></pre>
+<span class="co">### GESEA</span>
+<span class="no">gesea_results</span>  <span class="kw">&lt;-</span> <span class="fu"><a href="../reference/saga_gesea.html">saga_gesea</a></span>(<span class="kw">smplpath</span><span class="kw">=</span><span class="no">path</span>, <span class="kw">saveResults</span><span class="kw">=</span><span class="fl">0</span>)</pre></body></html></div>
+</div>
+</div>
 </div>
 <div id="references" class="section level1">
 <h1 class="hasAnchor">
