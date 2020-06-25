@@ -55,6 +55,7 @@ Imports: limma,
     GSEABase,
     phenoTest,
     kernlab,
-    e1071
+    e1071,
+    lattice
 URL: https://github.com/mytalbot/saga_package
 BugReports: https://github.com/mytalbot/saga_package/issues
