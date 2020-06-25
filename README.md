@@ -30,10 +30,12 @@ library(saga)
 
 If you want the Vignette installed in R as well, set the
 build\_vignettes = TRUE (access browseVignettes(“saga”)). Otherwise, the
-Vignette will only be accessible via the website.
+Vignette will only be accessible via the
+[website](https://talbotsr.com/saga_package/index.html).
 
 If you don’t have or want to use devtools, SAGA can be installed using
-the source file (i.e. in RStudio). [It can be downloaded
+the source file (i.e. in RStudio).  
+[It can be downloaded
 here.](https://github.com/mytalbot/saga_package/tree/master/sourcefiles)
 
 ### Important Note
@@ -55,6 +57,25 @@ PackageUrl <- "https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-
 install.packages(PackageUrl, repos = NULL,type="source")
 ```
 
+### SAGA Vignettes and working examples
+
+If the Vignette was built during the installation process, it can be
+accessed like any other Vignette using:
+
+``` r
+browseVignettes("saga")
+```
+
+The
+[Vignette](https://talbotsr.com/saga_package/articles/saga_vignette.html)
+is also available on the [SAGA
+website](https://talbotsr.com/saga_package/index.html).
+
+Working examples can be found in the README file or in the Vignette.
+
+Sample files can be [downloaded from the GitHub
+repository](https://github.com/mytalbot/saga_package/tree/master/samples).
+
 ### SAGA core data
 
 You’ll also need the SAGA core data. They are too large for the main
@@ -65,16 +86,19 @@ devtools::install_github("mytalbot/sagadata")
 library(sagadata)
 ```
 
-## Examples
+## Example Analysis & Array Prediction
 
 The following working examples demonstrate the general workflow of SAGA
 analysis.
 
 You can download an example data set of four arrays plus a ready-to-run
-SampleInformation.txt file from the GitHub repository. Just download the
-files to a folder on your machine, unzip them and specify the path (see
-below) to the selected folder in the script below. The sample arrays had
-to be zipped because of the GitHub size limitations for files.
+SampleInformation.txt file from the GitHub repository.
+
+[Download](https://github.com/mytalbot/saga_package/tree/master/samples)
+the sample files to a folder on your machine, **unzip them and specify
+the path** (see below) to the selected folder in the script below. The
+sample arrays had to be zipped because of the GitHub size limitations
+for files.
 
 Note: Make sure that the phenoTest package is sourced as
 library(phenoTest) before running the script. This is required for GESEA

@@ -1,5 +1,5 @@
 ---
-title: "SAGA"
+title: "SAGA Vignette"
 author: "Steven R. Talbot"
 date: "`r Sys.Date()`"
 output: 
@@ -258,15 +258,19 @@ saga_gesea(samplepath, saveResults=0)
 
 ```
 
-# Example Analysis & Array Prediction
+## Example Analysis & Array Prediction
 
 The following working examples demonstrate the general workflow of SAGA analysis.
 
-You can download an example data set of four arrays plus a ready-to-run SampleInformation.txt file from the GitHub repository. Just download the files to a folder on your machine, unzip them and specify the path (see below) to the selected folder in the script below. The sample arrays had to be zipped because of the GitHub size limitations for files.
+You can download an example data set of four arrays plus a ready-to-run SampleInformation.txt file from the GitHub repository. 
+
+[Download](https://github.com/mytalbot/saga_package/tree/master/samples) the sample files to a folder on your machine, **unzip them and specify the path** (see below) to the selected folder in the script below. The sample arrays had to be zipped because of the GitHub size limitations for files.
 
 Note: Make sure that the phenoTest package is sourced as library(phenoTest) before running the script. This is required for GESEA analysis.
 
-```
+### Using the wrapper function
+
+```{r example_wrapper, eval=FALSE, include=TRUE}
 library(phenoTest) # this is mandatory (for GESEA)!
 library(saga)
 library(sagadata)
@@ -282,7 +286,15 @@ path           <- "path to your samples"
 ### to use: uncomment function & execute
 ################################################################################
 mySAGAres      <- saga_wrapper(samplepath, showModel=0, doGESEA=1)
+```
 
+### More detailed SAGA analysis
+
+```{r example_full, eval=FALSE, include=TRUE}
+library(phenoTest) # this is mandatory!
+library(saga)
+library(sagadata)
+### Using the wrapper function
 ################################################################################
 ### Or use these single functions
 ################################################################################
