@@ -1,0 +1,5 @@
+SAMPLE_ID	Filename	Batch	Group	Vector	TrueLabel
+X6198	6198.txt	1	1	Mock.d15	untransforming
+X6199	6199.txt	1	2	RV.SF.d15	transforming
+X6200	6200.txt	1	3	LV.EFS.d15	untransforming
+X6202	6202.txt	1	1	Mock.d15	untransforming
