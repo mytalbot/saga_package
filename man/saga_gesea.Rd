@@ -2,7 +2,7 @@
 % Please edit documentation in R/saga_gesea.R
 \name{saga_gesea}
 \alias{saga_gesea}
-\title{Geneset Enrichment Analysis (GESEA) of SAGA data.}
+\title{Geneset Enrichment Analysis (GSEA) of SAGA data.}
 \usage{
 saga_gesea(smplpath, saveResults = 0)
 }
@@ -12,8 +12,8 @@ saga_gesea(smplpath, saveResults = 0)
 \item{saveResults}{can be 1 for yes and 0 for no.}
 }
 \value{
-\code{result} GESEA result - will also be saved into the sample folder.
+\code{result} GSEA result - will also be saved into the sample folder.
 }
 \description{
-\code{saga_gesea} performs batch-wise GESEA for SAGA samples.
+\code{saga_gesea} performs batch-wise GSEA for SAGA samples.
 }

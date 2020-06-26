@@ -12,18 +12,18 @@ vignette: >
 
 ## About SAGA package
 In our paper **"Predicting genotoxicity of viral vectors for stem cell gene therapy using gene expression-based machine learning"** we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy.
-SAGA builds on the well accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic apporach to correctly
+SAGA builds on the well-accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic approach to correctly
 classify the mutagenic potential of retroviral vectors used in previous and current clinical trials. 
 
-This vignette covers the basic functions for SAGA analysis in R [1].
+This Vignette covers the basic functions for SAGA analysis in R [1].
 
 # Package Requirements
-In order to use the SAGA package some Bioconductor dependencies require installation. First, the connection to the Bioconductor database must be established. Then the required packages can be loaded independently. Please note that these packages are only available over Bioconductor and cannot be loaded using CRAN.
+To use the SAGA package some Bioconductor dependencies require installation. First, the connection to the Bioconductor database must be established. Then the required packages can be loaded independently. Please note that these packages are only available over Bioconductor and cannot be loaded using CRAN.
 
 ### Important Note
 **The SAGA package requires R >=3.6**.
 
-Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package. Warnings may be caused mainly by the HTSanalyzeR and mnormt dependencies.
+Please note that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package. Warnings may be caused mainly by the HTSanalyzeR and mnormt dependencies.
 
 **Since the mnormt package has not yet been updated to R4.0**, the only solution to work with saga on R4.0 is the installation of a previous version of mnormt. Make sure not to update mnormt when installing saga with devtools!
 
@@ -77,9 +77,9 @@ devtools::install_github("mytalbot/saga_package", build_vignettes = TRUE)
 library(saga)
 ```
 
-If you don't have or want to use devtools, SAGA can be installed using the source file (i.e. in RStudio). [It can be downloaded here.](https://github.com/mytalbot/saga_package/tree/master/sourcefiles)
+If you don't have or want to use devtools, SAGA can be installed using the source file (i.e., in RStudio). [It can be downloaded here.](https://github.com/mytalbot/saga_package/tree/master/sourcefiles)
 
-Further, the sagadata for SAGA core data need to loaded in a separate package because it is too large to fit in the saga package. sagadata can be obtained from GitHub as well:
+Further, the package sagadata (containing the SAGA core data) needs to be loaded separately, as it is too large to fit in the saga package. sagadata can be obtained from GitHub as well:
 
 ``` r
 devtools::install_github("mytalbot/sagadata")
@@ -92,30 +92,29 @@ For more information on SAGA, visit the [website](https://talbotsr.com/saga_pack
 `SAGA` analysis starts with raw data obtained from regular gene expression microarray analysis acquired by Agilent platforms. This is important since the functions in this package will only work within the Agilent format. In the current version other platforms
 were not specifically included into the capacities of this package. If you wish to use other platforms you'll have to adapt the functions to your specific needs. 
 
-As described in the paper, we optimized a training set of arrays to discriminate between potentially dangerous arrays and MOCK data in order to obtain a measurement for vector safety. Vector safety is therefore described as either *transforming* or *untransforming* in the package.
+As described in the paper, we optimized a training set of arrays to discriminate between potentially dangerous gene therapy vectors and MOCK data to obtain a measurement for vector safety. Vector safety is therefore described as either *transforming* or *untransforming* in the package.
 
-The basic SAGA classifier was obtained by varius Machine Learning algorithms as well as feature assessment techniques as described in our paper. In essence, a toplist of 9 probes were obtained that are able to predict untrained samples reliably well. The `SAGA` package uses its default data set and the probe toplist to predict user sample data.
+The basic SAGA classifier was obtained by various Machine Learning algorithms as well as feature assessment techniques as described in our paper. In essence, a toplist of 9-11 probes was obtained that can predict untrained samples. The `SAGA` package uses its default data set and the probe toplist to predict user sample data.
 
-Although the arrays provide 39428 probes the annotations were (**de novo**) remapped to the latest available standard (Gencode.vM18, GRCm38.p6, released July 2018 and Whole Mouse Genome Oligo Microarray 4x44K v2 (ID 026655, released October 2017)), so that only 36226 annotated probes were considered in the final model building process.
+Although the arrays provide 39428 probes, the annotations were (**de novo**) remapped to the latest available standard (Gencode.vM18, GRCm38.p6, released July 2018 and Whole Mouse Genome Oligo Microarray 4x44K v2 (ID 026655, released October 2017)), so that only 36226 annotated probes were considered in the final model building process.
 
 Further, the user may specify his/her own positive and negative controls for more confidence in the predicted results.
 
 # Basic requirements
-In order to use the `SAGA` package the user has to create a specific folder with sample data. The samples must follow the Agilent design and must be in *.txt format. Sample names should be numeric.
+To use the `SAGA` package, the user has to create a specific folder with sample data. The samples must follow the Agilent design and must be in *.txt format. Sample names should be numeric.
 
-Possible sample names would be: 9910.txt, 9911.txt, 9912.txt etc.
+Possible sample names would be: 9910.txt, 9911.txt, 9912.txt, etc.
 
 Further, a **'SampleInformation.txt'** or targets file is needed. This file consists of a table with certain columns which are later used to merge the user data with the default data. In the shown plots user data will always be colored black for identification purposes.
 
-It is important to know, that the targets file <span style="color:red">**has**</span> to have the following name: **SampleInformation.txt** 
-and also <span style="color:red">**has**</span> to be located in the same folder as the samples.
+It is mandatory to name the targets file: **SampleInformation.txt** and it <span style="color:red">**has**</span> to be located in the same folder as the samples.
 
-The user may change the contents of this file manually to adjust his batch, group, vector or class settings. 
+The user may change the contents of this file manually to adjust his/her batch, group, vector, or class settings. 
 
-`SAGA` offers a function to generate a blank SampleInformation.txt file automatically. However, this only works if there is no such file in the sample directory. Otherwise, the already provided file will be used. The generated targets file may then be adjusted manually. Make sure not to hamper with the column names. Column names are case sensitive.
+`SAGA` offers a function to generate a blank SampleInformation.txt file automatically. However, this only works if there is no such file in the sample directory. Otherwise, the already provided file will be used. The generated targets file may then be adjusted manually. Make sure not to change the column names. Column names are case sensitive. There must be no other *.txt files in the sample folder, except the samples and the SampleInformation.txt file.
 
 # Data structure
-Here is a short example of a minimal targets file in txt-format. The first column must contain the array names. You may specify the names by yourself or let your microarray platform choose the labelling. However, it is best that the names do not contain any special characters such as *"§%&-"* and that they are numeric (and in an ascending order).
+Here is a short example of a minimal targets file in txt-format. The first column must contain the array names. You may specify the names by yourself or let your microarray platform choose the labeling. However, it is best that the names do not contain any special characters such as *"§%&-"* and that they are numeric (and in ascending order).
 
 Make sure that the targets file has the following format.
 
@@ -132,24 +131,22 @@ Make sure that the targets file has the following format.
 Table: Example of a SampleInformation.txt file. 
 
 
-In the table, the first array (41.txt) is labelled as *untransforming* in the **TrueLabel** column. Using either **untransforming** or **transforming** as class labels, the user may specify his own positive or negative controls. When left empty (NA) the arrays will be classified against the default model.
+In the table, the first array (41.txt) is a negative MOCK control, labeled as *untransforming* in the **TrueLabel** column. Using either **untransforming** or **transforming** as class labels, the user may specify his/her own positive or negative controls. For samples with unknown TrueLable insert NA.
 
 We recommend that users include at least 2 to 3 MOCK (negative) and RV.SF (positive) controls in their own models. The batch correction algorithm may need this for proper integration of the provided data into the SAGA data set. 
 
-**IMPORTANT for GESEA:** For the Gene Set Enrichment Analysis (GESEA) the user must provide at least 3 samples in two different batches. One of the three samples must be a MOCK control (vector) and labelled as 1 in the Group column. Every MOCK control needs the Group label 1. All other arrays may have other numeric labels.
-
+**IMPORTANT for GSEA:** For the Gene Set Enrichment Analysis (GSEA) the user must provide at least three samples, of which one must be a MOCK control and labeled as 1 in the Group column. Every MOCK control needs the Group label 1. All other arrays may have other numeric labels.
 
 # Using the functions of the SAGA package
 The following section explains the functions of this package and how to use them in SAGA analysis.
 
-
 ## saga_gentargets
-After pooling the samples in a specific folder, a targets file called `SampleInformation.txt` must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for the automatic generation of an empty file. However, the user will then have to adjust this file manually to his experimental setup (the function cannot know about the individual experimental designs). This includes the fields: Filename, Batch,	Group, Vector and TrueLabel.
+After pooling the samples in a specific folder, a targets file called `SampleInformation.txt` must be provided for analysis. Without this file SAGA analysis will fail. Since its construction is a bit tedious, we provide a function for the automatic generation of an empty file. However, the user will then have to adjust this file manually to his/her experimental setup (the function cannot know about the individual experimental designs). This includes the fields: Filename, Batch,	Group, Vector and TrueLabel.
 
 The two requirements for this function are:
 
 * there must be at least one sample file in the folder (however, there should really be more (controls!))
-* there should not be a `SampleInformation.txt` in the folder when samples are new
+* there must not be a `SampleInformation.txt` or any other *.txt file in the sample folder, except the samples
 
 ```
 # This function will generate the empty user targets file for the samples.
@@ -158,10 +155,9 @@ saga_gentargets(smplpath)
 ```
 
 ## saga_wrapper
-This function enables the user to perform SAGA analysis in one single step. Only the path to the samples and the SampleInformation.txt file must be provided in the folder. Further, the option `doGESEA` (defaul setting is 0) gives control over GESEA analysis. In order to perform GESEA analysis, the `SampleInformation.txt` file has certain requirements which are shown above. One disadvantage of this wrapper function is that the user will loose some flexibility, e.g. in displaying intermediate results like normalization, etc.
+This function enables the user to perform SAGA analysis in one single step. Only the path to the samples and the SampleInformation.txt file must be provided in the folder. Further, the option `doGESEA` (default setting is 0) gives control over GSEA analysis. In order to perform GSEA analysis, the `SampleInformation.txt` file has certain requirements which are shown above. One disadvantage of this wrapper function is that the user will loose some flexibility, e.g. in displaying intermediate results like normalization, etc.
 
-The results of GESEA will be generated as separate PDF and results textfiles in the sample folder.
-
+The results of GSEA will be generated as separate PDF and  text files in the sample folder.
 
 ```
 # This function performs SAGA analysis in one step.
@@ -170,7 +166,7 @@ mySAGAres <- saga_wrapper(smplpath, showModel=0, doGESEA=0)
 ```
 
 ## saga_import
-The `saga_import` function imports multiple single microarray data files (*.txt format). The user must specify a sample path in the `smplpath` object to guide the function to the query data. However, the folder should not contain any other files except the `SampleInformation.txt` file wich can be generated with the `saga_gentargets` function. 
+The `saga_import` function imports multiple single microarray data files (*.txt format). The user must specify a sample path in the `smplpath` object to guide the function to the query data. However, the folder should not contain any other files except the `SampleInformation.txt` file, which can be generated with the `saga_gentargets` function. 
 
 The argument `showjoint` can be used for quick data visualization. A boxplot will show the joint data set after appending the user samples to the SAGA data set (default value for `showjoint` is 0).
 
@@ -185,9 +181,9 @@ saga_import(smplpath, showjoint=0)
 
 
 ## saga_norm
-We use quantile normalization as a preprocessing step piror to analysis. The sample arrays are always normalized together with the SAGA data set. This means that training and testing data are merged during the normalization process and will again be separated later for further analysis. This ensures that data are haromonized and no artificial normalization bias enters the analysis. The `normplot` option also gives control over a boxplot showing the normalized values of the joint data set (the default argument is 0).
+We use quantile normalization as a preprocessing step prior to analysis. The sample data are always normalized together with the SAGA data set. This means that training and test data are merged during the normalization process and will again be separated later for further analysis. This ensures that data are harmonized, and no artificial normalization bias enters the analysis. The `normplot` option also gives control over a boxplot showing the normalized values of the joint data set (the default argument is 0).
 
-In case of multiple probes per array the intensities are averaged to a single value. Agilent readouts usually offer four technical probe replicates and a variety of controls. In the end, 39428 normalized and averaged probes will remain and internal controls are filtered.
+In case of multiple probes per array, the intensities are averaged to a single value. Agilent readouts usually offer four technical probe replicates and a variety of controls. In the end, 39428 normalized and averaged probes will remain, and internal controls are filtered.
 
 Use the plotnumber argument to show either the normalized data in a boxplot (=1) or a t-SNE (=2) plot of the first two dimensions of the combined data sets.
 
@@ -195,13 +191,12 @@ Use the plotnumber argument to show either the normalized data in a boxplot (=1)
 ```
 # This function applies quantile normalization on the whole data set.
 saga_norm(SAGA_RAW, TEST_RAW, pData.joint, plotnumber=2)
-
 ```
 
 ## saga_batch
 Usually microarrays are done in batches. A plethora of external influences may (occasionally) distort otherwise equal arrays beyond recognizability. This often leads to false conclusions when not handled correctly, e.g. wrong clustering results.
 
-In order to avoid such errors we apply batch correction on the joint data set. The user may define his own batches within the `SampleInformation.txt` file and is required to update the batch information **manually**. 
+To avoid such errors we apply batch correction on the joint data set. The user may define his/her own batches within the `SampleInformation.txt` file and is required to update the batch information **manually**. The batch number must be sequential and start with a value of 1.
 
 The function requires the rawdata as well as the quantile normalized data from the `saga_norm` function. Use the plotnumber argument to show either PCA (=1) or t-SNE (=2) plots of the combined data sets.
 
@@ -213,12 +208,11 @@ saga_batch(matrix.SAGA.qn, matrix.test.qn, rawdata,  pData.joint, plotnumber=2)
 ```
 
 ## saga_sampling
-This function will take care of the sample preparation of the joint SAGA data set. It will take the batch corrected data from `saga_batch` and will use the top 9 list of SAGA classifier probes to further filter the whole data set. Then, the joint data set will be separated into a training (SAGA data) and a test set (user samples).
+This function will take care of the sample preparation of the joint SAGA data set. It will take the batch corrected data from `saga_batch` and will use the top 9-11 list of SAGA classifier probes to further filter the whole data set. Then, the joint data set will be separated into a training (SAGA data) and a test set (user samples).
 
 The `showSagaModel` object gives control over a Principal Components Analysis (PCA) plot showing the first principal components of the model data. Also, the axes show the percentage of explained variance (in %) for the plotted principal components.
 
-<span style="color:red">**Red**</span> dots are potentially dangerous (transforming) samples and the rest are coding for other SAGA assays that are untransforming.
-
+<span style="color:red">**Red**</span> dots are potentially genotoxic (transforming) samples, while the rest codes for other SAGA assays that are untransforming.
 
 ```
 # This function will do the sampling as a preparation for later classification.
@@ -230,12 +224,12 @@ The function needs the batch corrected model and test data (`matrix.SAGA` and `m
 
 The function output offers a training matrix, labels for the training matrix as well as a matrix with the unknown sample data. These matrices are required for the classification and prediction step of the `saga_predict` function.
 
-**Please note: ** The PCA plot is not directly qualified for classification decisions. Although, it will give a qualitative overview on the global "positions" of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than optical similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and untransforming arrays.
+**Please note: ** The PCA plot is not directly qualified for classification decisions. Although it will give a qualitative overview on the global "positions" of the sample data within the SAGA data context, spatial neighborhood in PCA is not a reliable classifier. There are better ways of assessing classification success than visual similarity in a PCA plot. However, rather often, ambigous data will lie in the zone between transforming and untransforming arrays.
 
 ## saga_predict
-For vector safety prediction a Support Vector Machine (SVM) with "radial" kernel is used for building the model. We optimized the cost and gamma factors using the SAGA data and generalize these settings for new and untrained samples. 
+For vector safety prediction, a Support Vector Machine (SVM) with a "radial" kernel is used for building the model. We optimized the cost and gamma factors using the SAGA data and generalize these settings for new and untrained samples. 
 
-In a second step, the processed user sample data are predicted using the SVM model. The output shows each sample array along with its SVM probability and a label with **transforming/untransforming** information - whereas transforming indicates potential danger and untransforming potential safety of the sample. The probability value can be used as a quality indicator on how clearly the decicion of the SVM was for each sample (the cutoff value is 50%, or >0.5 = transforming).
+In a second step, the processed user sample data are predicted using the SVM model. The output shows each sample array along with its SVM probability and a label with **transforming/untransforming** information - whereas transforming indicates potential genotoxicity and untransforming potential safety of the vector. The probability value can be used as a quality indicator on how clear the decision of the SVM was for each sample (the cutoff value is 50%, or >0.5 = transforming).
 
 
 ```
@@ -245,17 +239,15 @@ saga_predict(smplpath, matrix.train, labels.train, matrix.unknown, pData.Test, w
 ```
 
 ## saga_gesea
-For GSEA, we use a gene set of 20 features to predict the genotoxic potential of a vector. The output of GSEA on the microarray data is a normalized enrichment score (NES). For cells transduced with mutagenic vectors like the positive control LTR.RV.SF (gammaretroviral vector with strong promoter/enhancer elements), we observed NES values above 2. We interpret such a result as a strong enrichment and the risk level of a new test vector as likely genotoxic. Vectors eliciting partial deregulation yielded NES values between 0.9 and 2. We interpret this as a weak enrichment and the risk level of a new test vector as potentially genotoxic. NES values below 0.9 were mainly observed for samples transduced with a safe vector configuration (self-inactivating design and weaker promoter). We describe this as no enrichment of our SAGA core set and the risk level of a new test vector as potentially safe.
-As cutoffs we determined the following thresholds which will be indicated in the GESEA results output.  
+For GSEA, we use a gene set of 20 features to predict the genotoxic potential of a vector. The output of GSEA on the microarray data is a normalized enrichment score (NES). For cells transduced with mutagenic vectors like the positive control LTR.RV.SF (gammaretroviral vector with strong promoter/enhancer elements), we observed NES values above 2. We interpret such a result as a strong enrichment and the risk level of a new test vector as likely genotoxic. Vectors eliciting partial deregulation yielded NES values between 0.9 and 2. We interpret this as a weak enrichment and the risk level of a new test vector as potentially genotoxic. NES values below 0.9 were mainly observed for samples transduced with a safer vector configuration (self-inactivating design and weaker promoter). We describe this as no enrichment of our SAGA core set and the risk level of a new test vector as potentially safe.
+As cutoffs we determined the following thresholds which will be indicated in the GSEA results output.  
 
-+ NES >= 2: strong enrichment (likely genotoxic)
-+ NES from 0.9 to 2: weak enrichment (potentially genotoxic)
-+ NES < 0.9 no enrichment (potentially safe).
++ NES >= 0.9: enrichment (transforming)
++ NES < 0.9 no enrichment (untransforming)
 
 ```
-# This function will perform Gene Set Enrichtment Analysis (GESEA).
+# This function will perform Gene Set Enrichment Analysis (GSEA).
 saga_gesea(smplpath, saveResults=0)
-
 ```
 
 ## Example Analysis & Array Prediction
@@ -266,12 +258,12 @@ You can download an example data set of three arrays plus a ready-to-run SampleI
 
 [Download](https://github.com/mytalbot/saga_package/tree/master/samples) the sample files to a folder on your machine, **unzip them and specify the path** (see below) to the selected folder in the script below. The sample arrays had to be zipped because of the GitHub size limitations for files.
 
-Note: Make sure that the phenoTest package is sourced as library(phenoTest) before running the script. This is required for GESEA analysis.
+Note: Make sure that the phenoTest package is sourced as library(phenoTest) before running the script. This is required for GSEA analysis.
 
 ### Using the wrapper function
 
 ```{r example_wrapper, eval=FALSE, include=TRUE}
-library(phenoTest) # this is mandatory (for GESEA)!
+library(phenoTest) # this is mandatory (for GSEA)!
 library(saga)
 library(sagadata)
 
@@ -336,8 +328,8 @@ output         <- saga_predict(path, matrix.train, labels.train, matrix.unknown,
 classes        <- output$predictions
 classes
 
-### GESEA
-gesea_results  <- saga_gesea(smplpath=path, saveResults=0)
+### GSEA
+gsea_results  <- saga_gesea(smplpath=path, saveResults=0)
 ```
 
 

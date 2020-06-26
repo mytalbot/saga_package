@@ -1,11 +1,11 @@
-#' Geneset Enrichment Analysis (GESEA) of SAGA data.
+#' Geneset Enrichment Analysis (GSEA) of SAGA data.
 #'
-#' \code{saga_gesea} performs batch-wise GESEA for SAGA samples.
+#' \code{saga_gesea} performs batch-wise GSEA for SAGA samples.
 #'
 #' @param smplpath path to the saga data folder with the user samples.
 #' @param saveResults can be 1 for yes and 0 for no.
 #'
-#' @return \code{result} GESEA result - will also be saved into the sample folder.
+#' @return \code{result} GSEA result - will also be saved into the sample folder.
 #'
 #' @import limma
 #' @importFrom gridExtra combine grid.table
@@ -59,7 +59,7 @@ saga_gesea    <- function(smplpath, saveResults=0){
 
     result            <- summary(SAGA.GSEA)[,c(1,2,3,5,8)]                     # extract results (only NES- normalized enrichment scores)
     #NEW
-    result$pred.class <- ifelse(result$nes>0,"transforming","untransforming")  # prediction based on NES
+    result$pred.class <- ifelse(result$nes>0.9,"transforming","untransforming")  # prediction based on NES
 
     #### 2.6 output ###############################################################################
     Group <- NULL    ### pull out the Group index number from the result table

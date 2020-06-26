@@ -98,7 +98,7 @@
 <div id="surrogate-assay-for-genotoxicity-assessment" class="section level3">
 <h3 class="hasAnchor">
 <a href="#surrogate-assay-for-genotoxicity-assessment" class="anchor"></a>Surrogate Assay for Genotoxicity Assessment</h3>
-<p>In our paper <strong>“Predicting genotoxicity of integrating viral vectors for stem cell gene therapy using gene expression-based machine learning”</strong> we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy. SAGA builds on the well accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic approach to correctly classify the mutagenic potential of retroviral vectors used in previous and current clinical trials.</p>
+<p>In our paper <strong>“Predicting genotoxicity of integrating viral vectors for stem cell gene therapy using gene expression-based machine learning”</strong> we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy. SAGA builds on the well-accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic approach to correctly classify the mutagenic potential of retroviral vectors used in previous and current clinical trials.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
@@ -124,7 +124,7 @@
 <p>If the Vignette was built during the installation process, it can be accessed like any other Vignette using:</p>
 <div class="sourceCode" id="cb3"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/browseVignettes.html">browseVignettes</a></span>(<span class="st">"saga"</span>)</pre></div>
 <p>The <a href="https://talbotsr.com/saga_package/articles/saga_vignette.html">Vignette</a> is also available on the <a href="https://talbotsr.com/saga_package/index.html">SAGA website</a>.</p>
-<p>Working examples can be found in the README file or in the Vignette.</p>
+<p>Working examples can be found in the README file or the Vignette.</p>
 <p>Sample files can be <a href="https://github.com/mytalbot/saga_package/tree/master/samples">downloaded from the GitHub repository</a>.</p>
 </div>
 <div id="saga-core-data" class="section level3">
@@ -141,11 +141,11 @@
 <p>The following working examples demonstrate the general workflow of SAGA analysis.</p>
 <p>You can download an example data set of three arrays plus a ready-to-run SampleInformation.txt file from the GitHub repository.</p>
 <p><a href="https://github.com/mytalbot/saga_package/tree/master/samples">Download</a> the sample files to a folder on your machine, <strong>unzip them and specify the path</strong> (see below) to the selected folder in the script below. The sample arrays had to be zipped because of the GitHub size limitations for files.</p>
-<p>Note: Make sure that the phenoTest package is sourced as library(phenoTest) before running the script. This is required for GESEA analysis.</p>
+<p>Note: Make sure that the phenoTest package is sourced as library(phenoTest) before running the script. This is required for GSEA analysis.</p>
 <div id="using-the-wrapper-function" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-the-wrapper-function" class="anchor"></a>Using the wrapper function</h3>
-<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">phenoTest</span>) <span class="co"># this is mandatory (for GESEA)!</span>
+<div class="sourceCode" id="cb5"><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">phenoTest</span>) <span class="co"># this is mandatory (for GSEA)!</span>
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">saga</span>)
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">sagadata</span>)
 
@@ -209,8 +209,8 @@
 <span class="no">classes</span>        <span class="kw">&lt;-</span> <span class="no">output</span>$<span class="no">predictions</span>
 <span class="no">classes</span>
 
-<span class="co">### GESEA</span>
-<span class="no">gesea_results</span>  <span class="kw">&lt;-</span> <span class="fu"><a href="reference/saga_gesea.html">saga_gesea</a></span>(<span class="kw">smplpath</span><span class="kw">=</span><span class="no">path</span>, <span class="kw">saveResults</span><span class="kw">=</span><span class="fl">0</span>)</pre></div>
+<span class="co">### GSEA</span>
+<span class="no">gsea_results</span>  <span class="kw">&lt;-</span> <span class="fu"><a href="reference/saga_gesea.html">saga_gesea</a></span>(<span class="kw">smplpath</span><span class="kw">=</span><span class="no">path</span>, <span class="kw">saveResults</span><span class="kw">=</span><span class="fl">0</span>)</pre></div>
 </div>
 </div>
 </div>

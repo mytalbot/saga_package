@@ -9,7 +9,7 @@ In our paper **“Predicting genotoxicity of integrating viral vectors for
 stem cell gene therapy using gene expression-based machine learning”**
 we report an improved in vitro test to determine the risk of insertional
 mutagenesis of integrating vectors for gene therapy. SAGA builds on the
-well accepted cell culture protocol of the in vitro immortalization
+well-accepted cell culture protocol of the in vitro immortalization
 assay (IVIM) but screens for the deregulation of oncogenic gene
 expression signatures. We demonstrate a new bioinformatic approach to
 correctly classify the mutagenic potential of retroviral vectors used in
@@ -71,7 +71,7 @@ The
 is also available on the [SAGA
 website](https://talbotsr.com/saga_package/index.html).
 
-Working examples can be found in the README file or in the Vignette.
+Working examples can be found in the README file or the Vignette.
 
 Sample files can be [downloaded from the GitHub
 repository](https://github.com/mytalbot/saga_package/tree/master/samples).
@@ -101,13 +101,13 @@ sample arrays had to be zipped because of the GitHub size limitations
 for files.
 
 Note: Make sure that the phenoTest package is sourced as
-library(phenoTest) before running the script. This is required for GESEA
+library(phenoTest) before running the script. This is required for GSEA
 analysis.
 
 ### Using the wrapper function
 
 ``` r
-library(phenoTest) # this is mandatory (for GESEA)!
+library(phenoTest) # this is mandatory (for GSEA)!
 library(saga)
 library(sagadata)
 
@@ -172,6 +172,6 @@ output         <- saga_predict(path, matrix.train, labels.train, matrix.unknown,
 classes        <- output$predictions
 classes
 
-### GESEA
-gesea_results  <- saga_gesea(smplpath=path, saveResults=0)
+### GSEA
+gsea_results  <- saga_gesea(smplpath=path, saveResults=0)
 ```
