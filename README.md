@@ -91,7 +91,7 @@ library(sagadata)
 The following working examples demonstrate the general workflow of SAGA
 analysis.
 
-You can download an example data set of four arrays plus a ready-to-run
+You can download an example data set of three arrays plus a ready-to-run
 SampleInformation.txt file from the GitHub repository.
 
 [Download](https://github.com/mytalbot/saga_package/tree/master/samples)
