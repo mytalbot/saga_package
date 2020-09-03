@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 In our paper **"Predicting genotoxicity of integrating viral vectors for stem cell gene therapy using gene expression-based machine learning"** we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy.
 SAGA builds on the well-accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic approach to correctly classify the mutagenic potential of retroviral vectors used in previous and current clinical trials. 
 
-## Installation
+## R Installation
 The package requires **R>=3.6**.
 
 You can download the development version from [GitHub](https://github.com/mytalbot/saga_package/) or use:
@@ -34,7 +34,15 @@ If you want the Vignette installed in R as well, set the build_vignettes = TRUE 
 If you don't have or want to use devtools, SAGA can be installed using the source file (i.e. in RStudio).   
 [It can be downloaded here.](https://github.com/mytalbot/saga_package/tree/master/sourcefiles)
 
-### Important Note
+
+## AMI Installation
+
+In case the installation of SAGA is not possible or desired, you can also use an amazon machine image (us-east-1: ami-0787228c3430c9994). This requires an AWS account.
+
+[AMI Link](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0787228c3430c9994)
+
+
+### Important Notes
 
 Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause **warnings** (not errors). These can be ignored since they do not hamper the function of the SAGA package. Warnings may be caused mainly by the HTSanalyzeR and mnormt dependencies. 
 
@@ -44,6 +52,8 @@ Please note, that the SAGA package requires dependencies. Some functions can mas
 PackageUrl <- "https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz"
 install.packages(PackageUrl, repos = NULL,type="source")
 ```
+Currently, only SAGA data generated with the Agilent Whole Mouse Genome 4x44K v2 platform can be analyzed.
+
 
 ### SAGA Vignettes and working examples
 

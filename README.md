@@ -15,7 +15,7 @@ expression signatures. We demonstrate a new bioinformatic approach to
 correctly classify the mutagenic potential of retroviral vectors used in
 previous and current clinical trials.
 
-## Installation
+## R Installation
 
 The package requires **R\>=3.6**.
 
@@ -38,7 +38,16 @@ the source file (i.e. in RStudio).
 [It can be downloaded
 here.](https://github.com/mytalbot/saga_package/tree/master/sourcefiles)
 
-### Important Note
+## AMI Installation
+
+In case the installation of SAGA is not possible or desired, you can
+also use an amazon machine image (us-east-1: ami-0787228c3430c9994).
+This requires an AWS account.
+
+[AMI
+Link](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0787228c3430c9994)
+
+### Important Notes
 
 Please note, that the SAGA package requires dependencies. Some functions
 can mask each other (depending on the local R setup). This may cause
@@ -56,6 +65,9 @@ devtools\!
 PackageUrl <- "https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz"
 install.packages(PackageUrl, repos = NULL,type="source")
 ```
+
+Currently, only SAGA data generated with the Agilent Whole Mouse Genome
+4x44K v2 platform can be analyzed.
 
 ### SAGA Vignettes and working examples
 

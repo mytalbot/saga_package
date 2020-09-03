@@ -100,9 +100,9 @@
 <a href="#surrogate-assay-for-genotoxicity-assessment" class="anchor"></a>Surrogate Assay for Genotoxicity Assessment</h3>
 <p>In our paper <strong>“Predicting genotoxicity of integrating viral vectors for stem cell gene therapy using gene expression-based machine learning”</strong> we report an improved in vitro test to determine the risk of insertional mutagenesis of integrating vectors for gene therapy. SAGA builds on the well-accepted cell culture protocol of the in vitro immortalization assay (IVIM) but screens for the deregulation of oncogenic gene expression signatures. We demonstrate a new bioinformatic approach to correctly classify the mutagenic potential of retroviral vectors used in previous and current clinical trials.</p>
 </div>
-<div id="installation" class="section level2">
+<div id="r-installation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<a href="#r-installation" class="anchor"></a>R Installation</h2>
 <p>The package requires <strong>R&gt;=3.6</strong>.</p>
 <p>You can download the development version from <a href="https://github.com/mytalbot/saga_package/">GitHub</a> or use:</p>
 <div class="sourceCode" id="cb1"><pre class="r"><span class="co"># install.packages("devtools")</span>
@@ -110,13 +110,20 @@
 <span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">saga</span>)</pre></div>
 <p>If you want the Vignette installed in R as well, set the build_vignettes = TRUE (access browseVignettes(“saga”)). Otherwise, the Vignette will only be accessible via the <a href="https://talbotsr.com/saga_package/index.html">website</a>.</p>
 <p>If you don’t have or want to use devtools, SAGA can be installed using the source file (i.e. in RStudio).<br><a href="https://github.com/mytalbot/saga_package/tree/master/sourcefiles">It can be downloaded here.</a></p>
-<div id="important-note" class="section level3">
+</div>
+<div id="ami-installation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ami-installation" class="anchor"></a>AMI Installation</h2>
+<p>In case the installation of SAGA is not possible or desired, you can also use an amazon machine image (us-east-1: ami-0787228c3430c9994). This requires an AWS account.</p>
+<p><a href="https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0787228c3430c9994">AMI Link</a></p>
+<div id="important-notes" class="section level3">
 <h3 class="hasAnchor">
-<a href="#important-note" class="anchor"></a>Important Note</h3>
+<a href="#important-notes" class="anchor"></a>Important Notes</h3>
 <p>Please note, that the SAGA package requires dependencies. Some functions can mask each other (depending on the local R setup). This may cause <strong>warnings</strong> (not errors). These can be ignored since they do not hamper the function of the SAGA package. Warnings may be caused mainly by the HTSanalyzeR and mnormt dependencies.</p>
 <p><strong>Since the mnormt package has not yet been updated to R4.0</strong>, the only solution to work with saga on R4.0 is the installation of a previous version of mnormt. Make sure not to update mnormt when installing saga with devtools!</p>
 <div class="sourceCode" id="cb2"><pre class="r"><span class="no">PackageUrl</span> <span class="kw">&lt;-</span> <span class="st">"https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz"</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="no">PackageUrl</span>, <span class="kw">repos</span> <span class="kw">=</span> <span class="kw">NULL</span>,<span class="kw">type</span><span class="kw">=</span><span class="st">"source"</span>)</pre></div>
+<p>Currently, only SAGA data generated with the Agilent Whole Mouse Genome 4x44K v2 platform can be analyzed.</p>
 </div>
 <div id="saga-vignettes-and-working-examples" class="section level3">
 <h3 class="hasAnchor">
