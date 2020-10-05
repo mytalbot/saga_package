@@ -2,13 +2,13 @@
 #'
 #' The \code{saga_wrapper} function integrates all SAGA functions into one. With this function you are not as flexible as
 #' with the single ones but you can run the analysis/ classification in one step.
-#' However, this requires a complete SampleInformatin.txt file. For GESEA analysis the SampleInformation file must also fulfill
+#' However, this requires a complete SampleInformatin.txt file. For GSEA analysis the SampleInformation file must also fulfill
 #' the neccessary criteria. See saga_vignette for more information.
 #'
 #' \code{saga_wrapper}
 #'
 #' @param smplpath sample path
-#' @param doGESEA Can be 0 or 1. If set to 1, GESEA analysis will be added to the analysis.
+#' @param doGSEA Can be 0 or 1. If set to 1, GSEA analysis will be added to the analysis.
 #' @param showModel Can be 0 or 1. If set to 1 (default) PCA plot (+samples) will be shown.
 #'
 #' @return \code{output} optimized SVM model for classification.
@@ -23,7 +23,7 @@
 #' @export
 #'
 
-saga_wrapper   <- function(smplpath, showModel=1, doGESEA=0){
+saga_wrapper   <- function(smplpath, showModel=1, doGSEA=0){
 
   # saga_import
   rawdata        <- saga_import(smplpath, showjoint=0)
@@ -74,10 +74,10 @@ saga_wrapper   <- function(smplpath, showModel=1, doGESEA=0){
   print("+++ SVM grid optimization & prediction complete +++")
   print("+++ SAGA ANALYSIS COMPLETE! +++")
 
-  if(doGESEA == 1){
-    gesea_results  <- saga_gesea(smplpath, saveResults=1)
-    print("+++ GESEA COMPLETE! +++")
-    return(list(predictions=output, gesea=gesea_results ) )
+  if(doGSEA == 1){
+    gsea_results  <- saga_gsea(smplpath, saveResults=1)
+    print("+++ GSEA COMPLETE! +++")
+    return(list(predictions=output, gsea=gsea_results ) )
   }else{
     return(list(predictions=output ) )
   }

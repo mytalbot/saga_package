@@ -1,6 +1,6 @@
 #' Geneset Enrichment Analysis (GSEA) of SAGA data.
 #'
-#' \code{saga_gesea} performs batch-wise GSEA for SAGA samples.
+#' \code{saga_gsea} performs batch-wise GSEA for SAGA samples.
 #'
 #' @param smplpath path to the saga data folder with the user samples.
 #' @param saveResults can be 1 for yes and 0 for no.
@@ -21,7 +21,7 @@
 #' @export
 #'
 
-saga_gesea    <- function(smplpath, saveResults=0){
+saga_gsea    <- function(smplpath, saveResults=0){
 
   sets        <- saga::sets
   SAGA.CORE   <- setNames(split(sets, seq(nrow(sets))), rownames(sets))   # GeneSets have to be stored in a list object

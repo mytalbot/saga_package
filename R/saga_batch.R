@@ -27,7 +27,7 @@ saga_batch     <- function(matrix.SAGA.qn, matrix.test.qn, rawdata, pData.joint,
   pData        <- saga::pData
   SIF          <- rawdata$SIF
   pData.Test   <- rawdata$pData.Test
-  Top          <- saga::Top12
+  Top          <- saga::Top11
 
   ################################################################################################
   #### 3. Addon COMBAT batch correction ##########################################################
@@ -40,46 +40,67 @@ saga_batch     <- function(matrix.SAGA.qn, matrix.test.qn, rawdata, pData.joint,
 
   #### 3.2 t-SNE of batch corrected dataset ######################################################
   ###################################################################################ä############
-  matrix.joint <- cbind(matrix.SAGA,matrix.test)
+  set.seed(12)
+  tsne_out     <- Rtsne(t(cbind(matrix.SAGA, matrix.test)), dims = 2, perplexity = 16,
+                        theta = 0.5, check_duplicates = FALSE, pca = TRUE, max_iter = 1000,
+                        verbose = FALSE, is_distance = FALSE)
+  #set.seed(59)
+  #matrix.joint <- cbind(matrix.SAGA,matrix.test)
 
-  set.seed(59)
-  tsne_out <- Rtsne(t(matrix.joint),dims = 2, perplexity = 16,
-                    theta = 0.5, check_duplicates = FALSE, pca = TRUE, max_iter = 1000,
-                    verbose = FALSE, is_distance = FALSE)
+  #tsne_out <- Rtsne(t(matrix.joint),dims = 2, perplexity = 16,
+  #                  theta = 0.5, check_duplicates = FALSE, pca = TRUE, max_iter = 1000,
+  #                  verbose = FALSE, is_distance = FALSE)
 
   if(plotnumber == 2){
     plot(tsne_out$Y,
          col  = pData.joint$IVIM_Farbe,
          pch  = 16,
          cex  = 1.3,
-         main = "PCA Plot",
+         main = "t-SNE Plot",
          xlab = "Dimension 1",
          ylab = "Dimension 2")
   }else{}
+
 
   #### 3.3  clean up data set before assessing SAGA classifier  #################################
   ###############################################################################################
+  matrix.train   <- t(matrix.SAGA[row.names(Top),])
 
-  #pData.Test  <- subset(pData.Test, !is.na(pData.Test$TrueLabel))  #remove samples with unknown ground truth (too few or inconclusive IVIM assays)
-  #pData.joint <- rbind(pData,pData.Test)
-  #matrix.test <- matrix.test[,row.names(pData.Test)]
-
-  matrix.Top   <- cbind(matrix.SAGA, matrix.test)[row.names(Top),]
-  index        <- nrow(pData)+nrow(pData.Test)
-
+  pca.train      <- prcomp(matrix.train, center = T, scale. = T)
+  coord.pca.test <- predict(pca.train, newdata = t(matrix.test[row.names(Top),]))
 
   if(plotnumber == 1){
-    pca     <- prcomp(t(matrix.Top))
-    plot(pca$x,
+    plot(rbind(pca.train$x,coord.pca.test),
          pch  = 16,
          col  = pData.joint$Design_Color,
          cex  = 1,
-         asp  = 1,
-         xlab = "Dimension 1",
-         ylab = "Dimension 2")
-    legend("topleft", legend = c("transforming","mock","neutral","new samples"), col = unique(pData.joint$Design_Color), pch=16, bty="n", cex=0.8)
-    text(pca$x[c((nrow(pData)+1):index),c(1:2)] , labels=pData.Test$Filename, cex= 0.6, pos=3, offset = 0.3) # new in V6: (nrow(pData)+1)
+         asp  = 1)
+    legend(1,-2, legend = c("transforming","mock","neutral","new samples"), col = unique(pData.joint$Design_Color), pch=16, bty="n", cex=0.8)
+    text(coord.pca.test[,c(1:2)], labels=pData.Test$Filename, cex= 0.3, pos=3, offset = 0.3)
   }else{}
+
+  index        <- nrow(pData)+nrow(pData.Test)
+
+
+  ##matrix.Top   <- cbind(matrix.SAGA, matrix.test)[row.names(Top),]
+  ##index        <- nrow(pData)+nrow(pData.Test)
+
+
+  ##if(plotnumber == 1){
+  ##  pca     <- prcomp(t(matrix.Top))
+  ##  plot(pca$x,
+  ##       pch  = 16,
+  ##       col  = pData.joint$Design_Color,
+  ##       cex  = 1,
+  ##       asp  = 1,
+  ##       xlab = "Dimension 1",
+  ##       ylab = "Dimension 2")
+  ##  legend("topleft", legend = c("transforming","mock","neutral","new samples"), col = unique(pData.joint$Design_Color), pch=16, bty="n", cex=0.8)
+  ##  text(pca$x[c((nrow(pData)+1):index),c(1:2)] , labels=pData.Test$Filename, cex= 0.6, pos=3, offset = 0.3) # new in V6: (nrow(pData)+1)
+  ## }else{}
+
+
+
 
   return(list(matrix.SAGA = matrix.SAGA, matrix.test = matrix.test, index = index))
 

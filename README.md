@@ -185,5 +185,5 @@ classes        <- output$predictions
 classes
 
 ### GSEA
-gsea_results  <- saga_gesea(smplpath=path, saveResults=0)
+gsea_results  <- saga_gsea(smplpath=path, saveResults=0)
 ```

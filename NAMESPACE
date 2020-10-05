@@ -2,7 +2,7 @@
 
 export(saga_batch)
 export(saga_gentargets)
-export(saga_gesea)
+export(saga_gsea)
 export(saga_import)
 export(saga_norm)
 export(saga_predict)

@@ -22,7 +22,7 @@ saga_sampling    <- function(matrix.SAGA, matrix.test ){
   ################################################################################################
   #### 5. split into Prediction and Known Sets ###################################################
   ################################################################################################
-  Top            <- saga::Top12
+  Top            <- saga::Top11
   pData          <- saga::pData
 
   matrix.train   <- t(matrix.SAGA[row.names(Top),])

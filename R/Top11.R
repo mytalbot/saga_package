@@ -1,17 +1,17 @@
-#' Top12
+#' Top11
 #'
-#' Top feature set of the 11 most relevant features. Although this file is called Top12, only 11 features are included.
+#' Top feature set of the 11 most relevant features.
 #' The data frame contains information on GeneID as well as the corresponding symbol.
 #'
 #' @docType data
 #'
-#' @usage data(Top12)
+#' @usage data(Top11)
 #'
 #' @format A 11 x 2 data frame .
 #'
 #' @keywords datasets
 #'
 #' @examples
-#' data(Top12)
-#' head(Top12)
-"Top12"
+#' data(Top11)
+#' head(Top11)
+"Top11"

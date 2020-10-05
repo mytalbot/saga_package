@@ -155,13 +155,13 @@ saga_gentargets(smplpath)
 ```
 
 ## saga_wrapper
-This function enables the user to perform SAGA analysis in one single step. Only the path to the samples and the SampleInformation.txt file must be provided in the folder. Further, the option `doGESEA` (default setting is 0) gives control over GSEA analysis. In order to perform GSEA analysis, the `SampleInformation.txt` file has certain requirements which are shown above. One disadvantage of this wrapper function is that the user will loose some flexibility, e.g. in displaying intermediate results like normalization, etc.
+This function enables the user to perform SAGA analysis in one single step. Only the path to the samples and the SampleInformation.txt file must be provided in the folder. Further, the option `doGSEA` (default setting is 0) gives control over GSEA analysis. In order to perform GSEA analysis, the `SampleInformation.txt` file has certain requirements which are shown above. One disadvantage of this wrapper function is that the user will loose some flexibility, e.g. in displaying intermediate results like normalization, etc.
 
 The results of GSEA will be generated as separate PDF and  text files in the sample folder.
 
 ```
 # This function performs SAGA analysis in one step.
-mySAGAres <- saga_wrapper(smplpath, showModel=0, doGESEA=0)
+mySAGAres <- saga_wrapper(smplpath, showModel=0, doGSEA=0)
 
 ```
 
@@ -238,7 +238,7 @@ saga_predict(smplpath, matrix.train, labels.train, matrix.unknown, pData.Test, w
 
 ```
 
-## saga_gesea
+## saga_gsea
 For GSEA, we use a gene set of 20 features to predict the genotoxic potential of a vector. The output of GSEA on the microarray data is a normalized enrichment score (NES). For cells transduced with mutagenic vectors like the positive control LTR.RV.SF (gammaretroviral vector with strong promoter/enhancer elements), we observed NES values above 2. We interpret such a result as a strong enrichment and the risk level of a new test vector as likely genotoxic. Vectors eliciting partial deregulation yielded NES values between 0.9 and 2. We interpret this as a weak enrichment and the risk level of a new test vector as potentially genotoxic. NES values below 0.9 were mainly observed for samples transduced with a safer vector configuration (self-inactivating design and weaker promoter). We describe this as no enrichment of our SAGA core set and the risk level of a new test vector as potentially safe.
 As cutoffs we determined the following thresholds which will be indicated in the GSEA results output.  
 
@@ -247,7 +247,7 @@ As cutoffs we determined the following thresholds which will be indicated in the
 
 ```
 # This function will perform Gene Set Enrichment Analysis (GSEA).
-saga_gesea(smplpath, saveResults=0)
+saga_gsea(smplpath, saveResults=0)
 ```
 
 ## Example Analysis & Array Prediction
@@ -279,7 +279,7 @@ path           <- "path to sample files"
 ################################################################################
 ### Wrapper function - all in one
 ################################################################################
-mySAGAres      <- saga_wrapper(smplpath=path, showModel=0, doGESEA=1)
+mySAGAres      <- saga_wrapper(smplpath=path, showModel=0, doGSEA=1)
 ```
 
 ### More detailed SAGA analysis
@@ -329,7 +329,7 @@ classes        <- output$predictions
 classes
 
 ### GSEA
-gsea_results  <- saga_gesea(smplpath=path, saveResults=0)
+gsea_results  <- saga_gsea(smplpath=path, saveResults=0)
 ```
 
 

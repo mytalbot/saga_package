@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>sets — sets • saga</title>
+<title>Geneset Enrichment Analysis (GSEA) of SAGA data. — saga_gsea • saga</title>
 
 <!-- favicons -->
 <link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
@@ -46,8 +46,8 @@
 
 
 
-<meta property="og:title" content="sets — sets" />
-<meta property="og:description" content="A data frame containing the probe IDs of the top 20 SAGA core features." />
+<meta property="og:title" content="Geneset Enrichment Analysis (GSEA) of SAGA data. — saga_gsea" />
+<meta property="og:description" content="saga_gsea performs batch-wise GSEA for SAGA samples." />
 <meta property="og:image" content="/logo.png" />
 
 
@@ -131,30 +131,34 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>sets</h1>
-    <small class="dont-index">Source: <a href='https://github.com/mytalbot/saga_package/blob/master/R/sets.R'><code>R/sets.R</code></a></small>
-    <div class="hidden name"><code>sets.Rd</code></div>
+    <h1>Geneset Enrichment Analysis (GSEA) of SAGA data.</h1>
+    <small class="dont-index">Source: <a href='https://github.com/mytalbot/saga_package/blob/master/R/saga_gsea.R'><code>R/saga_gsea.R</code></a></small>
+    <div class="hidden name"><code>saga_gsea.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A data frame containing the probe IDs of the top 20 SAGA core features.</p>
+    <p><code>saga_gsea</code> performs batch-wise GSEA for SAGA samples.</p>
     </div>
 
-    <pre class="usage"><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sets</span>)</pre>
+    <pre class="usage"><span class='fu'>saga_gsea</span>(<span class='no'>smplpath</span>, <span class='kw'>saveResults</span> <span class='kw'>=</span> <span class='fl'>0</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>smplpath</th>
+      <td><p>path to the saga data folder with the user samples.</p></td>
+    </tr>
+    <tr>
+      <th>saveResults</th>
+      <td><p>can be 1 for yes and 0 for no.</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A 1 x 20 data frame .</p>
+    <p><code>result</code> GSEA result - will also be saved into the sample folder.</p>
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='no'>sets</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/head.html'>head</a></span>(<span class='no'>sets</span>)</div><div class='output co'>#&gt;                      V2            V3            V4           V5          V6
-#&gt; SAGA.CORE A_55_P2024155 A_55_P2077048 A_55_P2018929 A_51_P486121 A_52_P56682
-#&gt;                      V7           V8           V9          V10          V11
-#&gt; SAGA.CORE A_55_P2108248 A_51_P106059 A_51_P289392 A_66_P135106 A_52_P162957
-#&gt;                    V12
-#&gt; SAGA.CORE A_51_P177171</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
