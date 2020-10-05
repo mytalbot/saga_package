@@ -4,14 +4,14 @@
 \alias{saga_wrapper}
 \title{SAGA Wrapper}
 \usage{
-saga_wrapper(smplpath, showModel = 1, doGESEA = 0)
+saga_wrapper(smplpath, showModel = 1, doGSEA = 0)
 }
 \arguments{
 \item{smplpath}{sample path}
 
 \item{showModel}{Can be 0 or 1. If set to 1 (default) PCA plot (+samples) will be shown.}
 
-\item{doGESEA}{Can be 0 or 1. If set to 1, GESEA analysis will be added to the analysis.}
+\item{doGSEA}{Can be 0 or 1. If set to 1, GSEA analysis will be added to the analysis.}
 }
 \value{
 \code{output} optimized SVM model for classification.
@@ -19,7 +19,7 @@ saga_wrapper(smplpath, showModel = 1, doGESEA = 0)
 \description{
 The \code{saga_wrapper} function integrates all SAGA functions into one. With this function you are not as flexible as
 with the single ones but you can run the analysis/ classification in one step.
-However, this requires a complete SampleInformatin.txt file. For GESEA analysis the SampleInformation file must also fulfill
+However, this requires a complete SampleInformatin.txt file. For GSEA analysis the SampleInformation file must also fulfill
 the neccessary criteria. See saga_vignette for more information.
 }
 \details{
