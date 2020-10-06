@@ -41,11 +41,14 @@ here.](https://github.com/mytalbot/saga_package/tree/master/sourcefiles)
 ## AMI Installation
 
 In case the installation of SAGA is not possible or desired, you can
-also use an amazon machine image (us-east-1: ami-0787228c3430c9994).
-This requires an AWS account.
+also use an amazon machine image (us-east-1: ami-020cd086c85e7c4d). This
+requires an AWS account. We tested this with the instance type
+c5n.large. The security group settings have to allow incoming HTTP
+traffic (port 80). Login details for RStudio: User = ubuntu and Password
+= bioc.
 
 [AMI
-Link](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-0787228c3430c9994)
+Link](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:ami=ami-020cd086c85e7c4d1)
 
 ### Important Notes
 
