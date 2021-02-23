@@ -59,7 +59,7 @@ saga_gsea    <- function(smplpath, saveResults=0){
 
     result            <- summary(SAGA.GSEA)[,c(1,2,3,5,8)]                     # extract results (only NES- normalized enrichment scores)
     #NEW
-    result$pred.class <- ifelse(result$nes>0.9,"transforming","untransforming")  # prediction based on NES
+    result$pred.class <- ifelse(result$nes>1,"transforming","untransforming")  # prediction based on NES
 
     #### 2.6 output ###############################################################################
     Group <- NULL    ### pull out the Group index number from the result table
